@@ -17,7 +17,7 @@
     <main class="container">
         <h2 class="text-center mb-4">Lista de Marcas</h2>
         <div class="mb-3 text-end">
-        <a href="{{ route('marcas.create') }}" class="btn btn-dark text-white">Crear Marca</a>
+        <a href="{{ route('cargos.create') }}" class="btn btn-dark text-white">Crear Marca</a>
         </div>
 
         <div class="table-container">
@@ -25,21 +25,19 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Origen</th>
+                        <th>Descripcion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($marcas as $marca)
+                    @foreach($cargos as $cargo)
                         <tr>
-                            <td>{{ $marca->id }}</td>
-                            <td>{{ $marca->descripcion }}</td>
-                            <td>{{ $marca->origen }}</td>
+                            <td>{{ $cargo->id }}</td>
+                            <td>{{ $cargo->descripcion }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ route('marcas.edit', $marca->id) }}" class="btn btn-sm btn-info me-4">Editar</a>
-                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $marca->id }}')">Eliminar</button>
+                                    <a href="{{ route('cargos.edit', $cargo->id) }}" class="btn btn-sm btn-info me-4">Editar</a>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $cargo->id }}')">Eliminar</button>
                                 </div>
                             </td>
                         </tr>
@@ -56,7 +54,7 @@
             if (confirm('¿Estás seguro de que deseas eliminar esta marca?')) {
                 let form = document.createElement('form');
                 form.method = 'POST';
-                form.action = '/marcas/' + id;
+                form.action = '/cargos/' + id;
                 form.innerHTML = '@csrf @method("DELETE")';
                 document.body.appendChild(form);
                 form.submit();
