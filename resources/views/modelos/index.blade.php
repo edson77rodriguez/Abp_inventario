@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcas</title>
+    <title>modelos</title>
     <!-- Bootstrap 5 (CSS y JS) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Fwhij5wX9YjAJxm85MMzR1h7vfqZ6P6r64tCcdyecf5W450YfN2vQ9F3iZ2yW3j" crossorigin="anonymous">
     @vite(['resources/js/app.js'])
@@ -20,9 +20,9 @@
                 <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
             </li>
         </ul>
-        <h2 class="text-center mb-4">Lista de Marcas</h2>
+        <h2 class="text-center mb-4">Lista de modelos</h2>
         <div class="mb-3 text-end">
-        <a href="{{ route('marcas.create') }}" class="btn btn-dark text-white">Crear Marca</a>
+        <a href="{{ route('modelos.create') }}" class="btn btn-dark text-white">+ Modelo </a>
         </div>
 
         <div class="table-container">
@@ -30,21 +30,19 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Origen</th>
+                        <th>Descripcion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($marcas as $marca)
+                    @foreach($modelos as $modelo)
                         <tr>
-                            <td>{{ $marca->id }}</td>
-                            <td>{{ $marca->descripcion }}</td>
-                            <td>{{ $marca->origen }}</td>
+                            <td>{{ $modelo->id }}</td>
+                            <td>{{ $modelo->descripcion }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ route('marcas.edit', $marca->id) }}" class="btn btn-sm btn-info me-4">Editar</a>
-                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $marca->id }}')">Eliminar</button>
+                                    <a href="{{ route('modelos.edit', $modelo->id) }}" class="btn btn-sm btn-info me-4">Editar</a>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $modelo->id }}')">Eliminar</button>
                                 </div>
                             </td>
                         </tr>
@@ -61,7 +59,7 @@
             if (confirm('¿Estás seguro de que deseas eliminar esta marca?')) {
                 let form = document.createElement('form');
                 form.method = 'POST';
-                form.action = '/marcas/' + id;
+                form.action = '/modelos/' + id;
                 form.innerHTML = '@csrf @method("DELETE")';
                 document.body.appendChild(form);
                 form.submit();

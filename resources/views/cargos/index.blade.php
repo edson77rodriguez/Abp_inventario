@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcas</title>
+    <title>Cargos</title>
     <!-- Bootstrap 5 (CSS y JS) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Fwhij5wX9YjAJxm85MMzR1h7vfqZ6P6r64tCcdyecf5W450YfN2vQ9F3iZ2yW3j" crossorigin="anonymous">
     @vite(['resources/js/app.js'])
@@ -15,9 +15,14 @@
 <body>
    
     <main class="container">
-        <h2 class="text-center mb-4">Lista de Marcas</h2>
+        <ul class="navbar-nav mr-auto flex-row">
+            <li class="nav-item mx-2">
+                <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+            </li>
+        </ul>
+        <h2 class="text-center mb-4">Lista de Cargos</h2>
         <div class="mb-3 text-end">
-        <a href="{{ route('cargos.create') }}" class="btn btn-dark text-white">Crear Marca</a>
+        <a href="{{ route('cargos.create') }}" class="btn btn-dark text-white">Crear cargo </a>
         </div>
 
         <div class="table-container">

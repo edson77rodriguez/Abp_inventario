@@ -3,6 +3,39 @@
 
 @section('content')
 <div class="container">
+
+    <!-- se muestran las direcciones de las tablas-->
+    <ul class="navbar-nav mr-auto flex-row">
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('marcas.index') }}">{{ __('Marcas') }}</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('cargos.index') }}">{{ __('Cargo') }}</a>
+        </li>
+        <!-- Agrega más elementos de navegación aquí -->
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('generos.index') }}">{{ __('Generos') }}</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('tipos.index') }}">{{ __('Tipos') }}</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('tallas.index') }}">{{ __('Tallas') }}</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('modelos.index') }}">{{ __('Modelos') }}</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('colors.index') }}">{{ __('Colores') }}</a>
+        </li>
+
+
+    </ul>
+
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
