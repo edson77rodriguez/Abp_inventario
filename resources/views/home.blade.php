@@ -31,6 +31,12 @@
         <li class="nav-item mx-2">
             <a class="nav-link" href="{{ route('colors.index') }}">{{ __('Colores') }}</a>
         </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('estilos.index') }}">{{ __('Estilos') }}</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('composiciones.index') }}">{{ __('Composiciones') }}</a>
+        </li>
 
 
     </ul>

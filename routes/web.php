@@ -9,6 +9,10 @@ use App\Http\Controllers\TallaController;
 //use APP\Http\Controllers\ModeloController; ni idea pa aqui me dice que hay mayusculas 
 use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\EstiloController;
+use App\Http\Controllers\ComposicionController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,3 +37,5 @@ Route::resource('tipos',TipoController::class);
 Route::resource('tallas',TallaController::class);
 Route::resource('modelos', ModeloController::class);
 Route::resource('colors', ColorController::class);
+Route::resource('estilos', EstiloController::class);
+Route::resource('composiciones', ComposicionController::class);
