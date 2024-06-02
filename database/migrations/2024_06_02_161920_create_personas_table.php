@@ -16,9 +16,9 @@ return new class extends Migration
             $table->String('nombre');
             $table->String('ap_p');
             $table->String('ap_m');
-            $table->String('id_genero');
             $table->Integer('telefono');
-            $table->String('id_cargo');
+            $table->String('correo');
+
             $table->timestamps();
         });
     }

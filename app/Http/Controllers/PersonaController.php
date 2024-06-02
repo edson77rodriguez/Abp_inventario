@@ -2,71 +2,83 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Persona;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use App\Http\Requests\PersonaRequest;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
+
 class PersonaController extends Controller
 {
-   
-    public function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request): View
     {
-        $personas = Persona::all();
-        return view('personas.index', compact('personas'));
+        $personas = Persona::paginate();
+
+        return view('persona.index', compact('personas'))
+            ->with('i', ($request->input('page', 1) - 1) * $personas->perPage());
     }
 
-    public function create()
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(): View
     {
-        return view('personas.create');
+        $persona = new Persona();
+
+        return view('persona.create', compact('persona'));
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(PersonaRequest $request): RedirectResponse
     {
-        $validatedData = $request->validate([
-            'nombre' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'ap_p' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'ap_m' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'id_genero' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'telefono' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'id_cargo' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
+        Persona::create($request->validated());
 
-        ]);
-    
-        Persona::create($validatedData);
-    
-        return redirect()->route('personas.index');
+        return Redirect::route('personas.index')
+            ->with('success', 'Persona created successfully.');
     }
 
-    public function show(string $id)
-    {
-        //
-    }
-
-    public function edit(string $id)
+    /**
+     * Display the specified resource.
+     */
+    public function show($id): View
     {
         $persona = Persona::find($id);
-        return view('personas.edit', compact('persona'));
+
+        return view('persona.show', compact('persona'));
     }
 
-    public function update(Request $request, string $id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id): View
     {
-        $validatedData = $request->validate([
-            'nombre' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'ap_p' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'ap_m' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'id_genero' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'telefono' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'id_cargo' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-        ]);
         $persona = Persona::find($id);
-        $persona->update($request->all());
 
-        return redirect()->route('personas.index');
+        return view('persona.edit', compact('persona'));
     }
 
-    public function destroy(string $id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(PersonaRequest $request, Persona $persona): RedirectResponse
     {
-        $persona = Persona::findOrFail($id);
-        $persona->delete();
+        $persona->update($request->validated());
 
-        return redirect()->route('personas.index');
+        return Redirect::route('personas.index')
+            ->with('success', 'Persona updated successfully');
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        Persona::find($id)->delete();
+
+        return Redirect::route('personas.index')
+            ->with('success', 'Persona deleted successfully');
     }
 }

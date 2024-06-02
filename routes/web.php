@@ -12,6 +12,8 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\EstiloController;
 use App\Http\Controllers\ComposicionController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\ProveedoreController;
+use App\Http\Controllers\EmpleadoController;
 
 
 
@@ -44,3 +46,5 @@ Route::resource('colors', ColorController::class);
 Route::resource('estilos', EstiloController::class);
 Route::resource('composiciones', ComposicionController::class);
 Route::resource('personas',PersonaController::class);
+Route::resource('proveedores',ProveedoreController::class);
+Route::resource('empleados',EmpleadoController::class);

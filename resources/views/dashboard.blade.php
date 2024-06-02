@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Fwhij5wX9YjAJxm85MMzR1h7vfqZ6P6r64tCcdyecf5W450YfN2vQ9F3iZ2yW3j" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0-beta2/css/bootstrap.min.css">
+
     @vite(['resources/js/app.js'])
 <div class="container">
     <div class="row">
@@ -38,6 +39,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('personas.index') }}">{{ __('Personas') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('proveedores.index') }}">{{ __('Proveedores') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('empleados.index') }}">{{ __('Empleados') }}</a>
                 </li>
             </ul>
         </div>
