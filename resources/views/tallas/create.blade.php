@@ -1,7 +1,6 @@
 <!-- resources/views/marcas/create.blade.php -->
-@extends('layouts.app')
-
-@section('content')
+@extends('dashboard')
+@section('crud_content')
 <div class="container py-5">
     <div class="row mb-4">
         <div class="col-12">
@@ -19,7 +18,7 @@
 
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">tallas</label>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" required>
+                            <input type="number" name="descripcion" id="descripcion" class="form-control" required>
                         </div>
 
 

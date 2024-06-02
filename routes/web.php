@@ -11,6 +11,7 @@ use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\EstiloController;
 use App\Http\Controllers\ComposicionController;
+use App\Http\Controllers\PersonaController;
 
 
 
@@ -18,9 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -39,3 +43,4 @@ Route::resource('modelos', ModeloController::class);
 Route::resource('colors', ColorController::class);
 Route::resource('estilos', EstiloController::class);
 Route::resource('composiciones', ComposicionController::class);
+Route::resource('personas',PersonaController::class);

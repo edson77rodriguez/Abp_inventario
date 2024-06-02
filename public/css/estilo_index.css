@@ -52,4 +52,19 @@ th {
 .btn-danger:hover {
     background-color: #bd2130;
 }
+/* Estilos para la barra lateral */
+.sidebar-nav {
+    background-color: #0b71d7; /* Color de fondo */
+    border-right: 1px solid #196fc5; /* Borde derecho */
+}
+
+.sidebar-nav .nav-link {
+    color: #333; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+}
+
+.sidebar-nav .nav-link:hover {
+    background-color: #136eca; /* Color de fondo al pasar el ratón */
+    color: #555; /* Color del texto al pasar el ratón */
+}
 

@@ -1,7 +1,6 @@
 <!-- resources/views/marcas/edit.blade.php -->
-@extends('layouts.app')
-
-@section('content')
+@extends('dashboard')
+@section('crud_content')
 <div class="container py-5">
     <div class="row mb-4">
         <div class="col-12">

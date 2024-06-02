@@ -37,6 +37,9 @@
         <li class="nav-item mx-2">
             <a class="nav-link" href="{{ route('composiciones.index') }}">{{ __('Composiciones') }}</a>
         </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="{{ route('personas.index') }}">{{ __('Personas') }}</a>
+        </li>
 
 
     </ul>

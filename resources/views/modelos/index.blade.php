@@ -1,6 +1,6 @@
 <!-- resources/views/marcas/create.blade.php -->
-@extends('layouts.app')
-@section('content')
+@extends('dashboard')
+@section('crud_content')
 <!DOCTYPE html>
 <html lang="es">
 <head>
