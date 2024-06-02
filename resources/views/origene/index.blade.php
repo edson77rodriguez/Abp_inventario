@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-    Personas_bd
+    Origenes
 @endsection
 
 @section('crud_content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Personas') }}
+                                {{ __('Origenes') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('personas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('origenes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,29 +36,21 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >Nombre</th>
-									<th >Apellido Paterno</th>
-									<th >Apellido Materno</th>
-									<th >Telefono</th>
-									<th >Correo</th>
+									<th >Pais</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($personas as $persona)
+                                    @foreach ($origenes as $origene)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $persona->nombre }}</td>
-										<td >{{ $persona->ap_p }}</td>
-										<td >{{ $persona->ap_m }}</td>
-										<td >{{ $persona->telefono }}</td>
-										<td >{{ $persona->correo }}</td>
+										<td >{{ $origene->pais }}</td>
 
                                             <td>
-                                                <form action="{{ route('personas.destroy', $persona->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-success" href="{{ route('personas.edit', $persona->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('origenes.destroy', $origene->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-success" href="{{ route('origenes.edit', $origene->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -71,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $personas->withQueryString()->links() !!}
+                {!! $origenes->withQueryString()->links() !!}
             </div>
         </div>
     </div>

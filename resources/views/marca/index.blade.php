@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-    Personas_bd
+    Marcas
 @endsection
 
 @section('crud_content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Personas') }}
+                                {{ __('Marcas') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('personas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('marcas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,29 +36,23 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >Nombre</th>
-									<th >Apellido Paterno</th>
-									<th >Apellido Materno</th>
-									<th >Telefono</th>
-									<th >Correo</th>
+									<th >Marca</th>
+									<th >Origen Id</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($personas as $persona)
+                                    @foreach ($marcas as $marca)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $persona->nombre }}</td>
-										<td >{{ $persona->ap_p }}</td>
-										<td >{{ $persona->ap_m }}</td>
-										<td >{{ $persona->telefono }}</td>
-										<td >{{ $persona->correo }}</td>
+										<td >{{ $marca->Marca }}</td>
+										<td >{{ $marca->origen_id }}</td>
 
                                             <td>
-                                                <form action="{{ route('personas.destroy', $persona->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-success" href="{{ route('personas.edit', $persona->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('marcas.destroy', $marca->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-success" href="{{ route('marcas.edit', $marca->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -71,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $personas->withQueryString()->links() !!}
+                {!! $marcas->withQueryString()->links() !!}
             </div>
         </div>
     </div>

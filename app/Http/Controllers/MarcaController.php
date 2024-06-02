@@ -2,60 +2,65 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Marca;
+use App\Models\Origene;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use App\Http\Requests\MarcaRequest;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
+
 class MarcaController extends Controller
 {
-   
-    public function index()
+    public function index(Request $request): View
     {
-        $marcas = Marca::all();
-        return view('marcas.index', compact('marcas'));
+        $marcas = Marca::paginate();
 
+        return view('marca.index', compact('marcas'))
+            ->with('i', ($request->input('page', 1) - 1) * $marcas->perPage());
     }
-    public function create()
+
+    public function create(): View
     {
-        return view('marcas.create');
+        $marca = new Marca();
+        $origenes = Origene::pluck('pais','id');
+        return view('marca.create', compact('marca','origenes'));
     }
-    public function store(Request $request)
+
+    public function store(MarcaRequest $request): RedirectResponse
     {
-        $validatedData = $request->validate([
-            'descripcion' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'origen' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-        ]);
-    
+        Marca::create($request->validated());
         
-    
-        Marca::create($validatedData);
-    
-        return redirect()->route('marcas.index');
+        return Redirect::route('marcas.index')
+            ->with('success', 'Marca created successfully.');
     }
-    public function show(string $id)
+
+    public function show($id): View
     {
-        //
+        
     }
-    public function edit(string $id)
+
+    public function edit($id): View
     {
         $marca = Marca::find($id);
-        return view('marcas.edit', compact('marca'));
+        $origenes = Origene::pluck('pais','id');
+
+        return view('marca.edit', compact('marca','origenes'));
     }
-    public function update(Request $request, string $id)
-    {
-        $validatedData = $request->validate([
-            'descripcion' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-            'origen' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
-        ]);
-        $marca = Marca::find($id);
-        $marca->update($request->all());
 
-        return redirect()->route('marcas.index');
+    public function update(MarcaRequest $request, Marca $marca): RedirectResponse
+    {
+        $marca->update($request->validated());
+
+        return Redirect::route('marcas.index')
+            ->with('success', 'Marca updated successfully');
     }
-    public function destroy(string $id)
+
+    public function destroy($id): RedirectResponse
     {
-        $marca = Marca::findOrFail($id);
+        Marca::find($id)->delete();
 
-        $marca->delete();
-
-        return redirect()->route('marcas.index');
+        return Redirect::route('marcas.index')
+            ->with('success', 'Marca deleted successfully');
     }
 }

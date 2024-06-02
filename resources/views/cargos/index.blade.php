@@ -1,5 +1,9 @@
 <!-- resources/views/marcas/create.blade.php -->
 @extends('dashboard')
+
+@section('template_title')
+    Cargos
+@endsection
 @section('crud_content')
 <!DOCTYPE html>
 <html lang="es">
@@ -15,16 +19,18 @@
 <body>
    
     <main class="container">
-        <ul class="navbar-nav mr-auto flex-row">
-            <li class="nav-item mx-2">
-                <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-            </li>
-        </ul>
-        <h2 class="text-center mb-4">Lista de Cargos</h2>
-        <div class="mb-3 text-end">
-        <a href="{{ route('cargos.create') }}" class="btn btn-dark text-white">Crear cargo </a>
-        </div>
-
+    
+        <div class="card-header"> 
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="card_title">{{ __('Cargos') }}</span>
+            
+                    <div class="float-right">
+                        <a href="{{ route('cargos.create') }}" class="btn btn-dark me-3 float-right"  data-placement="left">
+                        {{ __('Create New') }}</a>
+                    </div>
+                
+            </div>
+            </div>
         <div class="table-container">
             <table class="table table-bordered table-hover w-100">
                 <thead>

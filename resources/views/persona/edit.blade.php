@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('dashboard')
 
 @section('template_title')
     {{ __('Update') }} Persona
 @endsection
 
-@section('content')
+@section('crud_content')
     <section class="content container-fluid">
         <div class="">
             <div class="col-md-12">

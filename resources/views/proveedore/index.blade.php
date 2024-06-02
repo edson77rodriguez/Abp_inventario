@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('dashboard')
 
 @section('template_title')
     Proveedores
 @endsection
 
-@section('content')
+@section('crud_content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -50,7 +50,6 @@
 
                                             <td>
                                                 <form action="{{ route('proveedores.destroy', $proveedore->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('proveedores.show', $proveedore->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('proveedores.edit', $proveedore->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')

@@ -1,6 +1,6 @@
 <!-- resources/views/marcas/create.blade.php -->
 @extends('dashboard')
-@section('crud_content'))
+@section('crud_content')
 <div class="container py-5">
     <div class="row mb-4">
         <div class="col-12">

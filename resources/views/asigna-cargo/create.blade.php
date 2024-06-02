@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-    {{ __('Create') }} Proveedore
+    {{ __('Create') }} Asigna Cargo
 @endsection
 
 @section('crud_content')
@@ -11,13 +11,13 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Proveedore</span>
+                        <span class="card-title">{{ __('Create') }} Asigna Cargo</span>
                     </div>
                     <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('proveedores.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('asigna-cargos.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('proveedore.form')
+                            @include('asigna-cargo.form')
 
                         </form>
                     </div>

@@ -5,12 +5,19 @@
 
     @vite(['resources/js/app.js'])
 <div class="container">
-    <div class="row">
+    <div class="row m-3">
         <div class="col-md-3">
             <!-- Menú de navegación -->
             <ul class="nav flex-column">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('marcas.index') }}">{{ __('Marcas') }}</a>
+                    <a class="nav-link" href="{{ route('origenes.index') }}">{{ __('Origenes_Marca') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('marcas.index') }}">{{ __('Marca') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('asigna-cargos.index') }}">{{ __('Asignar cargos') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('cargos.index') }}">{{ __('Cargo') }}</a>

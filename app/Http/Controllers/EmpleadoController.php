@@ -12,9 +12,7 @@ use Illuminate\View\View;
 
 class EmpleadoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request): View
     {
         $empleados = Empleado::paginate();
@@ -23,20 +21,13 @@ class EmpleadoController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * $empleados->perPage());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): View
-{
-    $empleado = new Empleado();
-    $personas = Persona::pluck('nombre', 'id');
-    return view('empleado.create', compact('empleado', 'personas'));
-}
+    {
+        $empleado = new Empleado();
+        $personas = Persona::pluck('nombre','id');
+        return view('empleado.create', compact('empleado','personas'));
+    }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(EmpleadoRequest $request): RedirectResponse
     {
         Empleado::create($request->validated());
@@ -44,30 +35,12 @@ class EmpleadoController extends Controller
         return Redirect::route('empleados.index')
             ->with('success', 'Empleado created successfully.');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($id): View
-    {
-        $empleado = Empleado::find($id);
-
-        return view('empleado.show', compact('empleado'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id): View
     {
         $empleado = Empleado::find($id);
-
-        return view('empleado.edit', compact('empleado'));
+        $personas = Persona::pluck('nombre','id');
+        return view('empleado.edit', compact('empleado','personas'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(EmpleadoRequest $request, Empleado $empleado): RedirectResponse
     {
         $empleado->update($request->validated());
@@ -75,7 +48,6 @@ class EmpleadoController extends Controller
         return Redirect::route('empleados.index')
             ->with('success', 'Empleado updated successfully');
     }
-
     public function destroy($id): RedirectResponse
     {
         Empleado::find($id)->delete();

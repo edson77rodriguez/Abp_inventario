@@ -29,21 +29,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- 
-                    Left Side Of Navbar 
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('marcas.index') }}">{{ __('Marcas') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cargos.index') }}">{{ __('Cargo') }}</a>
-                        </li>
-                        // Agrega más elementos de navegación aquí 
-                    </ul> 
-                    -->
+                  
 
                    
                 </div>
