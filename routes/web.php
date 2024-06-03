@@ -10,24 +10,12 @@ use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\EstiloController;
 use App\Http\Controllers\ComposicionController;
+use App\Http\Controllers\OrigenController;
 use App\Http\Controllers\PersonaController;
-use App\Http\Controllers\ProveedoreController;
-use App\Http\Controllers\EmpleadoController;
-use App\Http\Controllers\OrigeneController;
-use App\Http\Controllers\MarcaController;
-use App\Http\Controllers\AsignaCargoController;
-
-
-
-
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-
-
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -48,9 +36,6 @@ Route::resource('modelos', ModeloController::class);
 Route::resource('colors', ColorController::class);
 Route::resource('estilos', EstiloController::class);
 Route::resource('composiciones', ComposicionController::class);
+Route::resource('origenes',OrigenController::class);
 Route::resource('personas',PersonaController::class);
-Route::resource('proveedores',ProveedoreController::class);
-Route::resource('empleados',EmpleadoController::class);
-Route::resource('origenes',OrigeneController::class);
-Route::resource('marcas',MarcaController::class);
-Route::resource('asigna-cargos',AsignaCargoController::class);
+

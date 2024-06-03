@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
             $table->String('nombre');
-            $table->String('ap_p');
-            $table->String('ap_m');
-            $table->Integer('telefono');
-            $table->String('correo');
-
+            $table->String('ap');
+            $table->String('am');
+            $table->String('telefono');
             $table->timestamps();
         });
     }

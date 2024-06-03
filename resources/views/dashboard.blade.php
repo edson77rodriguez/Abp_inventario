@@ -10,17 +10,15 @@
             <!-- Menú de navegación -->
             <ul class="nav flex-column">
 
+             
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('origenes.index') }}">{{ __('Origenes_Marca') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('marcas.index') }}">{{ __('Marca') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('asigna-cargos.index') }}">{{ __('Asignar cargos') }}</a>
+                    <a class="nav-link" href="{{ route('origenes.index') }}">{{ __('Origenes_Marcas') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('cargos.index') }}">{{ __('Cargo') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('personas.index') }}">{{ __('Personas') }}</a>
                 </li>
                 <!-- Agrega más elementos de navegación aquí -->
                 <li class="nav-item">
@@ -44,15 +42,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('composiciones.index') }}">{{ __('Composiciones') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('personas.index') }}">{{ __('Personas') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('proveedores.index') }}">{{ __('Proveedores') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('empleados.index') }}">{{ __('Empleados') }}</a>
-                </li>
+               
             </ul>
         </div>
         <div class="col-md-9">
