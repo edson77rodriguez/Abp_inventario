@@ -12,6 +12,8 @@ use App\Http\Controllers\EstiloController;
 use App\Http\Controllers\ComposicionController;
 use App\Http\Controllers\OrigenController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\MarcaController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,4 +40,5 @@ Route::resource('estilos', EstiloController::class);
 Route::resource('composiciones', ComposicionController::class);
 Route::resource('origenes',OrigenController::class);
 Route::resource('personas',PersonaController::class);
+Route::resource('marcas',MarcaController::class);
 
