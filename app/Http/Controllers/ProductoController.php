@@ -79,7 +79,7 @@ class ProductoController extends Controller
         $estilos = Estilo::all();
         $proveedores = Proveedor::all();
 
-        return view('productos.edit', compact('producto', 'tipos', 'marcas', 'tallas', 'generos', 'modelos', 'colors', 'composiciones', 'estilos'));
+        return view('productos.edit', compact('producto', 'tipos', 'marcas', 'tallas', 'generos', 'modelos', 'colors', 'composiciones', 'estilos','proveedores'));
     }
 
     public function update(Request $request, $id)

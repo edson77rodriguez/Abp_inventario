@@ -16,6 +16,12 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>Tipo:</strong> {{ $producto->tipo->descripcion }}</li>
                         <li class="list-group-item"><strong>Marca:</strong> {{ $producto->marca->marca }}</li>
+                        <li class="list-group-item"><strong>Talla:</strong> {{ $producto->talla->descripcion }}</li>
+                        <li class="list-group-item"><strong>Genero:</strong> {{ $producto->genero->descripcion }}</li>
+                        <li class="list-group-item"><strong>Modelo:</strong> {{ $producto->modelo->descripcion }}</li>
+                        <li class="list-group-item"><strong>Color:</strong> {{ $producto->color->descripcion }}</li>
+                        <li class="list-group-item"><strong>Composicion:</strong> {{ $producto->composicion->composicion }}</li>
+                        <li class="list-group-item"><strong>Estilo:</strong> {{ $producto->estilo->estilo }}</li>
                         <!-- Repite el mismo patrón para los demás campos -->
                         <li class="list-group-item"><strong>Cantidad:</strong> {{ $producto->cantidad }}</li>
                         <li class="list-group-item"><strong>Precio:</strong> ${{ number_format($producto->precio, 2) }}</li>
