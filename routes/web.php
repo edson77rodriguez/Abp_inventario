@@ -5,7 +5,6 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\TipoController;
 use App\Http\Controllers\TallaController;
-//use APP\Http\Controllers\ModeloController; ni idea pa aqui me dice que hay mayusculas 
 use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\EstiloController;
@@ -15,6 +14,7 @@ use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProveedorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,8 +41,10 @@ Route::resource('estilos', EstiloController::class);
 Route::resource('composiciones', ComposicionController::class);
 Route::resource('origenes',OrigenController::class);
 Route::resource('personas',PersonaController::class);
+Route::resource('proveedors',ProveedorController::class);
 Route::resource('marcas',MarcaController::class);
 Route::resource('empleados',EmpleadoController::class);
 Route::resource('productos',ProductoController::class);
+
 
 
