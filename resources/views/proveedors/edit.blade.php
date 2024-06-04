@@ -13,22 +13,22 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('modelos.update', $modelo->id) }}">
+                    <form method="POST" action="{{ route('proveedors.update', $proveedor->id) }}">
                         @csrf
                         @method('PUT')
 
                         <div class="mb-3">
-                            <label for="descripcion" class="form-label">Nombre</label>
-                            <input type="text" name="descripcion" id="descripcion" value="{{ old('descripcion', $modelo->descripcion) }}" class="form-control @error('descripcion') is-invalid @enderror" required>
-                            @error('descripcion')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <label for="persona_id" class="form-label">Persona</label>
+                            <select name="persona_id" id="persona_id" class="form-control" required>
+                                <option value="">Seleccione una persona</option>
+                                @foreach ($personas as $persona)
+                                    <option value="{{ $persona->id }}" {{ $proveedor->persona_id == $persona->id ? 'selected' : '' }}>{{ $persona->nombre }}</option>
+                                @endforeach
+                            </select>
                         </div>
-
-
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-dark me-3">Guardar</button>
-                            <a href="{{ route('modelos.index') }}" class="btn btn-secondary">Cancelar</a>
+                            <a href="{{ route('proveedors.index') }}" class="btn btn-secondary">Cancelar</a>
                         </div>
                     </form>
                 </div>

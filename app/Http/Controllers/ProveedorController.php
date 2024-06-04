@@ -52,7 +52,9 @@ class ProveedorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $proveedor=Proveedor::findOrFail($id);
+        $personas=Persona::all();
+        return view('proveedors.edit',compact('proveedor','personas'));
     }
 
     /**
@@ -60,7 +62,15 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'persona_id' => 'required|exists:personas,id',
+        ]);
+
+        $proveedors=Proveedor::findOrFail($id);
+        $proveedors->update($validatedData);
+
+        return redirect()->route('proveedors.index')->with('succes','El diler ta actializado');
+        
     }
 
     /**
@@ -68,6 +78,9 @@ class ProveedorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+      $proveedors=Proveedor::findOrFail($id);
+      $proveedors->delete();
+      
+      return redirect()->route('proveedors.index');
     }
 }
