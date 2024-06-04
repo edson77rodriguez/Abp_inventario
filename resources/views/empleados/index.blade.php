@@ -16,9 +16,9 @@
    
     <main class="container">
         
-        <h2 class="text-center mb-4">Lista de Origenes</h2>
+        <h2 class="text-center mb-4">Lista de Empleados</h2>
         <div class="mb-3 text-end">
-        <a href="{{ route('personas.create') }}" class="btn btn-dark text-white float-right mb-3 p-2">Nueva Persona </a>
+        <a href="{{ route('empleados.create') }}" class="btn btn-dark text-white float-right mb-3 p-2">Nuevo empleado </a>
         </div>
 
         <div class="table-container">
@@ -26,26 +26,27 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>Telefono</th>
+                        <th>Empleado</th>
+                        <th>Cargo</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Fin</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($personas as $persona)
+                    @foreach($empleados as $empleado)
                         <tr>
-                            <td>{{ $persona->id }}</td>
-                            <td>{{ $persona->nombre }}</td>
-                            <td>{{ $persona->ap }}</td>
-                            <td>{{ $persona->am }}</td>
-                            <td>{{ $persona->telefono }}</td>
+                            <td>{{ $empleado->id }}</td>
+                            <td>{{ $empleado->persona_id }}</td>
+                            <td>{{ $empleado->cargo_id }}</td>
+                            <td>{{ $empleado->fecha_inicio }}</td>
+                            <td>{{ $empleado->fecha_fin }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ route('personas.edit', $persona->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Editar</a>
-                                    <br>
-                                    <button type="button" class="btn btn-sm btn-danger me-2 p-1 float-left" onclick="confirmDelete('{{ $persona->id }}')">Eliminar</button>
+                                    <a href="{{ route('empleados.edit', $empleado->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Editar</a>
+                                    <a href="{{ route('empleados.show', $empleado->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Show</a>
+
+                                    <button type="button" class="btn btn-sm btn-danger me-2 p-1 float-left" onclick="confirmDelete('{{ $empleado->id }}')">Eliminar</button>
                                 </div>
                             </td>
                         </tr>
@@ -62,7 +63,7 @@
             if (confirm('¿Estás seguro de que deseas eliminar este origen?')) {
                 let form = document.createElement('form');
                 form.method = 'POST';
-                form.action = '/origenes/' + id;
+                form.action = '/empleados/' + id;
                 form.innerHTML = '@csrf @method("DELETE")';
                 document.body.appendChild(form);
                 form.submit();

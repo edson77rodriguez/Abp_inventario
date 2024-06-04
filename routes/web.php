@@ -39,4 +39,10 @@ Route::resource('estilos', EstiloController::class);
 Route::resource('composiciones', ComposicionController::class);
 Route::resource('origenes',OrigenController::class);
 Route::resource('personas',PersonaController::class);
+
 Route::resource('proveedors',ProveedorController::class);
+//=======
+Route::resource('marcas',MarcaController::class);
+Route::resource('empleados',EmpleadoController::class);
+
+//>>>>>>> 76472ee563acb5f00bc41c2212cf95b868948cf1

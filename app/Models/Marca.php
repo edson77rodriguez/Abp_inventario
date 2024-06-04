@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Origen extends Model
+class Marca extends Model
 {
     use HasFactory;
-    
-    protected $fillable = [
-        'pais',
-    ];
 
-    public function marcas()
+    protected $fillable = ['marca', 'origen_id'];
+
+    public function origen()
     {
-        return $this->hasMany(Marca::class);
+        return $this->belongsTo(Origen::class);
     }
 }
+

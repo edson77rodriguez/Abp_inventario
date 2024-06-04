@@ -18,7 +18,7 @@
         
         <h2 class="text-center mb-4">Lista de Origenes</h2>
         <div class="mb-3 text-end">
-        <a href="{{ route('personas.create') }}" class="btn btn-dark text-white float-right mb-3 p-2">Nueva Persona </a>
+        <a href="{{ route('marcas.create') }}" class="btn btn-dark text-white float-right mb-3 p-2">Nueva Marca </a>
         </div>
 
         <div class="table-container">
@@ -26,26 +26,22 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>Telefono</th>
+                        <th>Marca</th>
+                        <th>Pais</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($personas as $persona)
+                    @foreach($marcas as $marca)
                         <tr>
-                            <td>{{ $persona->id }}</td>
-                            <td>{{ $persona->nombre }}</td>
-                            <td>{{ $persona->ap }}</td>
-                            <td>{{ $persona->am }}</td>
-                            <td>{{ $persona->telefono }}</td>
+                            <td>{{ $marca->id }}</td>
+                            <td>{{ $marca->marca }}</td>
+                            <td>{{ $marca->origen_id }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ route('personas.edit', $persona->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Editar</a>
-                                    <br>
-                                    <button type="button" class="btn btn-sm btn-danger me-2 p-1 float-left" onclick="confirmDelete('{{ $persona->id }}')">Eliminar</button>
+                                    <a href="{{ route('marcas.edit', $marca->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Editar</a>
+                                    <a href="{{ route('marcas.show', $marca->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Show</a>
+                                    <button type="button" class="btn btn-sm btn-danger me-2 p-1 float-left" onclick="confirmDelete('{{ $marca->id }}')">Eliminar</button>
                                 </div>
                             </td>
                         </tr>
@@ -62,7 +58,7 @@
             if (confirm('¿Estás seguro de que deseas eliminar este origen?')) {
                 let form = document.createElement('form');
                 form.method = 'POST';
-                form.action = '/origenes/' + id;
+                form.action = '/marcas/' + id;
                 form.innerHTML = '@csrf @method("DELETE")';
                 document.body.appendChild(form);
                 form.submit();
