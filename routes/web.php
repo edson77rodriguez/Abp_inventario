@@ -14,7 +14,7 @@ use App\Http\Controllers\OrigenController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\EmpleadoController;
-
+use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,4 +43,6 @@ Route::resource('origenes',OrigenController::class);
 Route::resource('personas',PersonaController::class);
 Route::resource('marcas',MarcaController::class);
 Route::resource('empleados',EmpleadoController::class);
+Route::resource('productos',ProductoController::class);
+
 
