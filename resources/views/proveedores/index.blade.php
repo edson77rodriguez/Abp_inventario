@@ -15,14 +15,9 @@
 <body>
    
     <main class="container">
-        <ul class="navbar-nav mr-auto flex-row">
-            <li class="nav-item mx-2">
-                <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-            </li>
-        </ul>
         <h2 class="text-center mb-4">Lista de proveedores</h2>
         <div class="mb-3 text-end">
-        <a href="{{ route('proveedors.create') }}" class="btn btn-dark text-white">+ proveedor </a>
+        <a href="{{ route('proveedores.create') }}" class="btn btn-dark text-white">+ proveedor </a>
         </div>
 
         <div class="table-container">
@@ -35,13 +30,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($proveedors as $proveedor)
+                    @foreach($proveedores as $proveedor)
                         <tr>
                             <td>{{ $proveedor->id }}</td>
                             <td>{{ $proveedor->persona_id }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ route('proveedors.edit', $proveedor->id) }}" class="btn btn-sm btn-info me-4">Editar</a>
+                                    <a href="{{ route('proveedores.edit', $proveedor->id) }}" class="btn btn-sm btn-info me-4">Editar</a>
                                     <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $proveedor->id }}')">Eliminar</button>
                                 </div>
                             </td>

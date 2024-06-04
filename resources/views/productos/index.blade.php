@@ -30,17 +30,17 @@
                 @foreach($productos as $producto)
                     <tr>
                         <td>{{ $producto->id }}</td>
-                        <td>{{ $producto->tipo->nombre }}</td>
-                        <td>{{ $producto->marca->nombre }}</td>
-                        <td>{{ $producto->talla->nombre }}</td>
-                        <td>{{ $producto->genero->nombre }}</td>
-                        <td>{{ $producto->modelo->nombre }}</td>
-                        <td>{{ $producto->color->nombre }}</td>
-                        <td>{{ $producto->composicion->nombre }}</td>
-                        <td>{{ $producto->estilo->nombre }}</td>
+                        <td>{{ $producto->tipo->descripcion }}</td>
+                        <td>{{ $producto->marca->marca }}</td>
+                        <td>{{ $producto->talla->descripcion }}</td>
+                        <td>{{ $producto->genero->descripcion }}</td>
+                        <td>{{ $producto->modelo->descripcion }}</td>
+                        <td>{{ $producto->color->descripcion }}</td>
+                        <td>{{ $producto->composicion->composicion }}</td>
+                        <td>{{ $producto->estilo->estilo }}</td>
                         <td>{{ $producto->cantidad }}</td>
                         <td>{{ $producto->precio }}</td>
-                        <td>{{ $producto->proveedor->nombre }}</td>
+                        <td>{{ $producto->proveedor->persona->nombre }}</td>
                         <td>{{ $producto->fecha_reg }}</td>
                         <td>{{ $producto->hora }}</td>
                         <td>

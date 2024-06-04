@@ -19,7 +19,7 @@ class Producto extends Model
         'estilo_id',
         'cantidad',
         'precio',
-       //// 'proveedor_id',
+       'proveedor_id',
         'fecha_reg',
         'hora',
 
@@ -64,8 +64,8 @@ class Producto extends Model
         return $this->belongsTo(Estilo::class);
     }
 
-    ///public function proveedor()
-    ///{
-   ////     return $this->belongsTo(Proveedor::class);
-    ///}
+    public function proveedor()
+    {
+        return $this->belongsTo(Proveedor::class);
+    }
 }

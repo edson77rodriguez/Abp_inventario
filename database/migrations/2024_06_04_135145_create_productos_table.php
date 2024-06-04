@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('estilo_id');
             $table->string('cantidad');
             $table->float('precio');
-            /////$table->unsignedBigInteger('proveedor_id');
+            $table->unsignedBigInteger('proveedor_id');
             $table->date('fecha_reg');
             $table->time('hora');
 

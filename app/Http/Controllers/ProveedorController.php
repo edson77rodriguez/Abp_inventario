@@ -12,8 +12,8 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $proveedors =Proveedor::all();
-        return view('proveedors.index',compact('proveedors'));
+        $proveedores =Proveedor::all();
+        return view('proveedores.index',compact('proveedores'));
 
     }
 
@@ -23,7 +23,7 @@ class ProveedorController extends Controller
     public function create()
     {
         $personas=Persona::all();
-        return view('proveedors.create',compact('personas'));
+        return view('proveedores.create',compact('personas'));
     }
 
     /**
@@ -36,7 +36,7 @@ class ProveedorController extends Controller
         ]);
 
         Proveedor::create ($validatedData);
-        return redirect()->route('proveedors.index');
+        return redirect()->route('proveedores.index');
     }
 
     /**
@@ -54,7 +54,7 @@ class ProveedorController extends Controller
     {
         $proveedor=Proveedor::findOrFail($id);
         $personas=Persona::all();
-        return view('proveedors.edit',compact('proveedor','personas'));
+        return view('proveedores.edit',compact('proveedor','personas'));
     }
 
     /**
@@ -66,10 +66,10 @@ class ProveedorController extends Controller
             'persona_id' => 'required|exists:personas,id',
         ]);
 
-        $proveedors=Proveedor::findOrFail($id);
-        $proveedors->update($validatedData);
+        $proveedor=Proveedor::findOrFail($id);
+        $proveedor->update($validatedData);
 
-        return redirect()->route('proveedors.index')->with('succes','El diler ta actializado');
+        return redirect()->route('proveedores.index')->with('succes','Quedo pa');
         
     }
 
@@ -81,6 +81,6 @@ class ProveedorController extends Controller
       $proveedors=Proveedor::findOrFail($id);
       $proveedors->delete();
       
-      return redirect()->route('proveedors.index');
+      return redirect()->route('proveedores.index');
     }
 }

@@ -20,7 +20,7 @@
                             <select name="tipo_id" id="tipo_id" class="form-select" required>
                                 <option value="">Seleccione un tipo</option>
                                 @foreach ($tipos as $tipo)
-                                    <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
+                                    <option value="{{ $tipo->id }}">{{ $tipo->descripcion }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -30,7 +30,7 @@
                             <select name="marca_id" id="marca_id" class="form-select" required>
                                 <option value="">Seleccione una marca</option>
                                 @foreach ($marcas as $marca)
-                                    <option value="{{ $marca->id }}">{{ $marca->nombre }}</option>
+                                    <option value="{{ $marca->id }}">{{ $marca->marca }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -41,7 +41,7 @@
                             <select name="talla_id" id="talla_id" class="form-select" required>
                                 <option value="">Seleccione una talla</option>
                                 @foreach ($tallas as $talla)
-                                    <option value="{{ $talla->id }}">{{ $talla->nombre }}</option>
+                                    <option value="{{ $talla->id }}">{{ $talla->descripcion }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -51,47 +51,47 @@
                             <select name="genero_id" id="genero_id" class="form-select" required>
                                 <option value="">Seleccione un género</option>
                                 @foreach ($generos as $genero)
-                                    <option value="{{ $genero->id }}">{{ $genero->nombre }}</option>
+                                    <option value="{{ $genero->id }}">{{ $genero->descripcion }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-3">
-                            <label for="modelo_id" class="form-label">Género</label>
+                            <label for="modelo_id" class="form-label">Modelo</label>
                             <select name="modelo_id" id="modelo_id" class="form-select" required>
                                 <option value="">Seleccione un género</option>
                                 @foreach ($modelos as $modelo)
-                                    <option value="{{ $modelo->id }}">{{ $modelo->nombre }}</option>
+                                    <option value="{{ $modelo->id }}">{{ $modelo->descripcion }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-3">
-                            <label for="color_id" class="form-label">Género</label>
+                            <label for="color_id" class="form-label">Color</label>
                             <select name="color_id" id="color_id" class="form-select" required>
                                 <option value="">Seleccione un género</option>
-                                @foreach ($colores as $color)
-                                    <option value="{{ $color->id }}">{{ $color->nombre }}</option>
+                                @foreach ($colors as $color)
+                                    <option value="{{ $color->id }}">{{ $color->descripcion }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-3">
-                            <label for="composicion_id" class="form-label">Género</label>
+                            <label for="composicion_id" class="form-label">Composicion</label>
                             <select name="composicion_id" id="composicion_id" class="form-select" required>
                                 <option value="">Seleccione un género</option>
                                 @foreach ($composiciones as $composicion)
-                                    <option value="{{ $composicion->id }}">{{ $composicion->nombre }}</option>
+                                    <option value="{{ $composicion->id }}">{{ $composicion->composicion }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-3">
-                            <label for="estilo_id" class="form-label">Género</label>
+                            <label for="estilo_id" class="form-label">Estilo</label>
                             <select name="estilo_id" id="estilo_id" class="form-select" required>
                                 <option value="">Seleccione un género</option>
                                 @foreach ($estilos as $estilo)
-                                    <option value="{{ $estilo->id }}">{{ $estilo->nombre }}</option>
+                                    <option value="{{ $estilo->id }}">{{ $estilo->estilo }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -107,6 +107,16 @@
                         </div>
 
                      
+                        <div class="mb-3">
+                            <label for="proveedor_id" class="form-label">Estilo</label>
+                            <select name="proveedor_id" id="proveedor_id" class="form-select" required>
+                                <option value="">Seleccione un proveedor</option>
+                                @foreach ($proveedores as $proveedor)
+                                    <option value="{{ $proveedor->id }}">{{ $proveedor->persona_id }}</option>
+                                @endforeach
+                            </select>
+                        </div> 
+
                         <div class="mb-3">
                             <label for="fecha_reg" class="form-label">Fecha de Registro</label>
                             <input type="date" name="fecha_reg" id="fecha_reg" class="form-control" required>

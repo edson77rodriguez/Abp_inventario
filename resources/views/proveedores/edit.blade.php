@@ -13,7 +13,7 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('proveedors.update', $proveedor->id) }}">
+                    <form method="POST" action="{{ route('proveedores.update', $proveedor->id) }}">
                         @csrf
                         @method('PUT')
 
@@ -28,7 +28,7 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-dark me-3">Guardar</button>
-                            <a href="{{ route('proveedors.index') }}" class="btn btn-secondary">Cancelar</a>
+                            <a href="{{ route('proveedores.index') }}" class="btn btn-secondary">Cancelar</a>
                         </div>
                     </form>
                 </div>

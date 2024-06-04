@@ -15,11 +15,8 @@
 <body>
    
     <main class="container">
-        <ul class="navbar-nav mr-auto flex-row">
-            <li class="nav-item mx-2">
-                <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-            </li>
-        </ul>
+        
+
         <h2 class="text-center mb-4">Lista de tallas</h2>
         <div class="mb-3 text-end">
         <a href="{{ route('tallas.create') }}" class="btn btn-dark text-white">+ talla </a>

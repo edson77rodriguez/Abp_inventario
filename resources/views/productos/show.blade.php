@@ -14,8 +14,8 @@
                 <div class="card-body">
                     <h4 class="card-title">Información del Producto</h4>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Tipo:</strong> {{ $producto->tipo->nombre }}</li>
-                        <li class="list-group-item"><strong>Marca:</strong> {{ $producto->marca->nombre }}</li>
+                        <li class="list-group-item"><strong>Tipo:</strong> {{ $producto->tipo->descripcion }}</li>
+                        <li class="list-group-item"><strong>Marca:</strong> {{ $producto->marca->marca }}</li>
                         <!-- Repite el mismo patrón para los demás campos -->
                         <li class="list-group-item"><strong>Cantidad:</strong> {{ $producto->cantidad }}</li>
                         <li class="list-group-item"><strong>Precio:</strong> ${{ number_format($producto->precio, 2) }}</li>

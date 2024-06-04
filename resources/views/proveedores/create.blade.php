@@ -13,10 +13,10 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('proveedors.store') }}">
+                    <form method="POST" action="{{ route('proveedores.store') }}">
                         @csrf
                         <div class="mb-3">
-                            <label for="descripcion" class="form-label">Tipo de proveedor </label>
+                            <label for="descripcion" class="form-label">Proveedor </label>
                             <!--<select type="text" name="descripcion" id="descripcion" class="form-control" required>-->
                             <select name="persona_id" id="persona_id" class="form-control" required>
                                 @foreach($personas as $persona)
@@ -26,7 +26,7 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-dark me-3">Guardar</button>
-                            <a href="{{ route('proveedors.index') }}" class="btn btn-secondary">Cancelar</a>
+                            <a href="{{ route('proveedores.index') }}" class="btn btn-secondary">Cancelar</a>
                         </div>
                     </form>
                 </div>

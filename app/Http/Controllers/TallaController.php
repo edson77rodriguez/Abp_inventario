@@ -21,7 +21,7 @@ class TallaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'descripcion' => 'required|string|min:1|max:255|regex:/^[a-zA-Z ñ]+$/',
+            'descripcion' => 'required|string',
         ]);
 
         Talla::create($validatedData);
