@@ -33,9 +33,10 @@ class MarcaController extends Controller
         return redirect()->route('marcas.index')->with('success', 'Marca creada exitosamente.');
     }
     
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $marca = Marca::findOrFail($id);
+        return view('marcas.show', compact('marca'));
     }
     public function edit(string $id)
     {

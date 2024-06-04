@@ -13,6 +13,7 @@ use App\Http\Controllers\ComposicionController;
 use App\Http\Controllers\OrigenController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\EmpleadoController;
 
 
 Route::get('/', function () {
@@ -41,4 +42,5 @@ Route::resource('composiciones', ComposicionController::class);
 Route::resource('origenes',OrigenController::class);
 Route::resource('personas',PersonaController::class);
 Route::resource('marcas',MarcaController::class);
+Route::resource('empleados',EmpleadoController::class);
 

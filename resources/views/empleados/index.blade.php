@@ -16,9 +16,9 @@
    
     <main class="container">
         
-        <h2 class="text-center mb-4">Lista de Origenes</h2>
+        <h2 class="text-center mb-4">Lista de Empleados</h2>
         <div class="mb-3 text-end">
-        <a href="{{ route('marcas.create') }}" class="btn btn-dark text-white float-right mb-3 p-2">Nueva Marca </a>
+        <a href="{{ route('empleados.create') }}" class="btn btn-dark text-white float-right mb-3 p-2">Nuevo empleado </a>
         </div>
 
         <div class="table-container">
@@ -26,22 +26,27 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Marca</th>
-                        <th>Pais</th>
+                        <th>Empleado</th>
+                        <th>Cargo</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Fin</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($marcas as $marca)
+                    @foreach($empleados as $empleado)
                         <tr>
-                            <td>{{ $marca->id }}</td>
-                            <td>{{ $marca->marca }}</td>
-                            <td>{{ $marca->origen_id }}</td>
+                            <td>{{ $empleado->id }}</td>
+                            <td>{{ $empleado->persona_id }}</td>
+                            <td>{{ $empleado->cargo_id }}</td>
+                            <td>{{ $empleado->fecha_inicio }}</td>
+                            <td>{{ $empleado->fecha_fin }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ route('marcas.edit', $marca->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Editar</a>
-                                    <a href="{{ route('marcas.show', $marca->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Show</a>
-                                    <button type="button" class="btn btn-sm btn-danger me-2 p-1 float-left" onclick="confirmDelete('{{ $marca->id }}')">Eliminar</button>
+                                    <a href="{{ route('empleados.edit', $empleado->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Editar</a>
+                                    <a href="{{ route('empleados.show', $empleado->id) }}" class="btn btn-sm btn-info me-2 p-1 float-right">Show</a>
+
+                                    <button type="button" class="btn btn-sm btn-danger me-2 p-1 float-left" onclick="confirmDelete('{{ $empleado->id }}')">Eliminar</button>
                                 </div>
                             </td>
                         </tr>
@@ -58,7 +63,7 @@
             if (confirm('¿Estás seguro de que deseas eliminar este origen?')) {
                 let form = document.createElement('form');
                 form.method = 'POST';
-                form.action = '/marcas/' + id;
+                form.action = '/empleados/' + id;
                 form.innerHTML = '@csrf @method("DELETE")';
                 document.body.appendChild(form);
                 form.submit();
