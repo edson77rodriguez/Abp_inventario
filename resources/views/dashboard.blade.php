@@ -13,6 +13,9 @@
             <ul class="nav flex-column">
                 
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('inventarios.index') }}">{{ __('Inventarios') }}</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('productos.index') }}">{{ __('Productos') }}</a>
                 </li>
                 <li class="nav-item">

@@ -1,5 +1,16 @@
-@extends('layouts.app')
-@section('content')
+@extends('dashboard')
+@section('crud_content')
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>proveedors</title>
+    <!-- Bootstrap 5 (CSS y JS) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Fwhij5wX9YjAJxm85MMzR1h7vfqZ6P6r64tCcdyecf5W450YfN2vQ9F3iZ2yW3j" crossorigin="anonymous">
+    @vite(['resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('css/estilo_index.css')}}">
+</head>
 <div class="container py-5">
 <div class="card-header"> 
         <div style="display: flex; justify-content: space-between; align-items: center;">
