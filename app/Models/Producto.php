@@ -17,11 +17,10 @@ class Producto extends Model
         'color_id',
         'composicion_id',
         'estilo_id',
-        'cantidad',
-        'precio',
-       'proveedor_id',
-        'fecha_reg',/////no va aqui
-        'hora',///////7tampoco
+        'precio_compra',
+       'precio_venta',
+        'proveedor_id',
+    
 
     ];  
     public function tipo()

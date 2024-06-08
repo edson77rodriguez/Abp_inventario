@@ -21,11 +21,9 @@ return new class extends Migration
             $table->unsignedBigInteger('color_id');
             $table->unsignedBigInteger('composicion_id');
             $table->unsignedBigInteger('estilo_id');
-            $table->string('cantidad');
-            $table->float('precio');
+            $table->float('precio_compra');
+            $table->float('precio_venta');
             $table->unsignedBigInteger('proveedor_id');
-            $table->date('fecha_reg');
-            $table->time('hora');
 
             $table->timestamps();
         });

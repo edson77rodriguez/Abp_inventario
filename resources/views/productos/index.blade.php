@@ -26,11 +26,9 @@
                     <th>Color</th>
                     <th>Composición</th>
                     <th>Estilo</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
+                    <th>Precio C</th>
+                    <th>Precio V</th>
                     <th>Proveedor</th>
-                    <th>Fecha de Registro</th>
-                    <th>Hora</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -46,11 +44,9 @@
                         <td>{{ $producto->color->descripcion }}</td>
                         <td>{{ $producto->composicion->composicion }}</td>
                         <td>{{ $producto->estilo->estilo }}</td>
-                        <td>{{ $producto->cantidad }}</td>
-                        <td>{{ $producto->precio }}</td>
+                        <td>{{ $producto->precio_compra }}</td>
+                        <td>{{ $producto->precio_venta }}</td>
                         <td>{{ $producto->proveedor->persona->nombre }}</td>
-                        <td>{{ $producto->fecha_reg }}</td>
-                        <td>{{ $producto->hora }}</td>
                         <td>
                             <a href="{{ route('productos.show', $producto->id) }}" class="btn btn-info me-2 p-1">Ver</a>
                             <a href="{{ route('productos.edit', $producto->id) }}" class="btn btn-primary me-2 p-1">Editar</a>

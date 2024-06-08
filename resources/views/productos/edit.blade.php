@@ -137,17 +137,17 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="cantidad" class="form-label">Cantidad</label>
-                            <input type="number" name="cantidad" id="cantidad" value="{{ old('cantidad', $producto->cantidad) }}" class="form-control @error('cantidad') is-invalid @enderror" required>
-                            @error('cantidad')
+                            <label for="precio_compra" class="form-label">Precio Compra</label>
+                            <input type="number" name="precio_compra" id="precio_compra" value="{{ old('precio_compra', $producto->precio_compra) }}" step="0.01" class="form-control @error('precio_compra') is-invalid @enderror" required>
+                            @error('precio_compra')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="precio" class="form-label">Precio</label>
-                            <input type="number" name="precio" id="precio" value="{{ old('precio', $producto->precio) }}" step="0.01" class="form-control @error('precio') is-invalid @enderror" required>
-                            @error('precio')
+                            <label for="precio_venta" class="form-label">Precio Venta</label>
+                            <input type="number" name="precio_venta" id="precio_venta" value="{{ old('precio_venta', $producto->precio_venta) }}" step="0.01" class="form-control @error('precio_venta') is-invalid @enderror" required>
+                            @error('precio_venta')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -167,21 +167,6 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="fecha_reg" class="form-label">Fecha de Registro</label>
-                            <input type="date" name="fecha_reg" id="fecha_reg" value="{{ old('fecha_reg', $producto->fecha_reg) }}" class="form-control @error('fecha_reg') is-invalid @enderror" required>
-                            @error('fecha_reg')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="hora" class="form-label">Hora</label>
-                            <input type="time" name="hora" id="hora" value="{{ old('hora', $producto->hora) }}" class="form-control @error('hora') is-invalid @enderror" required>
-                            @error('hora')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
 
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-dark me-3">Guardar</button>

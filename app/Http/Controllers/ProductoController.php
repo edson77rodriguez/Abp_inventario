@@ -48,11 +48,10 @@ class ProductoController extends Controller
         'color_id' => 'required|exists:colors,id',
         'composicion_id' => 'required|exists:composicions,id',
         'estilo_id' => 'required|exists:estilos,id',
-        'cantidad' => 'required|integer|min:1',
-        'precio' => 'required|numeric|min:0',
+        'precio_compra' => 'required|numeric|min:0',
+        'precio_venta' => 'required|numeric|min:0',
         'proveedor_id' => 'required|exists:proveedors,id',
-        'fecha_reg' => 'required|date',
-        'hora' => 'required|date_format:H:i',
+        
     ]);
 
     Producto::create($validatedData);
@@ -93,11 +92,9 @@ class ProductoController extends Controller
         'color_id' => 'required|exists:colors,id',
         'composicion_id' => 'required|exists:composicions,id',
         'estilo_id' => 'required|exists:estilos,id',
-        'cantidad' => 'required|integer|min:1',
-        'precio' => 'required|numeric|min:0',
+        'precio_compra' => 'required|numeric|min:0',
+        'precio_venta' => 'required|numeric|min:0',
         'proveedor_id' => 'required|exists:proveedors,id',
-        'fecha_reg' => 'required|date',
-        'hora' => 'required|date_format:H:i',
     ]);
 
     $producto = Producto::findOrFail($id);

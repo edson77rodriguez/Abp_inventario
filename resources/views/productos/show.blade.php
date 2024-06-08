@@ -22,11 +22,13 @@
                         <li class="list-group-item"><strong>Color:</strong> {{ $producto->color->descripcion }}</li>
                         <li class="list-group-item"><strong>Composicion:</strong> {{ $producto->composicion->composicion }}</li>
                         <li class="list-group-item"><strong>Estilo:</strong> {{ $producto->estilo->estilo }}</li>
-                        <!-- Repite el mismo patrón para los demás campos -->
-                        <li class="list-group-item"><strong>Cantidad:</strong> {{ $producto->cantidad }}</li>
-                        <li class="list-group-item"><strong>Precio:</strong> ${{ number_format($producto->precio, 2) }}</li>
-                        <li class="list-group-item"><strong>Fecha de Registro:</strong> {{ $producto->fecha_reg }}</li>
-                        <li class="list-group-item"><strong>Hora:</strong> {{ $producto->hora }}</li>
+                        <!-- Repite el mismo patrón para los demás campos -->                        
+                        <li class="list-group-item"><strong>Precio Compra:</strong> ${{ number_format($producto->precio_compra, 2) }}</li>
+                        <li class="list-group-item"><strong>Precio Venta:</strong> ${{ number_format($producto->precio_venta, 2) }}</li>
+                        <li class="list-group-item"><strong>Proveedor:</strong> {{ $producto->proveedor->persona->nombre }}</li>
+
+
+                        
                     </ul>
                 </div>
             </div>
