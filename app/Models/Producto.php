@@ -20,8 +20,8 @@ class Producto extends Model
         'cantidad',
         'precio',
        'proveedor_id',
-        'fecha_reg',
-        'hora',
+        'fecha_reg',/////no va aqui
+        'hora',///////7tampoco
 
     ];  
     public function tipo()

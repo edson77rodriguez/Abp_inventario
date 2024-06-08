@@ -15,13 +15,17 @@
 <body>
    
     <main class="container">
-        
-
-        <h2 class="text-center mb-4">Lista de tallas</h2>
-        <div class="mb-3 text-end">
-        <a href="{{ route('tallas.create') }}" class="btn btn-dark text-white">+ talla </a>
+    <div class="card-header"> 
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="card_title">{{ __('Tallas') }}</span>
+            
+                    <div class="float-right">
+                        <a href="{{ route('tallas.create') }}" class="btn btn-dark me-3 float-right"  data-placement="left">
+                        {{ __('Create New') }}</a>
+                    </div>
+                
         </div>
-
+        </div>
         <div class="table-container">
             <table class="table table-bordered table-hover w-100">
                 <thead>

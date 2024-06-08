@@ -17,7 +17,6 @@
                         @csrf
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Proveedor </label>
-                            <!--<select type="text" name="descripcion" id="descripcion" class="form-control" required>-->
                             <select name="persona_id" id="persona_id" class="form-control" required>
                                 @foreach($personas as $persona)
                                     <option value="{{ $persona->id }}">{{ $persona->nombre }} {{ $persona->ap }} {{ $persona->am }}</option>

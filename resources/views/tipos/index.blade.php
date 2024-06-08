@@ -15,14 +15,16 @@
 <body>
    
     <main class="container">
-        <ul class="navbar-nav mr-auto flex-row">
-            <li class="nav-item mx-2">
-                <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-            </li>
-        </ul>
-        <h2 class="text-center mb-4">Lista de tipos</h2>
-        <div class="mb-3 text-end">
-        <a href="{{ route('tipos.create') }}" class="btn btn-dark text-white">+ Tipo </a>
+    <div class="card-header"> 
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="card_title">{{ __('Categorias') }}</span>
+            
+                    <div class="float-right">
+                        <a href="{{ route('tipos.create') }}" class="btn btn-dark me-3 float-right"  data-placement="left">
+                        {{ __('Create New') }}</a>
+                    </div>
+                
+        </div>
         </div>
 
         <div class="table-container">

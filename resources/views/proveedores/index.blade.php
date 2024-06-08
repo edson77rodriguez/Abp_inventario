@@ -15,9 +15,16 @@
 <body>
    
     <main class="container">
-        <h2 class="text-center mb-4">Lista de proveedores</h2>
-        <div class="mb-3 text-end">
-        <a href="{{ route('proveedores.create') }}" class="btn btn-dark text-white">+ proveedor </a>
+    <div class="card-header"> 
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="card_title">{{ __('Proveedores') }}</span>
+            
+                    <div class="float-right">
+                        <a href="{{ route('proveedores.create') }}" class="btn btn-dark me-3 float-right"  data-placement="left">
+                        {{ __('Create New') }}</a>
+                    </div>
+                
+        </div>
         </div>
 
         <div class="table-container">
@@ -26,6 +33,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Persona/proveedor</th>
+                        <th>Accion</th>
+
                         
                     </tr>
                 </thead>

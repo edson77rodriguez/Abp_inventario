@@ -29,8 +29,8 @@
                         {{ __('Create New') }}</a>
                     </div>
                 
-            </div>
-            </div>
+        </div>
+        </div>
         <div class="table-container">
             <table class="table table-bordered table-hover w-100">
                 <thead>

@@ -16,9 +16,16 @@
    
     <main class="container">
         
-        <h2 class="text-center mb-4">Lista de Empleados</h2>
-        <div class="mb-3 text-end">
-        <a href="{{ route('empleados.create') }}" class="btn btn-dark text-white float-right mb-3 p-2">Nuevo empleado </a>
+    <div class="card-header"> 
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="card_title">{{ __('Empleados') }}</span>
+            
+                    <div class="float-right">
+                        <a href="{{ route('empleados.create') }}" class="btn btn-dark me-3 float-right"  data-placement="left">
+                        {{ __('Create New') }}</a>
+                    </div>
+                
+        </div>
         </div>
 
         <div class="table-container">
@@ -60,7 +67,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KF6o/kJF/b7ICQ1Zfs0cQ45oM0v4lL+SzR0t4i0p54K/xY8q3jOAV5tQ9l" crossorigin="anonymous"></script>
     <script>
         function confirmDelete(id) {
-            if (confirm('¿Estás seguro de que deseas eliminar este origen?')) {
+            if (confirm('¿Estás seguro de que deseas eliminar este chalan?')) {
                 let form = document.createElement('form');
                 form.method = 'POST';
                 form.action = '/empleados/' + id;

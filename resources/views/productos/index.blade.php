@@ -1,11 +1,19 @@
 @extends('layouts.app')
 @section('content')
 <div class="container py-5">
-    <h2 class="text-center mb-4">Listado de Productos</h2>
-    <div class="mb-3 text-end">
-        <a href="{{ route('productos.create') }}" class="btn btn-dark text-white float-right mb-3 p-2">Nuevo Producto</a>
-    </div>
+<div class="card-header"> 
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="card_title">{{ __('Productos') }}</span>
+            
+                    <div class="float-right">
+                        <a href="{{ route('productos.create') }}" class="btn btn-dark me-3 float-right"  data-placement="left">
+                        {{ __('Create New') }}</a>
+                    </div>
+                
+        </div>
+        </div>
     <div class="table-container">
+        
         <table class="table table-bordered table-hover w-100">
             <thead>
                 <tr>
