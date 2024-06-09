@@ -11,7 +11,8 @@ class VentaController extends Controller
     public function index()
     {
         $ventas = Venta::all();
-        return view('ventas.index', compact('ventas'));
+        $empleados = Empleado::all();
+        return view('ventas.index', compact('ventas','empleados'));
     }
 
     public function create()

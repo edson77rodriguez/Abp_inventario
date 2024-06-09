@@ -13,13 +13,11 @@ class ProveedorController extends Controller
     public function index()
     {
         $proveedores =Proveedor::all();
-        return view('proveedores.index',compact('proveedores'));
+        $personas=Persona::all();
+        return view('proveedores.index',compact('proveedores','personas'));
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $personas=Persona::all();

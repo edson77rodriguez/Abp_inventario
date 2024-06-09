@@ -1,63 +1,174 @@
 @extends('dashboard')
+
 @section('crud_content')
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>proveedors</title>
-    <!-- Bootstrap 5 (CSS y JS) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Fwhij5wX9YjAJxm85MMzR1h7vfqZ6P6r64tCcdyecf5W450YfN2vQ9F3iZ2yW3j" crossorigin="anonymous">
-    @vite(['resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset('css/estilo_index.css')}}">
-</head>
 <div class="container py-5">
-<div class="card-header"> 
+    <div class="card-header">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span id="card_title">{{ __('inventarios') }}</span>
-            
-                    <div class="float-right">
-                        <a href="{{ route('inventarios.create') }}" class="btn btn-dark me-3 float-right"  data-placement="left">
-                        {{ __('Create New') }}</a>
-                    </div>
-                
+            <span id="card_title">{{ __('Inventario') }}</span>
+            <div class="float-right">
+                <button class="btn btn-dark me-3 float-right" data-bs-toggle="modal" data-bs-target="#createInventarioModal">
+                    {{ __('Create New') }}
+                </button>
+            </div>
         </div>
-        </div>
+    </div>
     <div class="table-container">
-        
-    <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr id='tablab'>
-                                    <th>ID</th>
+        <table class="table table-bordered table-hover w-100">
+            <thead id="tablab">
+                <tr>
+                     <th>ID</th>
                                     <th>Producto</th>
                                     <th>Cantidad en Stock</th>
                                     <th>Fecha de Ingreso</th>
                                     <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($inventarios as $inventario)
+                </tr>
+            </thead>
+            <tbody>
+                 @foreach ($inventarios as $inventario)
                                 <tr id='demo'>
                                     <td>{{ $inventario->id }}</td>
                                     <td>{{ $inventario->producto->tipo->descripcion }} {{ $inventario->producto->marca->marca }} </td>
                                     <td>{{ $inventario->cantidad_stock }}</td>
                                     <td>{{ $inventario->fecha_ingreso }}</td>
                                     <td>
-                                        <div class="d-flex justify-content-center">
-                                        <a href="{{ route('inventarios.show', $inventario->id) }}" class="btn btn-info me-2 p-1">Ver</a>
-                                            <a href="{{ route('inventarios.edit', $inventario->id) }}" class="btn btn-sm btn-info me-2">Editar</a>
-                                            <form action="{{ route('inventarios.destroy', $inventario->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                            </form>
+                            <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewInventarioModal{{ $inventario->id }}">Ver</button>
+                            <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editInventarioModal{{ $inventario->id }}">Editar</button>
+                            <form action="{{ route('inventarios.destroy', $inventario->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $inventario->id }}')">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <!-- Modal Ver Producto -->
+                    <div class="modal fade" id="viewInventarioModal{{ $inventario->id }}" tabindex="-1" aria-labelledby="viewInventarioMarcaLabel{{ $inventario->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="viewInventarioModalLabel{{ $inventario->id }}">Ver Inventario</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><strong>Producto:</strong> {{ $inventario->producto->tipo->descripcion }} {{ $inventario->producto->modelo->descripcion }} {{ $inventario->producto->marca->marca }}</li>
+                                        <li class="list-group-item"><strong>Cantidad en Stock:</strong> {{ $inventario->cantidad_stock }}</li>
+                                        <li class="list-group-item"><strong>Fecha de Ingreso:</strong> {{ $inventario->fecha_ingreso }}</li>
+                                    </ul>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal Editar Producto -->
+                    <div class="modal fade" id="editInventarioModal{{ $inventario->id }}" tabindex="-1" aria-labelledby="editInventarioModalLabel{{ $inventario->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editInventarioModalLabel{{ $inventario->id }}">Editar Inventario</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Aquí puedes incluir el formulario de edición del producto -->
+                                    <form method="POST" action="{{ route('inventarios.update', $inventario->id) }}">
+                                        @csrf
+                                        @method('PUT')
+
+                                         
+                                         <div class="mb-3">
+                                            <label for="producto_id" class="form-label">Producto</label>
+                                            <select name="producto_id" id="producto_id" class="form-select" required>
+                                                <option value="">Seleccione un Producto</option>
+                                                @foreach ($productos as $producto)
+                                                    <option value="{{ $producto->id }}" {{ $inventario->producto_id == $producto->id ? 'selected' : '' }}>
+                                                        {{ $producto->tipo->descripcion }} {{ $producto->modelo->descripcion }} {{ $producto->marca->marca }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                    </td>
-                                </tr>
+
+                                        <div class="mb-3">
+                                            <label for="cantidad_stock" class="form-label">Cantidad en Stock</label>
+                                            <input type="number" name="cantidad_stock" id="cantidad_stock" value="{{ $inventario->cantidad_stock }}" class="form-control" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="fecha_ingreso" class="form-label">Fecha de Ingreso</label>
+                                            <input type="date" name="fecha_ingreso" id="fecha_ingreso" value="{{ $inventario->fecha_ingreso }}" class="form-control" required>
+                                        </div>
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-3">Guardar Cambios</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Crear Producto -->
+    <div class="modal fade" id="createInventarioModal" tabindex="-1" aria-labelledby="createInventarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createInventarioModalLabel">Crear Nuevo Inventario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('inventarios.store') }}">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label for="producto_id" class="form-label">Producto</label>
+                            <select name="producto_id" id="producto_id" class="form-select" required>
+                                <option value="">Seleccione un Producto</option>
+                                @foreach ($productos as $producto)
+                                    <option value="{{ $producto->id }}">{{ $producto->tipo->descripcion }} {{ $producto->modelo->descripcion }} {{ $producto->marca->marca }}</option>
                                 @endforeach
-                            </tbody>
-            </table>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="cantidad_stock" class="form-label">Cantidad en Stock</label>
+                            <input type="number" name="cantidad_stock" id="cantidad_stock" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fecha_ingreso" class="form-label">Fecha de Ingreso</label>
+                            <input type="date" name="fecha_ingreso" id="fecha_ingreso" class="form-control" required>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-3">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-@endsection
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KF6o/kJF/b7ICQ1Zfs0cQ45oM0v4lL+SzR0t4i0p54K/xY8q3jOAV5tQ9l" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
+
+<script>
+    function confirmDelete(id) {
+        alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar este inventario?', function(){
+            let form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/inventarios/' + id;
+            form.innerHTML = '@csrf @method("DELETE")';
+            document.body.appendChild(form);
+            form.submit();
+        }, function(){
+            alertify.error('Cancelado');
+        });
+    }
+</script>
+@endsection
