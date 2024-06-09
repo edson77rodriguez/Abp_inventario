@@ -12,6 +12,16 @@
             <!-- Menú de navegación -->
             <ul class="nav flex-column">
                 
+
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('detalleventas.index') }}">{{ __('D_Ventas') }}</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('tipopagos.index') }}">{{ __('T_Pagos') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('ventas.index') }}">{{ __('Ventas') }}</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('inventarios.index') }}">{{ __('Inventarios') }}</a>
                 </li>

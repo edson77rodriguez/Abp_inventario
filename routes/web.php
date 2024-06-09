@@ -17,6 +17,12 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\VentaController;
+use App\Http\Controllers\TipoPagosController;
+use App\Http\Controllers\DetalleVentaController;
+
+
+
 
 
 Route::get('/', function () {
@@ -47,5 +53,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('empleados', EmpleadoController::class);
     Route::resource('productos', ProductoController::class);
     Route::resource('inventarios', InventarioController::class);
+    Route::resource('ventas', VentaController::class);
+    Route::resource('tipopagos', TipoPagosController::class);
+    Route::resource('detalleventas', DetalleVentaController::class);
+
+
+
 
 });
