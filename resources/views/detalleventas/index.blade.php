@@ -209,6 +209,10 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-3">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
                     </form>
                 </div>
             </div>
