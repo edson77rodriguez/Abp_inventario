@@ -30,7 +30,7 @@
 
         <div class="table-container">
             <table class="table table-bordered table-hover w-100">
-                <thead>
+                <thead id="tablab">
                     <tr>
                         <th>ID</th>
                         <th>Descripcion</th>
@@ -39,7 +39,7 @@
                 </thead>
                 <tbody>
                     @foreach($colors as $color)
-                        <tr>
+                        <tr id="demo">
                             <td>{{ $color->id }}</td>
                             <td>{{ $color->descripcion }}</td>
                             <td>

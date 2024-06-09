@@ -1,72 +1,88 @@
-<!-- resources/views/home.blade.php -->
+<!-- resources/views/dashboard.blade.php -->
 @extends('layouts.app')
 
+
 @section('content')
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0-beta2/css/bootstrap.min.css">
+
 <div class="container">
-
-    <!-- se muestran las direcciones de las tablas-->
-    <ul class="navbar-nav mr-auto flex-row">
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-        </li>
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('marcas.index') }}">{{ __('Marcas') }}</a>
-        </li>
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('cargos.index') }}">{{ __('Cargo') }}</a>
-        </li>
-        <!-- Agrega más elementos de navegación aquí -->
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('generos.index') }}">{{ __('Generos') }}</a>
-        </li>
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('tipos.index') }}">{{ __('Tipos') }}</a>
-        </li>
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('tallas.index') }}">{{ __('Tallas') }}</a>
-        </li>
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('modelos.index') }}">{{ __('Modelos') }}</a>
-        </li>
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('colors.index') }}">{{ __('Colores') }}</a>
-        </li>
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('estilos.index') }}">{{ __('Estilos') }}</a>
-        </li>
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('composiciones.index') }}">{{ __('Composiciones') }}</a>
-        </li>
-        <li class="nav-item mx-2">
-            <a class="nav-link" href="{{ route('personas.index') }}">{{ __('Personas') }}</a>
-        </li>
-
-
-    </ul>
-
-
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-                <br>
-                <div class="row justify-content-center">
-                    <p>Hola como estas ?
-                        Ya listo para registrar mas merca?
-                    </p>
-                </div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                </div>
+    
+    <div class="row m-1">
+        <div class="col-md-2 sidebar">
+            <!-- Menú de navegación -->
+            <ul class="nav flex-column">
                 
-            </div>
+
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('detalleventas.index') }}">{{ __('D_Ventas') }}</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('tipopagos.index') }}">{{ __('T_Pagos') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('ventas.index') }}">{{ __('Ventas') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('inventarios.index') }}">{{ __('Inventarios') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('productos.index') }}">{{ __('Productos') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('origenes.index') }}">{{ __('Origenes_Marcas') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('marcas.index') }}">{{ __('Marcas') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('proveedores.index') }}">{{ __('Proveedores') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('empleados.index') }}">{{ __('Empleados') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('cargos.index') }}">{{ __('Cargo') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('personas.index') }}">{{ __('Personas') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('generos.index') }}">{{ __('Generos') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('tipos.index') }}">{{ __('Tipos') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('tallas.index') }}">{{ __('Tallas') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('modelos.index') }}">{{ __('Modelos') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('colors.index') }}">{{ __('Colores') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('estilos.index') }}">{{ __('Estilos') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('composiciones.index') }}">{{ __('Composiciones') }}</a>
+                </li>
+            </ul>
+        </div>
+
+        
+        <div class="col-md-16 ">
+            <!-- Título con imagen de fondo -->
+            
+            <!-- Sección para mostrar datos CRUD -->
+            @yield('crud_content')
+            
         </div>
     </div>
 </div>
+@endsection
+
+@section('styles')
+<!-- Puedes agregar estilos adicionales aquí -->
+
 @endsection

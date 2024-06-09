@@ -31,7 +31,7 @@
         <div class="table-container">
             <table class="table table-bordered table-hover w-100">
                 <thead>
-                    <tr>
+                    <tr id='tablab'>
                         <th>ID</th>
                         <th>Marca</th>
                         <th>Pais</th>
@@ -40,7 +40,7 @@
                 </thead>
                 <tbody>
                     @foreach($marcas as $marca)
-                        <tr>
+                        <tr id='demo'>
                             <td>{{ $marca->id }}</td>
                             <td>{{ $marca->marca }}</td>
                             <td>{{ $marca->origen_id }}</td>

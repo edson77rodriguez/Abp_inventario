@@ -27,7 +27,7 @@
         
     <table class="table table-bordered table-hover">
                             <thead>
-                                <tr>
+                                <tr id='tablab'>
                                     <th>ID</th>
                                     <th>Fecha de venta</th>
                                     <th>¿Quien lo vendio?</th>
@@ -37,7 +37,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($ventas as $venta)
-                                <tr>
+                                <tr id='demo'>
                                     <td>{{ $venta->id }}</td>
                                     <td>{{ $venta->fecha_venta }}</td>
                                     <td>{{ $venta->empleado->persona->nombre }} {{ $venta->empleado->persona->ap  }} {{ $venta->empleado->persona->am  }} </td>

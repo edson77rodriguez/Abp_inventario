@@ -27,7 +27,7 @@
         
     <table class="table table-bordered table-hover">
                             <thead>
-                                <tr>
+                                <tr id='tablab'>
                                     <th>ID</th>
                                     <th>Producto</th>
                                     <th>Cantidad en Stock</th>
@@ -37,7 +37,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($inventarios as $inventario)
-                                <tr>
+                                <tr id='demo'>
                                     <td>{{ $inventario->id }}</td>
                                     <td>{{ $inventario->producto->tipo->descripcion }} {{ $inventario->producto->marca->marca }} </td>
                                     <td>{{ $inventario->cantidad_stock }}</td>

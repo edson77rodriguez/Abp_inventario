@@ -28,17 +28,17 @@
         </div>
 
         <div class="table-container">
-            <table class="table table-bordered table-hover w-100">
-                <thead>
+            <table class="table table-bordered table-hover w-120">
+                <thead id="tablab">
                     <tr>
                         <th>ID</th>
                         <th>Estilos</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody  class="margin: 10px 0; border-collapse: collapse; border: 1px solid #1b1919;">
                     @foreach($estilos as $estilo)
-                        <tr>
+                        <tr id="demo">
                             <td>{{ $estilo->id }}</td>
                             <td>{{ $estilo->estilo }}</td>
                             <td>

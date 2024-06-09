@@ -31,7 +31,7 @@
         <div class="table-container">
             <table class="table table-bordered table-hover w-100">
                 <thead>
-                    <tr>
+                    <tr id='tablab'>
                         <th>ID</th>
                         <th>Empleado</th>
                         <th>Cargo</th>
@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                     @foreach($empleados as $empleado)
-                        <tr>
+                        <tr id='demo'>
                             <td>{{ $empleado->id }}</td>
                             <td>{{ $empleado->persona_id }}</td>
                             <td>{{ $empleado->cargo_id }}</td>
