@@ -1,77 +1,110 @@
-<!-- resources/views/marcas/create.blade.php -->
 @extends('dashboard')
 
 @section('template_title')
     Cargos
 @endsection
-@section('crud_content')
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cargos</title>
-    <!-- Bootstrap 5 (CSS y JS) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Fwhij5wX9YjAJxm85MMzR1h7vfqZ6P6r64tCcdyecf5W450YfN2vQ9F3iZ2yW3j" crossorigin="anonymous">
-    @vite(['resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset('css/estilo_index.css')}}">
-</head>
-<body>
-   
-    <main class="container">
-    
-        <div class="card-header"> 
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span id="card_title">{{ __('Cargos') }}</span>
-            
-                    <div class="float-right">
-                        <a href="{{ route('cargos.create') }}" class="btn btn-dark me-3 float-right"  data-placement="left">
-                        {{ __('Create New') }}</a>
-                    </div>
-                
-        </div>
-        </div>
-        <div class="table-container">
-            <table class="table table-bordered table-hover w-100">
-                <thead>
-                    <tr id="tablab">
-                        <th>ID</th>
-                        <th>Descripcion</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($cargos as $cargo)
-                        <tr id="demo">
-                            <td>{{ $cargo->id }}</td>
-                            <td>{{ $cargo->descripcion }}</td>
-                            <td>
-                                <div class="d-flex justify-content-center">
-                                    <a href="{{ route('cargos.edit', $cargo->id) }}" class="btn btn-sm btn-info me-4">Editar</a>
-                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $cargo->id }}')">Eliminar</button>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </main>
-   
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KF6o/kJF/b7ICQ1Zfs0cQ45oM0v4lL+SzR0t4i0p54K/xY8q3jOAV5tQ9l" crossorigin="anonymous"></script>
-    <script>
-        function confirmDelete(id) {
-            if (confirm('¿Estás seguro de que deseas eliminar esta marca?')) {
-                let form = document.createElement('form');
-                form.method = 'POST';
-                form.action = '/cargos/' + id;
-                form.innerHTML = '@csrf @method("DELETE")';
-                document.body.appendChild(form);
-                form.submit();
-            }
+@section('crud_content')
+<div class="container py-5">
+    <div class="card-header"> 
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span id="card_title">{{ __('Cargos') }}</span>
+            <div class="float-right">
+                <button class="btn btn-dark me-3" data-bs-toggle="modal" data-bs-target="#createCargoModal">
+                    {{ __('Create New') }}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="table table-bordered table-hover w-100">
+            <thead>
+                <tr id="tablab">
+                    <th>ID</th>
+                    <th>Descripcion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($cargos as $cargo)
+                    <tr id="demo">
+                        <td>{{ $cargo->id }}</td>
+                        <td>{{ $cargo->descripcion }}</td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-sm btn-info me-4" data-bs-toggle="modal" data-bs-target="#editCargoModal{{ $cargo->id }}">Editar</button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $cargo->id }}')">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Modal Editar Cargo -->
+                    <div class="modal fade" id="editCargoModal{{ $cargo->id }}" tabindex="-1" aria-labelledby="editCargoModalLabel{{ $cargo->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editCargoModalLabel{{ $cargo->id }}">Editar Cargo</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="{{ route('cargos.update', $cargo->id) }}">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="mb-3">
+                                            <label for="descripcion" class="form-label">Descripción</label>
+                                            <input type="text" name="descripcion" id="descripcion" value="{{ $cargo->descripcion }}" class="form-control" required>
+                                        </div>
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-3">Guardar Cambios</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Crear Cargo -->
+    <div class="modal fade" id="createCargoModal" tabindex="-1" aria-labelledby="createCargoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createCargoModalLabel">Crear Nuevo Cargo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('cargos.store') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input type="text" name="descripcion" id="descripcion" class="form-control" required>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-3">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkM0dKwdb9r1X5DOl5b0DDA6r9E/cgAqXT9Zt1KfRXjFfg7B8dTf" crossorigin="anonymous"></script>
+<script>
+    function confirmDelete(id) {
+        if (confirm('¿Estás seguro de que deseas eliminar este cargo?')) {
+            let form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/cargos/' + id;
+            form.innerHTML = '@csrf @method("DELETE")';
+            document.body.appendChild(form);
+            form.submit();
         }
-    </script>
-</body>
-</html>
+    }
+</script>
 @endsection

@@ -36,7 +36,9 @@
   <link href="{{ asset('/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
   
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/assets/css/soft-ui-dashboard.css?v=1.0.7') }}">
+  <link id="pagestyle" href="{{ asset('/asset/css/soft-ui-dashboard.css?v=1.0.7')}}" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -489,7 +491,7 @@
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="">Home</a>
+              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="{{ route('home') }}">Home</a>
             </li>
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">

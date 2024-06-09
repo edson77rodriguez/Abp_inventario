@@ -20,6 +20,8 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\TipoPagosController;
 use App\Http\Controllers\DetalleVentaController;
+use App\Http\Controllers\DashboardController;
+
 
 
 
@@ -35,9 +37,11 @@ Auth::routes();
 // Agrupar las rutas que requieren autenticación
 Route::middleware(['auth'])->group(function () {
     // Ruta del dashboard
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
     // Rutas de recursos
+    Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::resource('cargos', CargoController::class);
     Route::resource('generos', GeneroController::class);
     Route::resource('tipos', TipoController::class);

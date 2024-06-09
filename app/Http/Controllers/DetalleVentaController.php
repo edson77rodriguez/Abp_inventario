@@ -12,18 +12,22 @@ class DetalleVentaController extends Controller
 {
     public function index()
     {
-        $detalleventas = Detalleventa::all();
-        return view('detalleventas.index', compact('detalleventas'));
-    }
-
-    public function create()
-    {
         $productos = Producto::all();
         $ventas = Venta::all();
         $tipopagos = Tipopago::all();
-
-        return view('detalleventas.create', compact('productos', 'ventas', 'tipopagos'));
+        $detalleventas = Detalleventa::all();
+        return view('detalleventas.index', compact('detalleventas','productos', 'ventas', 'tipopagos'));
     }
+
+    public function create()
+{
+    $productos = Producto::all();
+    $ventas = Venta::all();
+    $tipopagos = Tipopago::all();
+
+    return view('detalleventas.create', compact('productos', 'ventas', 'tipopagos'));
+}
+
 
     public function store(Request $request)
     {
