@@ -19,7 +19,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="{{ asset('/assets/img/favicon.png') }}">
+  
   <title>
     Inventario
   </title>
@@ -34,6 +35,7 @@
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="{{ asset('/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+  <link href="{{ asset('/css/alertify.min.css') }}" rel="stylesheet" />
   
   <!-- CSS Files -->
   <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
@@ -596,11 +598,12 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <script src=" {{ asset('/assets/js/core/popper.min.js') }}"></script>
+  <script src=" {{ asset('/assets/js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+  <script src="  {{ asset('/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+  <script src="{{ asset('/assets/js/plugins/chartjs.min.js') }}"></script>
+  <script src="{{ asset('/js/plugins/alertify.min.js') }}"></script>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 

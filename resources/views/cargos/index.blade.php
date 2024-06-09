@@ -94,17 +94,22 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkM0dKwdb9r1X5DOl5b0DDA6r9E/cgAqXT9Zt1KfRXjFfg7B8dTf" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KF6o/kJF/b7ICQ1Zfs0cQ45oM0v4lL+SzR0t4i0p54K/xY8q3jOAV5tQ9l" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
+
 <script>
     function confirmDelete(id) {
-        if (confirm('¿Estás seguro de que deseas eliminar este cargo?')) {
+        alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar este cargo?', function(){
             let form = document.createElement('form');
             form.method = 'POST';
-            form.action = '/cargos/' + id;
+            form.action = '/Cargos/' + id;
             form.innerHTML = '@csrf @method("DELETE")';
             document.body.appendChild(form);
             form.submit();
-        }
+        }, function(){
+            alertify.error('Cancelado');
+        });
     }
 </script>
 @endsection

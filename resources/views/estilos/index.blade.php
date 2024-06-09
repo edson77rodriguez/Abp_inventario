@@ -1,73 +1,115 @@
-<!-- resources/views/marcas/create.blade.php -->
 @extends('dashboard')
+
+@section('template_title')
+    Estilos
+@endsection
+
 @section('crud_content')
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estilos</title>
-    <!-- Bootstrap 5 (CSS y JS) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Fwhij5wX9YjAJxm85MMzR1h7vfqZ6P6r64tCcdyecf5W450YfN2vQ9F3iZ2yW3j" crossorigin="anonymous">
-    @vite(['resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset('css/estilo_index.css')}}">
-</head>
-<body>
-   
-    <main class="container">
-    <div class="card-header"> 
+<div class="container py-5">
+    <div class="card-header">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span id="card_title">{{ __('Estilos') }}</span>
-            
-                    <div class="float-right">
-                        <a href="{{ route('estilos.create') }}" class="btn btn-dark me-3 float-right"  data-placement="left">
-                        {{ __('Create New') }}</a>
-                    </div>
-                
+            <span id="card_title">{{ __('Estilos') }}</span>
+            <div class="float-right">
+                <button class="btn btn-dark me-3" data-bs-toggle="modal" data-bs-target="#createEstiloModal">
+                    {{ __('Create New') }}
+                </button>
+            </div>
         </div>
-        </div>
-
-        <div class="table-container">
-            <table class="table table-bordered table-hover w-120">
-                <thead id="tablab">
-                    <tr>
-                        <th>ID</th>
-                        <th>Estilos</th>
-                        <th>Acciones</th>
+    </div>
+    <div class="table-container">
+        <table class="table table-bordered table-hover w-100">
+            <thead>
+                <tr id="tablab">
+                    <th>ID</th>
+                    <th>Estilos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($estilos as $estilo)
+                    <tr id="demo">
+                        <td>{{ $estilo->id }}</td>
+                        <td>{{ $estilo->estilo }}</td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-sm btn-info me-4" data-bs-toggle="modal" data-bs-target="#editEstiloModal{{ $estilo->id }}">Editar</button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $estilo->id }}')">Eliminar</button>
+                            </div>
+                        </td>
                     </tr>
-                </thead>
-                <tbody  class="margin: 10px 0; border-collapse: collapse; border: 1px solid #1b1919;">
-                    @foreach($estilos as $estilo)
-                        <tr id="demo">
-                            <td>{{ $estilo->id }}</td>
-                            <td>{{ $estilo->estilo }}</td>
-                            <td>
-                                <div class="d-flex justify-content-center">
-                                    <a href="{{ route('estilos.edit', $estilo->id) }}" class="btn btn-sm btn-info me-4">Editar</a>
-                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $estilo->id }}')">Eliminar</button>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </main>
-   
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KF6o/kJF/b7ICQ1Zfs0cQ45oM0v4lL+SzR0t4i0p54K/xY8q3jOAV5tQ9l" crossorigin="anonymous"></script>
-    <script>
-        function confirmDelete(id) {
-            if (confirm('¿Estás seguro de que deseas eliminar este estilo?')) {
-                let form = document.createElement('form');
-                form.method = 'POST';
-                form.action = '/estilos/' + id;
-                form.innerHTML = '@csrf @method("DELETE")';
-                document.body.appendChild(form);
-                form.submit();
-            }
-        }
-    </script>
-</body>
-</html>
+                    <!-- Modal Editar Composición -->
+                    <div class="modal fade" id="editEstiloModal{{ $estilo->id }}" tabindex="-1" aria-labelledby="editEstiloModalLabel{{ $estilo->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editEstiloModalLabel{{ $estilo->id }}">Editar Estilo</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="{{ route('estilos.update', $estilo->id) }}">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="mb-3">
+                                            <label for="estilo" class="form-label">Composición</label>
+                                            <input type="text" name="estilo" id="estilo" value="{{ $estilo->estilo }}" class="form-control" required>
+                                        </div>
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-3">Guardar Cambios</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Crear Composición -->
+    <div class="modal fade" id="createEstiloModal" tabindex="-1" aria-labelledby="EstiloModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createEstiloModalLabel">Crear Nuevo Estilo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('estilos.store') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="estilo" class="form-label">Estilo</label>
+                            <input type="text" name="estilo" id="estilo" class="form-control" required>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-3">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KF6o/kJF/b7ICQ1Zfs0cQ45oM0v4lL+SzR0t4i0p54K/xY8q3jOAV5tQ9l" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
+
+<script>
+    function confirmDelete(id) {
+        alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar este estilo?', function(){
+            let form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/composiciones/' + id;
+            form.innerHTML = '@csrf @method("DELETE")';
+            document.body.appendChild(form);
+            form.submit();
+        }, function(){
+            alertify.error('Cancelado');
+        });
+    }
+</script>
 @endsection

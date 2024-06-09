@@ -18,8 +18,17 @@ class ProductoController extends Controller
 {
     public function index()
     {
+        $tipos = Tipo::all();
+        $marcas = Marca::all();
+        $tallas = Talla::all();
+        $generos = Genero::all();
+        $modelos = Modelo::all();
+        $colors = Color::all();
+        $composiciones = Composicion::all();
+        $estilos = Estilo::all();
+        $proveedores = Proveedor::all();
         $productos = Producto::all();
-        return view('productos.index', compact('productos'));
+        return view('productos.index', compact('productos','tipos', 'marcas', 'tallas', 'generos', 'modelos', 'colors', 'composiciones', 'estilos','proveedores'));
     }
 
     public function create()
