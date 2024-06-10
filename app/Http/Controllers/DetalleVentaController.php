@@ -36,11 +36,11 @@ class DetalleVentaController extends Controller
             'producto_id' => 'required|exists:productos,id',
             'cantidad' => 'required|integer|min:0',
             'precio_unitario' => 'required|numeric|min:0',
-            'tipopago_id' => 'required|exists:tipopagos,id',
+            'tipopago_id' => 'required|exists:tipo_pagos,id', /// el cambio aqui fue la variable de tipopagos ->tipo_pagos
         ]);
 
         Detalleventa::create($validatedData);
-        return redirect()->route('detalleventas.index')->with('success', 'Inventario creado correctamente');
+        return redirect()->route('detalleventas.index')->with('register', ' ');
     }
 
     public function show(string $id)
@@ -72,7 +72,7 @@ class DetalleVentaController extends Controller
         $detalleventa = Detalleventa::findOrFail($id);
         $detalleventa->update($validatedData);
 
-        return redirect()->route('detalleventas.index')->with('success', 'Inventario actualizado correctamente');
+        return redirect()->route('detalleventas.index')->with('register', 'Inventario actualizado correctamente');
     }
 
     public function destroy(string $id)
@@ -80,6 +80,6 @@ class DetalleVentaController extends Controller
         $detalleventa = Detalleventa::findOrFail($id);
         $detalleventa->delete();
 
-        return redirect()->route('detalleventas.index')->with('success', 'Inventario eliminado correctamente');
+        return redirect()->route('detalleventas.index')->with('destroy', 'Inventario eliminado correctamente');
     }
 }

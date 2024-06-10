@@ -25,7 +25,7 @@ class EstiloController extends Controller
     
         Estilo::create($validatedData);
     
-        return redirect()->route('estilos.index');
+        return redirect()->route('estilos.index')->with('register',' ');
     }
     public function show(string $id)
     {
@@ -44,7 +44,7 @@ class EstiloController extends Controller
         $estilo = Estilo::find($id);
         $estilo->update($request->all());
 
-        return redirect()->route('estilos.index');
+        return redirect()->route('estilos.index')->with('register',' ');
     }
     public function destroy(string $id)
     {
@@ -52,6 +52,6 @@ class EstiloController extends Controller
 
         $estilo->delete();
 
-        return redirect()->route('estilos.index');
+        return redirect()->route('estilos.index')->with('destroy',' ');;
     }
 }

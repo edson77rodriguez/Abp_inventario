@@ -26,7 +26,7 @@ class ColorController extends Controller
     
         Color::create($validatedData);
     
-        return redirect()->route('colors.index');
+        return redirect()->route('colors.index')->with('register', ' ');
     }
 
     public function show(string $id)
@@ -48,7 +48,7 @@ class ColorController extends Controller
         $color = Color::find($id);
         $color->update($request->all());
 
-        return redirect()->route('colors.index');
+        return redirect()->route('colors.index')->with('register', ' ');
     }
 
     public function destroy(string $id)
@@ -56,6 +56,6 @@ class ColorController extends Controller
         $color = Color::findOrFail($id);
         $color->delete();
 
-        return redirect()->route('colors.index');
+        return redirect()->route('colors.index')->with('destroy', ' ');
     }
 }

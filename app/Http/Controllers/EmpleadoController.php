@@ -35,7 +35,7 @@ class EmpleadoController extends Controller
 
         Empleado::create($validatedData);
 
-        return redirect()->route('empleados.index')->with('success', 'Empleado creado exitosamente.');
+        return redirect()->route('empleados.index')->with('register', ' ');
     }
     public function show($id)
     {
@@ -62,13 +62,13 @@ class EmpleadoController extends Controller
         $empleado = Empleado::findOrFail($id);
         $empleado->update($validatedData);
 
-        return redirect()->route('empleados.index')->with('success', 'Empleado actualizado exitosamente.');
+        return redirect()->route('empleados.index')->with('destroy', 'Empleado actualizado exitosamente.');
     }
     public function destroy(string $id)
     {
         $empleado = Empleado::findOrFail($id);
         $empleado->delete();
 
-        return redirect()->route('empleados.index');
+        return redirect()->route('empleados.index')->with('destroy', ' ');
     }
 }
