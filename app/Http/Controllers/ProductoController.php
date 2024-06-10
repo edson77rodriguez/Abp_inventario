@@ -65,7 +65,7 @@ class ProductoController extends Controller
 
     Producto::create($validatedData);
 
-    return redirect()->route('productos.index')->with('success', 'Producto creado exitosamente.');
+    return redirect()->route('productos.index')->with('register', 'Producto creado exitosamente.');
 }
 
     public function show($id)
@@ -109,7 +109,7 @@ class ProductoController extends Controller
     $producto = Producto::findOrFail($id);
     $producto->update($validatedData);
 
-    return redirect()->route('productos.index')->with('success', 'Producto actualizado exitosamente.');
+    return redirect()->route('productos.index')->with('register', 'Producto actualizado exitosamente.');
 }
 
     public function destroy($id)
@@ -117,6 +117,6 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
         $producto->delete();
 
-        return redirect()->route('productos.index')->with('success', 'Producto eliminado exitosamente.');
+        return redirect()->route('productos.index')->with('destroy', 'Producto eliminado exitosamente.');
     }
 }

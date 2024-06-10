@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-        Personas
+    Personas
 @endsection
 
 @section('crud_content')
@@ -21,21 +21,21 @@
             <thead>
                 <tr id="tablab">
                     <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>Telefono</th>
-                        <th>Acciones</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Telefono</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($personas as $persona)
                     <tr id="demo">
                         <td>{{ $persona->id }}</td>
-                            <td>{{ $persona->nombre }}</td>
-                            <td>{{ $persona->ap }}</td>
-                            <td>{{ $persona->am }}</td>
-                            <td>{{ $persona->telefono }}</td>
+                        <td>{{ $persona->nombre }}</td>
+                        <td>{{ $persona->ap }}</td>
+                        <td>{{ $persona->am }}</td>
+                        <td>{{ $persona->telefono }}</td>
                         <td>
                             <div class="d-flex justify-content-center">
                                 <button class="btn btn-sm btn-info me-4" data-bs-toggle="modal" data-bs-target="#editPersonaModal{{ $persona->id }}">Editar</button>
@@ -44,7 +44,7 @@
                         </td>
                     </tr>
 
-                    <!-- Modal Editar Composición -->
+                    <!-- Modal Editar Persona -->
                     <div class="modal fade" id="editPersonaModal{{ $persona->id }}" tabindex="-1" aria-labelledby="editPersonaModalLabel{{ $persona->id }}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -56,24 +56,24 @@
                                     <form method="POST" action="{{ route('personas.update', $persona->id) }}">
                                         @csrf
                                         @method('PUT')
-                                         <div class="mb-3">
-                                            <label for="nombre" class="form-label">Nombre </label>
-                                            <input type="text" name="nombre" id="nombre" class="form-control" required>
+                                        <div class="mb-3">
+                                            <label for="nombre_{{ $persona->id }}" class="form-label">Nombre</label>
+                                            <input type="text" name="nombre" id="nombre_{{ $persona->id }}" value="{{ old('nombre', $persona->nombre) }}" class="form-control" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="ap" class="form-label">Apellido Paterno</label>
-                                            <input type="text" name="ap" id="ap" class="form-control" required>
+                                            <label for="ap_{{ $persona->id }}" class="form-label">Apellido Paterno</label>
+                                            <input type="text" name="ap" id="ap_{{ $persona->id }}" value="{{ old('ap', $persona->ap) }}" class="form-control" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="am" class="form-label">Apellido Materno </label>
-                                            <input type="text" name="am" id="am" class="form-control" required>
+                                            <label for="am_{{ $persona->id }}" class="form-label">Apellido Materno</label>
+                                            <input type="text" name="am" id="am_{{ $persona->id }}" value="{{ old('am', $persona->am) }}" class="form-control" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="telefono" class="form-label">Telefono </label>
-                                            <input type="tel" name="telefono" id="telefono" class="form-control" required>
+                                            <label for="telefono_{{ $persona->id }}" class="form-label">Teléfono</label>
+                                            <input type="tel" name="telefono" id="telefono_{{ $persona->id }}" value="{{ old('telefono', $persona->telefono) }}" class="form-control" required>
                                         </div>
                                         <div class="d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary me-3">Guardar Cambios</button>
@@ -89,7 +89,7 @@
         </table>
     </div>
 
-    <!-- Modal Crear Composición -->
+    <!-- Modal Crear Persona -->
     <div class="modal fade" id="createPersonaModal" tabindex="-1" aria-labelledby="createPersonaModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -102,36 +102,22 @@
                         @csrf
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" value="{{ old('nombre', $persona->nombre) }}" class="form-control @error('pais') is-invalid @enderror" required>
-                            @error('descripcion')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <input type="text" name="nombre" id="nombre" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="ap" class="form-label">Apellido Paterno</label>
-                            <input type="text" name="ap" id="ap" value="{{ old('ap', $persona->ap) }}" class="form-control @error('pais') is-invalid @enderror" required>
-                            @error('descripcion')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <input type="text" name="ap" id="ap" class="form-control" required>
                         </div>
 
-
                         <div class="mb-3">
-                            <label for="am" class="form-label">APellido Materno</label>
-                            <input type="text" name="am" id="am" value="{{ old('am', $persona->am) }}" class="form-control @error('pais') is-invalid @enderror" required>
-                            @error('descripcion')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <label for="am" class="form-label">Apellido Materno</label>
+                            <input type="text" name="am" id="am" class="form-control" required>
                         </div>
 
-
                         <div class="mb-3">
-                            <label for="telefono" class="form-label">Telefono</label>
-                            <input type="text" name="telefono" id="telefono" value="{{ old('telefono', $persona->telefono) }}" class="form-control @error('pais') is-invalid @enderror" required>
-                            @error('descripcion')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" name="telefono" id="telefono" class="form-control" required>
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary me-3">Guardar</button>
@@ -149,6 +135,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
 
 <script>
+    alertify.set('notifier', 'position', 'top-center');
+    alertify.set('notifier', 'classes', {
+        'success': 'bg-success text-white',
+        'error': 'bg-danger text-white',
+        'warning': 'bg-warning text-dark'
+    });
+    alertify.set('notifier', 'delay', 3);
     function confirmDelete(id) {
         alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar esta persona?', function(){
             let form = document.createElement('form');
@@ -162,4 +155,14 @@
         });
     }
 </script>
+@if(session('register'))
+    <script>
+        alertify.success('Registro exitoso');
+    </script>
+@endif
+@if(session('destroy'))
+    <script>
+        alertify.success('Eliminado');
+    </script>
+@endif
 @endsection

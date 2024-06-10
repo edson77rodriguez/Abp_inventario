@@ -34,7 +34,7 @@ class ProveedorController extends Controller
         ]);
 
         Proveedor::create ($validatedData);
-        return redirect()->route('proveedores.index');
+        return redirect()->route('proveedores.index')->with('register',' ');
     }
 
     /**
@@ -67,7 +67,7 @@ class ProveedorController extends Controller
         $proveedor=Proveedor::findOrFail($id);
         $proveedor->update($validatedData);
 
-        return redirect()->route('proveedores.index')->with('succes','Quedo pa');
+        return redirect()->route('proveedores.index')->with('register','Quedo pa');
         
     }
 
@@ -79,6 +79,6 @@ class ProveedorController extends Controller
       $proveedors=Proveedor::findOrFail($id);
       $proveedors->delete();
       
-      return redirect()->route('proveedores.index');
+      return redirect()->route('proveedores.index')->with('destroy',' ');
     }
 }

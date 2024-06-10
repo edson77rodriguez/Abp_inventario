@@ -25,7 +25,7 @@ class CargoController extends Controller
     
         Cargo::create($validatedData);
     
-        return redirect()->route('cargos.index');
+        return redirect()->route('cargos.index')->with('register', ' ');
     }
     public function show(string $id)
     {
@@ -44,7 +44,7 @@ class CargoController extends Controller
         $cargo = Cargo::find($id);
         $cargo->update($request->all());
 
-        return redirect()->route('cargos.index');
+        return redirect()->route('cargos.index')->with('register', ' ');
     }
     public function destroy(string $id)
     {
@@ -52,6 +52,6 @@ class CargoController extends Controller
 
         $cargo->delete();
 
-        return redirect()->route('cargos.index');
+        return redirect()->route('cargos.index')->with('destroy', ' ');
     }
 }

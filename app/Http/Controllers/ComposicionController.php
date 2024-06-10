@@ -25,7 +25,7 @@ class ComposicionController extends Controller
     
         Composicion::create($validatedData);
     
-        return redirect()->route('composiciones.index');
+        return redirect()->route('composiciones.index')->with('register',' ');
     }
     public function show(string $id)
     {
@@ -44,7 +44,7 @@ class ComposicionController extends Controller
         $composicion = Composicion::find($id);
         $composicion->update($request->all());
 
-        return redirect()->route('composiciones.index');
+        return redirect()->route('composiciones.index')->with('register',' ');
     }
     public function destroy(string $id)
     {
@@ -52,6 +52,6 @@ class ComposicionController extends Controller
 
         $composicion->delete();
 
-        return redirect()->route('composiciones.index');
+        return redirect()->route('composiciones.index')->with('destroy',' ');
     }
 }

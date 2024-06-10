@@ -26,7 +26,7 @@ class TipoController extends Controller
     
         Tipo::create($validatedData);
     
-        return redirect()->route('tipos.index');
+        return redirect()->route('tipos.index')->with('register',' ');
     }
 
     public function show(string $id)
@@ -48,7 +48,7 @@ class TipoController extends Controller
         $tipo = Tipo::find($id);
         $tipo->update($request->all());
 
-        return redirect()->route('tipos.index');
+        return redirect()->route('tipos.index')->with('register',' ');
     }
 
     public function destroy(string $id)
@@ -57,6 +57,6 @@ class TipoController extends Controller
 
         $tipo->delete();
 
-        return redirect()->route('tipos.index');
+        return redirect()->route('tipos.index')->with('destroy',' ');
     }
 }

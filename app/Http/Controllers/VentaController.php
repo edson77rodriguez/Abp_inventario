@@ -31,7 +31,7 @@ class VentaController extends Controller
         ]);
 
         Venta::create($validatedData);
-        return redirect()->route('ventas.index')->with('success', 'Venta registrada correctamente');
+        return redirect()->route('ventas.index')->with('register', 'Venta registrada correctamente');
     }
 
     public function show(string $id)
@@ -58,7 +58,7 @@ class VentaController extends Controller
         $venta = Venta::findOrFail($id);
         $venta->update($validatedData);
 
-        return redirect()->route('ventas.index')->with('success', 'Venta registrada correctamente');
+        return redirect()->route('ventas.index')->with('register', 'Venta registrada correctamente');
     }
 
     public function destroy(string $id)
@@ -66,6 +66,6 @@ class VentaController extends Controller
         $venta = Venta::findOrFail($id);
         $venta->delete();
       
-        return redirect()->route('ventas.index')->with('success', 'Venta eliminada correctamente');
+        return redirect()->route('ventas.index')->with('destroy', 'Venta eliminada correctamente');
     }
 }

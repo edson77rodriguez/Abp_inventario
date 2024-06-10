@@ -26,7 +26,7 @@ class GeneroController extends Controller
     
         Genero::create($validatedData);
     
-        return redirect()->route('generos.index');
+        return redirect()->route('generos.index')->with('register',' ');
     }
 
     public function show(string $id)
@@ -48,7 +48,7 @@ class GeneroController extends Controller
         $genero = Genero::find($id);
         $genero->update($request->all());
 
-        return redirect()->route('generos.index');
+        return redirect()->route('generos.index')->with('register',' ');
     }
 
     public function destroy(string $id)
@@ -56,6 +56,6 @@ class GeneroController extends Controller
         $genero = Genero::findOrFail($id);
         $genero->delete();
 
-        return redirect()->route('generos.index');
+        return redirect()->route('generos.index')->with('destroy',' ');
     }
 }

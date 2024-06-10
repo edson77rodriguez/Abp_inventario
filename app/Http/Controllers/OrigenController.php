@@ -27,7 +27,7 @@ class OrigenController extends Controller
     
         Origen::create($validatedData);
     
-        return redirect()->route('origenes.index');
+        return redirect()->route('origenes.index')->with('register',' ');
     }
 
     public function show(string $id)
@@ -49,7 +49,7 @@ class OrigenController extends Controller
         $origen = Origen::find($id);
         $origen->update($request->all());
 
-        return redirect()->route('origenes.index');
+        return redirect()->route('origenes.index')->with('register',' ');
     }
 
     public function destroy(string $id)
@@ -57,6 +57,6 @@ class OrigenController extends Controller
         $origen = Origen::findOrFail($id);
         $origen->delete();
 
-        return redirect()->route('origenes.index');
+        return redirect()->route('origenes.index')->with('destroy',' ');
     }
 }

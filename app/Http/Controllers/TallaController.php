@@ -26,7 +26,7 @@ class TallaController extends Controller
 
         Talla::create($validatedData);
 
-        return redirect()->route('tallas.index');
+        return redirect()->route('tallas.index')->with('register',' ');
     }
 
     public function show(string $id)
@@ -48,7 +48,7 @@ class TallaController extends Controller
         $talla = Talla::find($id);
         $talla->update($request->all());
 
-        return redirect()->route('tallas.index');
+        return redirect()->route('tallas.index')->with('register',' ');
     }
 
     public function destroy(string $id)
@@ -57,6 +57,6 @@ class TallaController extends Controller
 
         $talla->delete();
 
-        return redirect()->route('tallas.index');
+        return redirect()->route('tallas.index')->with('destroy',' ');
     }
 }

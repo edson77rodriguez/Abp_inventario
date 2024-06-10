@@ -30,7 +30,7 @@ class InventarioController extends Controller
         ]);
 
         Inventario::create($validatedData);
-        return redirect()->route('inventarios.index')->with('success', 'Inventario creado correctamente');
+        return redirect()->route('inventarios.index')->with('register', ' ');
     }
 
     public function show(string $id)
@@ -57,7 +57,7 @@ class InventarioController extends Controller
         $inventario = Inventario::findOrFail($id);
         $inventario->update($validatedData);
 
-        return redirect()->route('inventarios.index')->with('success', 'Inventario actualizado correctamente');
+        return redirect()->route('inventarios.index')->with('register', ' ');
     }
 
     public function destroy(string $id)
@@ -65,6 +65,6 @@ class InventarioController extends Controller
         $inventario = Inventario::findOrFail($id);
         $inventario->delete();
       
-        return redirect()->route('inventarios.index')->with('success', 'Inventario eliminado correctamente');
+        return redirect()->route('inventarios.index')->with('destroy', ' ');
     }
 }
