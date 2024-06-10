@@ -26,7 +26,7 @@ class ModeloController extends Controller
     
         Modelo::create($validatedData);
     
-        return redirect()->route('modelos.index');
+        return redirect()->route('modelos.index')->with('register',' ');
     }
 
     public function show(string $id)
@@ -48,7 +48,7 @@ class ModeloController extends Controller
         $modelo = Modelo::find($id);
         $modelo->update($request->all());
 
-        return redirect()->route('modelos.index');
+        return redirect()->route('modelos.index')->with('register',' ');
     }
 
     public function destroy(string $id)
@@ -56,6 +56,6 @@ class ModeloController extends Controller
         $modelo = Modelo::findOrFail($id);
         $modelo->delete();
 
-        return redirect()->route('modelos.index');
+        return redirect()->route('modelos.index')->with('destroy',' ');
     }
 }

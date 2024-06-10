@@ -208,6 +208,7 @@
             <span class="nav-link-text ms-1">Proveedores</span>
           </a>
         </li>
+        
 
         <li class="nav-item">
           <a class="nav-link  " href="{{ route('empleados.index') }}">

@@ -31,7 +31,7 @@ class MarcaController extends Controller
         Marca::create($validatedData);
     
         // Redirigir con un mensaje de éxito (opcional)
-        return redirect()->route('marcas.index')->with('success', 'Marca creada exitosamente.');
+        return redirect()->route('marcas.index')->with('register', 'Marca creada exitosamente.');
     }
     
     public function show($id)
@@ -65,13 +65,13 @@ class MarcaController extends Controller
         $marca->update($request->all());
 
         // Redirigir con un mensaje de éxito
-        return redirect()->route('marcas.index')->with('success', 'Marca actualizada exitosamente.');
+        return redirect()->route('marcas.index')->with('register', 'Marca actualizada exitosamente.');
     }
     public function destroy(string $id)
     {
         $marca = Marca::findOrFail($id);
         $marca->delete();
 
-        return redirect()->route('marcas.index');
+        return redirect()->route('marcas.index')->with('destroy',' ');
     }
 }

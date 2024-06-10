@@ -27,7 +27,7 @@ class TipoPagosController extends Controller
     
         Tipopago::create($validatedData);
     
-        return redirect()->route('tipopagos.index');
+        return redirect()->route('tipopagos.index')->with('resgister',' ');
     }
 
     public function show(string $id)
@@ -49,7 +49,7 @@ class TipoPagosController extends Controller
         $tipopago = Tipopago::find($id);
         $tipopago->update($request->all());
 
-        return redirect()->route('tipopagos.index');
+        return redirect()->route('tipopagos.index')->with('register',' ');
     }
 
     public function destroy(string $id)
@@ -57,6 +57,6 @@ class TipoPagosController extends Controller
         $tipopago = Tipopago::findOrFail($id);
         $tipopago->delete();
 
-        return redirect()->route('tipopagos.index');
+        return redirect()->route('tipopagos.index')->with('destroy',' ');
     }
 }

@@ -28,7 +28,7 @@ class PersonaController extends Controller
     
         Persona::create($validatedData);
     
-        return redirect()->route('personas.index');
+        return redirect()->route('personas.index')->with('register',' ');
     }
     public function show(string $id)
     {
@@ -50,13 +50,13 @@ class PersonaController extends Controller
         $persona = Persona::find($id);
         $persona->update($request->all());
 
-        return redirect()->route('personas.index');
+        return redirect()->route('personas.index')->with('register',' ');
     }
     public function destroy(string $id)
     {
         $persona = Persona::findOrFail($id);
         $persona->delete();
 
-        return redirect()->route('personas.index');
+        return redirect()->route('personas.index')->with('destroy',' ');
     }
 }

@@ -98,20 +98,7 @@
 <script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
 
-<script>
-    function confirmDelete(id) {
-        alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar este estilo?', function(){
-            let form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/composiciones/' + id;
-            form.innerHTML = '@csrf @method("DELETE")';
-            document.body.appendChild(form);
-            form.submit();
-        }, function(){
-            alertify.error('Cancelado');
-        });
-    }
-</script>
+
 <script>
      alertify.set('notifier', 'position', 'top-center');
     alertify.set('notifier', 'classes', {
