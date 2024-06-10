@@ -402,10 +402,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KF6o/kJF/b7ICQ1Zfs0cQ45oM0v4lL+SzR0t4i0p54K/xY8q3jOAV5tQ9l" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
+<link href="{{ asset('/css/alertify.min.css') }}" rel="stylesheet" />
+<script src="{{ asset('/js/alertify.min.js') }}"></script>
 
 <script>
     function confirmDelete(id) {
-        alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar esta composición?', function(){
+        alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar esta producto?', function(){
             let form = document.createElement('form');
             form.method = 'POST';
             form.action = '/productos/' + id;
