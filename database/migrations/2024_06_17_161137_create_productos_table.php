@@ -22,7 +22,6 @@ return new class extends Migration
             $table->unsignedBigInteger('composicion_id');
             $table->unsignedBigInteger('estilo_id');
             $table->float('precio_compra');
-            $table->float('precio_venta');
             $table->unsignedBigInteger('proveedor_id');
 
             $table->timestamps();

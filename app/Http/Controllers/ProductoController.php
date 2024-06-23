@@ -58,7 +58,6 @@ class ProductoController extends Controller
         'composicion_id' => 'required|exists:composicions,id',
         'estilo_id' => 'required|exists:estilos,id',
         'precio_compra' => 'required|numeric|min:0',
-        'precio_venta' => 'required|numeric|min:0',
         'proveedor_id' => 'required|exists:proveedors,id',
         
     ]);
@@ -102,7 +101,6 @@ class ProductoController extends Controller
         'composicion_id' => 'required|exists:composicions,id',
         'estilo_id' => 'required|exists:estilos,id',
         'precio_compra' => 'required|numeric|min:0',
-        'precio_venta' => 'required|numeric|min:0',
         'proveedor_id' => 'required|exists:proveedors,id',
     ]);
 

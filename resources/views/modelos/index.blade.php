@@ -80,7 +80,7 @@
                     <form method="POST" action="{{ route('modelos.store') }}">
                         @csrf
                         <div class="mb-3">
-                            <label for="descripcion" class="form-label">Composición</label>
+                            <label for="descripcion" class="form-label">Modelo</label>
                             <input type="text" name="descripcion" id="descripcion" class="form-control" required>
                         </div>
                         <div class="d-flex justify-content-end">

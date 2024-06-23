@@ -15,7 +15,6 @@ class ColorController extends Controller
 
     public function create()
     {
-        return view('colors.create');
     }
 
     public function store(Request $request)
@@ -36,8 +35,6 @@ class ColorController extends Controller
 
     public function edit(string $id)
     {
-        $color = Color::find($id);
-        return view('colors.edit', compact('color'));
     }
 
     public function update(Request $request, string $id)

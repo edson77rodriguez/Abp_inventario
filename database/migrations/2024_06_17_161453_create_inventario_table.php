@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('producto_id');
             $table->String('cantidad_stock');
+            $table->String('precio_venta');
             $table->date('fecha_ingreso');
             $table->timestamps();
         });

@@ -21,11 +21,7 @@ class DetalleVentaController extends Controller
 
     public function create()
 {
-    $productos = Producto::all();
-    $ventas = Venta::all();
-    $tipopagos = Tipopago::all();
-
-    return view('detalleventas.create', compact('productos', 'ventas', 'tipopagos'));
+    
 }
 
 
@@ -45,18 +41,12 @@ class DetalleVentaController extends Controller
 
     public function show(string $id)
     {
-        $detalleventa = Detalleventa::findOrFail($id);
-        return view('detalleventas.show', compact('detalleventa'));
+       
     }
 
     public function edit(string $id)
     {
-        $detalleventa = Detalleventa::findOrFail($id);
-        $productos = Producto::all();
-        $ventas = Venta::all();
-        $tipopagos = Tipopago::all();
 
-        return view('detalleventas.edit', compact('detalleventa', 'productos', 'ventas', 'tipopagos'));
     }
 
     public function update(Request $request, string $id)

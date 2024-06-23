@@ -12,6 +12,9 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_venta');
             $table->unsignedBigInteger('empleado_id');
+            $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
+            $table->integer('cantidad');
+            $table->foreignId('inventario_id')->constrained('inventarios')->onDelete('cascade');
             $table->float('ganancia');
             $table->timestamps();
         });

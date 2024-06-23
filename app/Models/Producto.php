@@ -18,7 +18,6 @@ class Producto extends Model
         'composicion_id',
         'estilo_id',
         'precio_compra',
-       'precio_venta',
         'proveedor_id',
     
 

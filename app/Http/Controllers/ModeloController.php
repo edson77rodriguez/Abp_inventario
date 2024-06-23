@@ -15,7 +15,7 @@ class ModeloController extends Controller
 
     public function create()
     {
-        return view('modelos.create');
+  
     }
 
     public function store(Request $request)
@@ -36,8 +36,7 @@ class ModeloController extends Controller
 
     public function edit(string $id)
     {
-        $modelo = Modelo::find($id);
-        return view('modelos.edit', compact('modelo'));
+       
     }
 
     public function update(Request $request, string $id)

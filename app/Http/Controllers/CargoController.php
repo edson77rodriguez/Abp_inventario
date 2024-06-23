@@ -15,7 +15,7 @@ class CargoController extends Controller
     }
     public function create()
     {
-        return view('cargos.create');
+       
     }
     public function store(Request $request)
     {
@@ -33,8 +33,7 @@ class CargoController extends Controller
     }
     public function edit(string $id)
     {
-        $cargo = Cargo::find($id);
-        return view('cargos.edit', compact('cargo'));
+        
     }
     public function update(Request $request, string $id)
     {

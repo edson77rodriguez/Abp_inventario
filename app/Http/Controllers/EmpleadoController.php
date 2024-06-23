@@ -19,9 +19,7 @@ class EmpleadoController extends Controller
 
     public function create()
     {
-        $personas = Persona::all();
-        $cargos = Cargo::all();
-        return view('empleados.create', compact('personas', 'cargos'));
+       
     }
 
     public function store(Request $request)
@@ -39,15 +37,11 @@ class EmpleadoController extends Controller
     }
     public function show($id)
     {
-        $empleado = Empleado::findOrFail($id);
-        return view('empleados.show', compact('empleado'));
+       
     }
     public function edit($id)
     {
-        $empleado = Empleado::findOrFail($id);
-        $personas = Persona::all();
-        $cargos = Cargo::all();
-        return view('empleados.edit', compact('empleado', 'personas', 'cargos'));
+        
     }
 
     public function update(Request $request, $id)

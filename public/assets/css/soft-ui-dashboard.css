@@ -31,6 +31,10 @@
     text-align: left;
 }
 
+.nav-item.active {
+    background-color: #f8f9fa; /* Color de fondo para indicar activo */
+    border-left: 4px solid #5e72e4; /* Borde izquierdo para indicar activo */
+}
 #demo thead {
     background-color: #3a3a3a;
     color: #fff;

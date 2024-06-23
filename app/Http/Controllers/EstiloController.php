@@ -15,7 +15,7 @@ class EstiloController extends Controller
     }
     public function create()
     {
-        return view('estilos.create');
+      
     }
     public function store(Request $request)
     {
@@ -33,8 +33,7 @@ class EstiloController extends Controller
     }
     public function edit(string $id)
     {
-        $estilo = Estilo::find($id);
-        return view('estilos.edit', compact('estilo'));
+        
     }
     public function update(Request $request, string $id)
     {

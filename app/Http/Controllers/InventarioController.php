@@ -17,8 +17,7 @@ class InventarioController extends Controller
 
     public function create()
     {
-    $productos = Producto::all();
-    return view('inventarios.create', compact('productos'));
+    
     }
 
     public function store(Request $request)
@@ -26,6 +25,7 @@ class InventarioController extends Controller
         $validatedData = $request->validate([
             'producto_id' => 'required|exists:productos,id',
             'cantidad_stock' => 'required|integer|min:0',
+            'precio_venta' => 'required|numeric|min:0',
             'fecha_ingreso' => 'required|date',
         ]);
 
@@ -35,15 +35,12 @@ class InventarioController extends Controller
 
     public function show(string $id)
     {
-        $inventario = Inventario::findOrFail($id);
-        return view('inventarios.show', compact('inventario'));
+        
     }
 
     public function edit(string $id)
     {
-        $inventario = Inventario::findOrFail($id);
-        $productos = Producto::all();
-        return view('inventarios.edit', compact('inventario', 'productos'));
+        
     }
 
     public function update(Request $request, string $id)
@@ -51,6 +48,7 @@ class InventarioController extends Controller
         $validatedData = $request->validate([
             'producto_id' => 'required|exists:productos,id',
             'cantidad_stock' => 'required|integer|min:0',
+            'precio_venta' => 'required|numeric|min:0',
             'fecha_ingreso' => 'required|date',
         ]);
 

@@ -15,7 +15,6 @@ class GeneroController extends Controller
 
     public function create()
     {
-        return view('generos.create');
     }
 
     public function store(Request $request)
@@ -36,8 +35,7 @@ class GeneroController extends Controller
 
     public function edit(string $id)
     {
-        $genero = Genero::find($id);
-        return view('generos.edit', compact('genero'));
+    
     }
 
     public function update(Request $request, string $id)

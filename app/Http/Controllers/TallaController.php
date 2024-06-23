@@ -15,7 +15,6 @@ class TallaController extends Controller
 
     public function create()
     {
-        return view('tallas.create');
     }
 
     public function store(Request $request)
@@ -36,8 +35,7 @@ class TallaController extends Controller
 
     public function edit(string $id)
     {
-        $talla = Talla::find($id);
-        return view('tallas.edit', compact('talla'));
+      
     }
 
     public function update(Request $request, string $id)

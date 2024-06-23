@@ -18,7 +18,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/assets/img/apple-icon.png') }}">
   <link rel="icon" type="image/png" href="{{ asset('/assets/img/favicon.png') }}">
   
   <title>
@@ -83,7 +83,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('detalleventas*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('detalleventas.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -104,7 +104,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('ventas*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('ventas.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -125,7 +125,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('inventarios*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('inventarios.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -146,7 +146,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('productos*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('productos.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -167,7 +167,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('marcas*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('marcas.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -188,7 +188,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('proveedores*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('proveedores.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -208,9 +208,8 @@
             <span class="nav-link-text ms-1">Proveedores</span>
           </a>
         </li>
-        
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('empleados*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('empleados.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -231,7 +230,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('personas*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('personas.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -252,7 +251,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('tipopagos*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('tipopagos.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -273,7 +272,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('origenes*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('origenes.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -294,7 +293,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('cargos*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('cargos.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -315,7 +314,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('generos*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('generos.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -336,7 +335,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('tipos*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('tipos.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -357,7 +356,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('tallas*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('tallas.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -378,7 +377,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('modelos*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('modelos.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -399,7 +398,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('colors*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('colors.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -420,7 +419,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('estilos*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('estilos.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -443,7 +442,7 @@
 
 
 
-        <li class="nav-item">
+        <li class="nav-item {{ Request::is('composiciones*') ? 'active' : '' }}">
           <a class="nav-link  " href="{{ route('composiciones.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -485,13 +484,29 @@
           </ol>
           <h6 class="font-weight-bolder mb-0">Dashboard</h6>
         </nav>
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+        
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <!-- Botón de hamburguesa para dispositivos pequeños -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+        <form class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group">
-              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Type here...">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input id="searchInput" type="text" class="form-control" placeholder="Type here...">
+                <button id="searchButton" class="btn btn-outline-secondary" type="button">Search</button>
             </div>
-          </div>
+        </form>
+    </div>
+</nav>
+</nav>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="{{ route('home') }}">Home</a>
@@ -499,9 +514,59 @@
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign In</span>
+                <span class="d-sm-inline d-none sm-1">Sign In  </span>
               </a>
             </li>
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell cursor-pointer"></i>
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New message</span> from Laur
+                        </h6>
+                        <p class="text-xs text-secondary mb-0 ">
+                          <i class="fa fa-clock me-1"></i>
+                          13 minutes ago
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New album</span> by Travis Scott
+                        </h6>
+                        <p class="text-xs text-secondary mb-0 ">
+                          <i class="fa fa-clock me-1"></i>
+                          1 day
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
             
             
             
@@ -554,8 +619,8 @@
     <div class="card shadow-lg ">
       <div class="card-header pb-0 pt-3 ">
         <div class="float-start">
-          <h5 class="mt-3 mb-0">    Configuracion de dashboard</h5>
-          <p>Opciones.</p>
+          <h5 class="mt-3 mb-0">Soft UI Configurator</h5>
+          <p>See our dashboard options.</p>
         </div>
         <div class="float-end mt-4">
           <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
@@ -568,7 +633,7 @@
       <div class="card-body pt-sm-3 pt-0">
         <!-- Sidebar Backgrounds -->
         <div>
-          <h6 class="mb-0">Cambia el color</h6>
+          <h6 class="mb-0">Sidebar Colors</h6>
         </div>
         <a href="javascript:void(0)" class="switch-trigger background-color">
           <div class="badge-colors my-2 text-start">
@@ -582,24 +647,41 @@
         </a>
         <!-- Sidenav Type -->
         <div class="mt-3">
-          <h6 class="mb-0">Cambia el fondo</h6>
-          <p class="text-sm">Solo tenemos dos tipos bro.</p>
+          <h6 class="mb-0">Sidenav Type</h6>
+          <p class="text-sm">Choose between 2 different sidenav types.</p>
         </div>
         <div class="d-flex">
           <button class="btn bg-gradient-primary w-100 px-3 mb-2 active" data-class="bg-transparent" onclick="sidebarType(this)">Transparent</button>
           <button class="btn bg-gradient-primary w-100 px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
         </div>
-        <p class="text-sm d-xl-none d-block mt-2">Cambios creados.</p>
+        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
         <!-- Navbar Fixed -->
         <div class="mt-3">
-          <h6 class="mb-0">¿Todo bien?</h6>
+          <h6 class="mb-0">Navbar Fixed</h6>
         </div>
-        
+        <div class="form-check form-switch ps-0">
+          <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
+        </div>
+        <hr class="horizontal dark my-sm-4">
+        <a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/soft-ui-dashboard">Free Download</a>
+        <a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard">View documentation</a>
+        <div class="w-100 text-center">
+          <a class="github-button" href="https://github.com/creativetimofficial/soft-ui-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/soft-ui-dashboard on GitHub">Star</a>
+          <h6 class="mt-3">Thank you for sharing!</h6>
+          <a href="https://twitter.com/intent/tweet?text=Check%20Soft%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
+            <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/soft-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
+            <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src=" {{ asset('/assets/js/core/popper.min.js') }}"></script>
+  <script src=" {{ asset('/assets/js/core/popper.min.js') }}">
+    
+  </script>
   <script src=" {{ asset('/assets/js/core/bootstrap.min.js') }}"></script>
   <script src="{{ asset('/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
   <script src="  {{ asset('/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>

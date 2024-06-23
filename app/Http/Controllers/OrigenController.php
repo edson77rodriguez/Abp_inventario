@@ -16,7 +16,6 @@ class OrigenController extends Controller
 
     public function create()
     {
-        return view('origenes.create');
     }
 
     public function store(Request $request)
@@ -37,8 +36,7 @@ class OrigenController extends Controller
 
     public function edit(string $id)
     {
-        $origen = Origen::find($id);
-        return view('origenes.edit', compact('origen'));
+   
     }
 
     public function update(Request $request, string $id)

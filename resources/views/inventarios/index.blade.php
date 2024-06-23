@@ -19,6 +19,7 @@
                      <th>ID</th>
                                     <th>Producto</th>
                                     <th>Cantidad en Stock</th>
+                                    <th>Precio de Venta</th>
                                     <th>Fecha de Ingreso</th>
                                     <th>Acciones</th>
                 </tr>
@@ -29,6 +30,7 @@
                                     <td>{{ $inventario->id }}</td>
                                     <td>{{ $inventario->producto->tipo->descripcion }} {{ $inventario->producto->marca->marca }} </td>
                                     <td>{{ $inventario->cantidad_stock }}</td>
+                                    <td>{{ $inventario->precio_venta }}</td>
                                     <td>{{ $inventario->fecha_ingreso }}</td>
                                     <td>
                             <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewInventarioModal{{ $inventario->id }}">Ver</button>
@@ -51,6 +53,7 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"><strong>Producto:</strong> {{ $inventario->producto->tipo->descripcion }} {{ $inventario->producto->modelo->descripcion }} {{ $inventario->producto->marca->marca }}</li>
                                         <li class="list-group-item"><strong>Cantidad en Stock:</strong> {{ $inventario->cantidad_stock }}</li>
+                                        <li class="list-group-item"><strong>Precio de Venta:</strong> {{ $inventario->precio_venta }}</li>
                                         <li class="list-group-item"><strong>Fecha de Ingreso:</strong> {{ $inventario->fecha_ingreso }}</li>
                                     </ul>
                                 <div class="modal-footer">
@@ -89,6 +92,10 @@
                                         <div class="mb-3">
                                             <label for="cantidad_stock" class="form-label">Cantidad en Stock</label>
                                             <input type="number" name="cantidad_stock" id="cantidad_stock" value="{{ $inventario->cantidad_stock }}" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="precio_venta" class="form-label">Precio de Venta</label>
+                                            <input type="number" name="precio_venta" id="precio_venta" value="{{ $inventario->precio_venta }}" class="form-control" required>
                                         </div>
 
                                         <div class="mb-3">
@@ -136,6 +143,11 @@
                             <label for="cantidad_stock" class="form-label">Cantidad en Stock</label>
                             <input type="number" name="cantidad_stock" id="cantidad_stock" class="form-control" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="precio_venta" class="form-label">Precio de Venta</label>
+                            <input type="number" name="precio_venta" id="precio_venta" class="form-control" required>
+                        </div>
+
 
                         <div class="mb-3">
                             <label for="fecha_ingreso" class="form-label">Fecha de Ingreso</label>

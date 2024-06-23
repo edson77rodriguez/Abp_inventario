@@ -15,7 +15,7 @@ class ComposicionController extends Controller
     }
     public function create()
     {
-        return view('composiciones.create');
+       
     }
     public function store(Request $request)
     {
@@ -33,8 +33,7 @@ class ComposicionController extends Controller
     }
     public function edit(string $id)
     {
-        $composicion = Composicion::find($id);
-        return view('composiciones.edit', compact('estilo'));
+        
     }
     public function update(Request $request, string $id)
     {

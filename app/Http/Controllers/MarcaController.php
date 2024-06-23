@@ -16,8 +16,7 @@ class MarcaController extends Controller
     }
     public function create()
     {
-        $origenes = Origen::all();
-        return view('marcas.create',compact('origenes'));
+      
     }
     public function store(Request $request)
     {
@@ -36,19 +35,11 @@ class MarcaController extends Controller
     
     public function show($id)
     {
-        $marca = Marca::findOrFail($id);
-        return view('marcas.show', compact('marca'));
+       
     }
     public function edit(string $id)
     {
-        // Obtener la marca a editar
-        $marca = Marca::findOrFail($id);
-
-        // Obtener todos los orígenes
-        $origenes = Origen::all();
-
-        // Retornar la vista con la marca y los orígenes
-        return view('marcas.edit', compact('marca', 'origenes'));
+    
     }
     public function update(Request $request, string $id)
     {

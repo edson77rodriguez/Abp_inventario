@@ -13,40 +13,22 @@
         </div>
     </div>
     <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead id="tablab">
-                <tr>
-                    <th>ID</th>
-                    <th>Tipo</th>
-                    <th>Marca</th>
-                    <th>Talla</th>
-                    <th>Género</th>
-                    <th>Modelo</th>
-                    <th>Color</th>
-                    <th>Composición</th>
-                    <th>Estilo</th>
-                    <th>Precio C</th>
-                    <th>Precio V</th>
-                    <th>Proveedor</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($productos as $producto)
-                    <tr id='demo'>
-                        <td>{{ $producto->id }}</td>
-                        <td>{{ $producto->tipo->descripcion }}</td>
-                        <td>{{ $producto->marca->marca }}</td>
-                        <td>{{ $producto->talla->descripcion }}</td>
-                        <td>{{ $producto->genero->descripcion }}</td>
-                        <td>{{ $producto->modelo->descripcion }}</td>
-                        <td>{{ $producto->color->descripcion }}</td>
-                        <td>{{ $producto->composicion->composicion }}</td>
-                        <td>{{ $producto->estilo->estilo }}</td>
-                        <td>{{ $producto->precio_compra }}</td>
-                        <td>{{ $producto->precio_venta }}</td>
-                        <td>{{ $producto->proveedor->persona->nombre }}</td>
-                        <td>
+    <div class="row">
+        @foreach($productos as $producto)
+            <div class="col-md-5 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $producto->tipo->descripcion }}</h5>
+                        <p class="card-text"><strong>Marca:</strong> {{ $producto->marca->marca }}</p>
+                        <p class="card-text"><strong>Talla:</strong> {{ $producto->talla->descripcion }}</p>
+                        <p class="card-text"><strong>Género:</strong> {{ $producto->genero->descripcion }}</p>
+                        <p class="card-text"><strong>Modelo:</strong> {{ $producto->modelo->descripcion }}</p>
+                        <p class="card-text"><strong>Color:</strong> {{ $producto->color->descripcion }}</p>
+                        <p class="card-text"><strong>Composición:</strong> {{ $producto->composicion->composicion }}</p>
+                        <p class="card-text"><strong>Estilo:</strong> {{ $producto->estilo->estilo }}</p>
+                        <p class="card-text"><strong>Precio Compra:</strong> {{ $producto->precio_compra }}</p>
+                        <p class="card-text"><strong>Proveedor:</strong> {{ $producto->proveedor->persona->nombre }}</p>
+                        <div class="d-flex justify-content-between">
                             <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewProductModal{{ $producto->id }}">Ver</button>
                             <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editProductModal{{ $producto->id }}">Editar</button>
                             <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display: inline;">
@@ -54,8 +36,14 @@
                                 @method('DELETE')
                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $producto->id }}')">Eliminar</button>
                             </form>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            
+    </div>  
+    </div>
 
                     <!-- Modal Ver Producto -->
                     <div class="modal fade" id="viewProductModal{{ $producto->id }}" tabindex="-1" aria-labelledby="viewProductModalLabel{{ $producto->id }}" aria-hidden="true">
@@ -77,7 +65,6 @@
                                     <p>Composición: {{ $producto->composicion->composicion }}</p>
                                     <p>Estilo: {{ $producto->estilo->estilo }}</p>
                                     <p>Precio C: {{ $producto->precio_compra }}</p>
-                                    <p>Precio V: {{ $producto->precio_venta }}</p>
                                     <p>Proveedor: {{ $producto->proveedor->persona->nombre }}</p>
                                 </div>
                                 <div class="modal-footer">
@@ -228,14 +215,14 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
+<!--
                         <div class="mb-3">
                             <label for="precio_venta" class="form-label">Precio Venta</label>
                             <input type="number" name="precio_venta" id="precio_venta" value="{{ old('precio_venta', $producto->precio_venta) }}" step="0.01" class="form-control @error('precio_venta') is-invalid @enderror" required>
                             @error('precio_venta')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> -->
 
                         <div class="mb-3">
                             <label for="proveedor_id" class="form-label">Proveedor</label>
@@ -372,11 +359,11 @@
                             <input type="number" name="precio_compra" id="precio_compra" step="0.01" class="form-control" required>
                         </div>
 
-                        <!-- Precio de venta -->
+                        <!-- Precio de venta 
                         <div class="mb-3">
                             <label for="precio_venta" class="form-label">Precio de venta</label>
                             <input type="number" name="precio_venta" id="precio_venta" step="0.01" class="form-control" required>
-                        </div>
+                        </div>-->
 
                         <!-- Proveedor -->
                         <div class="mb-3">

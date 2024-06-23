@@ -20,8 +20,7 @@ class ProveedorController extends Controller
 
     public function create()
     {
-        $personas=Persona::all();
-        return view('proveedores.create',compact('personas'));
+       
     }
 
     /**
@@ -50,9 +49,7 @@ class ProveedorController extends Controller
      */
     public function edit(string $id)
     {
-        $proveedor=Proveedor::findOrFail($id);
-        $personas=Persona::all();
-        return view('proveedores.edit',compact('proveedor','personas'));
+     
     }
 
     /**

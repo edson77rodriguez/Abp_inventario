@@ -15,7 +15,6 @@ class TipoController extends Controller
 
     public function create()
     {
-        return view('tipos.create');
     }
 
     public function store(Request $request)
@@ -36,8 +35,7 @@ class TipoController extends Controller
 
     public function edit(string $id)
     {
-        $tipo = Tipo::find($id);
-        return view('tipos.edit', compact('tipo'));
+      
     }
 
     public function update(Request $request, string $id)

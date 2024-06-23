@@ -15,7 +15,6 @@ class PersonaController extends Controller
     }
     public function create()
     {
-        return view('personas.create');
     }
     public function store(Request $request)
     {
@@ -36,8 +35,7 @@ class PersonaController extends Controller
     }
     public function edit(string $id)
     {
-        $persona = Persona::find($id);
-        return view('personas.edit', compact('persona'));
+       
     }
     public function update(Request $request, string $id)
     {

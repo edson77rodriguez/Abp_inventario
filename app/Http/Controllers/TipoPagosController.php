@@ -16,7 +16,6 @@ class TipoPagosController extends Controller
 
     public function create()
     {
-        return view('tipopagos.create');
     }
 
     public function store(Request $request)
@@ -37,8 +36,7 @@ class TipoPagosController extends Controller
 
     public function edit(string $id)
     {
-        $tipopago = Tipopago::find($id);
-        return view('tipopagos.edit', compact('tipopago'));
+     
     }
 
     public function update(Request $request, string $id)
