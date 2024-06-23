@@ -181,9 +181,9 @@
                         <div class="mb-3">
                             <label for="composicion_id" class="form-label">Composicion</label>
                             <select name="composicion_id" id="composicion_id" class="form-control @error('composicion_id') is-invalid @enderror" required>
-                                <option value="">Seleccione una Talla</option>
+                                <option value="">Seleccione una composicion</option>
                                 @foreach ($composiciones as $composicion)
-                                    <option value="{{ $composicion->id }}" {{ $color->id == old('composicion_id', $producto->composicion_id) ? 'selected' : '' }}>
+                                    <option value="{{ $composicion->id }}" {{ $composicion->id == old('composicion_id', $producto->composicion_id) ? 'selected' : '' }}>
                                         {{ $composicion->composicion }}
                                     </option>
                                 @endforeach

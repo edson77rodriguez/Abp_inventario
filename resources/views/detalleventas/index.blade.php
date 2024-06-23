@@ -203,7 +203,7 @@
                         <div class="mb-3">
                             <label for="tipopago_id" class="form-label">Detalles de venta</label>
                             <select name="tipopago_id" id="tipopago_id" class="form-select" required>
-                                <option value="">Seleccione un Producto</option>
+                                <option value="">Seleccione tipo de pago</option>
                                 @foreach ($tipopagos as $tipopago)
                                     <option value="{{ $tipopago->id }}">{{ $tipopago->tipo }} </option>
                                 @endforeach
