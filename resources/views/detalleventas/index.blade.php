@@ -12,38 +12,33 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead id="tablab">
-                <tr>
-                     <th>ID</th>
-                                     <th>Venta</th>
-                                    <th>Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio de venta</th>
-                                    <th>Tipo de pago</th>
-                                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($detalleventas as $detalleventa)
-                                <tr id='demo'>
-                                    <td>{{ $detalleventa->id }}</td>
-                                    <td>{{ $detalleventa->venta->fecha_venta }} </td>
-                                    <td>{{ $detalleventa->producto->tipo->descripcion }} {{ $detalleventa->producto->marca->marca }}</td>
-                                    <td>{{ $detalleventa->cantidad }}</td>
-                                    <td>{{ $detalleventa->precio_unitario }}</td>
-                                    <td>{{ $detalleventa->tipopago->tipo }} </td>
-                                    <td>
-                            <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewVentaModal{{ $detalleventa->id }}">Ver</button>
+                    <div class="container mt-4">
+    <div class="row">
+        @foreach ($detalleventas as $detalleventa)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $detalleventa->producto->tipo->descripcion}}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $detalleventa->id }}</p>
+                        <p class="card-text"><strong>Fecha venta:</strong> {{ $detalleventa->venta->fecha_venta }}</p>
+                        <p class="card-text"><strong>Producto:</strong> {{ $detalleventa->producto->tipo->descripcion }} {{ $detalleventa->producto->marca->marca }}</p>
+                        <p class="card-text"><strong>Cantidad vendida:</strong> {{ $detalleventa->cantidad }}</p>
+                        <p class="card-text"><strong>Precio:</strong> {{ $detalleventa->precio_unitario }}</p>
+                        <p class="card-text"><strong>Tipo de pago:</strong> {{ $detalleventa->tipopago->tipo }}</p>
+
+                        
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewVentaModal{{ $detalleventa->id }}">Ver</button>
                             <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editVentaModal{{ $detalleventa->id }}">Editar</button>
                             <form action="{{ route('detalleventas.destroy', $detalleventa->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $detalleventa->id }}')">Eliminar</button>
                             </form>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <!-- Modal Ver Producto -->
                     <div class="modal fade" id="viewVentaModal{{ $detalleventa->id }}" tabindex="-1" aria-labelledby="viewVentaMarcaLabel{{ $detalleventa->id }}" aria-hidden="true">
                         <div class="modal-dialog">
