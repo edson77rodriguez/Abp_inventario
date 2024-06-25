@@ -98,7 +98,7 @@
 <script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
 
-
+<!--
 <script>
      alertify.set('notifier', 'position', 'top-center');
     alertify.set('notifier', 'classes', {
@@ -129,5 +129,71 @@
         <script>
             alertify.success('Eliminado');
         </script>
+@endif-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Eliminar',
+            text: '¿Estás seguro de que deseas eliminar este d_venta?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let form = document.createElement('form');
+                form.method = 'POST'; 
+                form.action = '/tipopagos/' + id;/// aqui se cambia el nombre de la vista, aqui se llama tipo pagos
+                form.innerHTML = '@csrf @method("DELETE")';
+                document.body.appendChild(form);
+                form.submit();
+            }
+        });
+    }
+    function RegistroExitoso() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Registro exitoso',
+            text: 'Tu registro ha sido exitoso',
+            timer: 1300,
+            showConfirmButton: false
+        });
+    }
+    function cambio() {
+        Swal.fire({
+            icon: 'success',
+            title: 'cambio generado',
+            text: ' ',
+            timer: 1400,
+            showConfirmButton: false
+        });
+    }
+</script>
+
+@if(session('register'))
+    <script>
+        RegistroExitoso();
+    </script>
+@endif
+@if(session('modify'))
+    <script>
+        cambio();
+    </script>
+@endif
+@if(session('destroy'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Eliminado',
+            text: 'El elemento ha sido eliminado exitosamente',
+            timer: 1200,
+            showConfirmButton: false
+        });
+    </script>
 @endif
 @endsection
