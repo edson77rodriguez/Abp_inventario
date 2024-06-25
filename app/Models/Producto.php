@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Producto extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'tipo_id',
         'marca_id',
@@ -19,9 +21,9 @@ class Producto extends Model
         'estilo_id',
         'precio_compra',
         'proveedor_id',
-    
+        'imagen',
+    ];
 
-    ];  
     public function tipo()
     {
         return $this->belongsTo(Tipo::class);

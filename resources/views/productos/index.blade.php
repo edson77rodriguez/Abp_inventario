@@ -1,3 +1,5 @@
+blade
+Copiar código
 @extends('dashboard')
 
 @section('crud_content')
@@ -12,11 +14,13 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
+
+    <div class="container mt-4">
     <div class="row">
-        @foreach($productos as $producto)
-            <div class="col-md-5 mb-4">
-                <div class="card h-100">
+        @foreach ($productos as $producto)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="{{ asset('storage/' . $producto->imagen) }}" class="card-img-top" alt="{{ $producto->tipo->descripcion }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $producto->tipo->descripcion }}</h5>
                         <p class="card-text"><strong>Marca:</strong> {{ $producto->marca->marca }}</p>
@@ -38,62 +42,232 @@
                             </form>
                         </div>
                     </div>
-                
                 </div>
             </div>
-            
-    </div>  
-    </div>
-
-                    <!-- Modal Ver Producto -->
-                    <div class="modal fade" id="viewProductModal{{ $producto->id }}" tabindex="-1" aria-labelledby="viewProductModalLabel{{ $producto->id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="viewProductModalLabel{{ $producto->id }}">Ver Producto</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Aquí puedes incluir los detalles del producto -->
-                                    <p>ID: {{ $producto->id }}</p>
-                                    <p>Tipo: {{ $producto->tipo->descripcion }}</p>
-                                    <p>Marca: {{ $producto->marca->marca }}</p>
-                                    <p>Talla: {{ $producto->talla->descripcion }}</p>
-                                    <p>Género: {{ $producto->genero->descripcion }}</p>
-                                    <p>Modelo: {{ $producto->modelo->descripcion }}</p>
-                                    <p>Color: {{ $producto->color->descripcion }}</p>
-                                    <p>Composición: {{ $producto->composicion->composicion }}</p>
-                                    <p>Estilo: {{ $producto->estilo->estilo }}</p>
-                                    <p>Precio C: {{ $producto->precio_compra }}</p>
-                                    <p>Proveedor: {{ $producto->proveedor->persona->nombre }}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                </div>
+                <!-- Modal Ver Producto -->
+                <div class="modal fade" id="viewProductModal{{ $producto->id }}" tabindex="-1" aria-labelledby="viewProductModalLabel{{ $producto->id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewProductModalLabel{{ $producto->id }}">Ver Producto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="{{ $producto->imagen }}" class="img-fluid mb-3" alt="{{ $producto->tipo->descripcion }}">
+                                <p>ID: {{ $producto->id }}</p>
+                                <p>Tipo: {{ $producto->tipo->descripcion }}</p>
+                                <p>Marca: {{ $producto->marca->marca }}</p>
+                                <p>Talla: {{ $producto->talla->descripcion }}</p>
+                                <p>Género: {{ $producto->genero->descripcion }}</p>
+                                <p>Modelo: {{ $producto->modelo->descripcion }}</p>
+                                <p>Color: {{ $producto->color->descripcion }}</p>
+                                <p>Composición: {{ $producto->composicion->composicion }}</p>
+                                <p>Estilo: {{ $producto->estilo->estilo }}</p>
+                                <p>Precio Compra: {{ $producto->precio_compra }}</p>
+                                <p>Proveedor: {{ $producto->proveedor->persona->nombre }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Modal Editar Producto -->
-                    <div class="modal fade" id="editProductModal{{ $producto->id }}" tabindex="-1" aria-labelledby="editProductModalLabel{{ $producto->id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="editProductModalLabel{{ $producto->id }}">Editar Producto</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Aquí puedes incluir el formulario de edición del producto -->
-                                    <form method="POST" action="{{ route('productos.update', $producto->id) }}">
-                                        @csrf
-                                        @method('PUT')
+                <!-- Modal Editar Producto -->
+                <div class="modal fade" id="editProductModal{{ $producto->id }}" tabindex="-1" aria-labelledby="editProductModalLabel{{ $producto->id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editProductModalLabel{{ $producto->id }}">Editar Producto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{{ route('productos.update', $producto->id) }}" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    
+                                    <div class="mb-3">
+                                        <label for="tipo_id" class="form-label">Tipo</label>
+                                        <select name="tipo_id" id="tipo_id" class="form-control @error('tipo_id') is-invalid @enderror" required>
+                                            <option value="">Seleccione un tipo</option>
+                                            @foreach ($tipos as $tipo)
+                                                <option value="{{ $tipo->id }}" {{ $tipo->id == old('tipo_id', $producto->tipo_id) ? 'selected' : '' }}>
+                                                    {{ $tipo->descripcion }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('tipo_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
-                                        <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label for="marca_id" class="form-label">Marca</label>
+                                        <select name="marca_id" id="marca_id" class="form-control @error('marca_id') is-invalid @enderror" required>
+                                            <option value="">Seleccione una marca</option>
+                                            @foreach ($marcas as $marca)
+                                                <option value="{{ $marca->id }}" {{ $marca->id == old('marca_id', $producto->marca_id) ? 'selected' : '' }}>
+                                                    {{ $marca->marca }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('marca_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="talla_id" class="form-label">Talla</label>
+                                        <select name="talla_id" id="talla_id" class="form-control @error('talla_id') is-invalid @enderror" required>
+                                            <option value="">Seleccione una talla</option>
+                                            @foreach ($tallas as $talla)
+                                                <option value="{{ $talla->id }}" {{ $talla->id == old('talla_id', $producto->talla_id) ? 'selected' : '' }}>
+                                                    {{ $talla->descripcion }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('talla_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="genero_id" class="form-label">Genero</label>
+                                        <select name="genero_id" id="genero_id" class="form-control @error('genero_id') is-invalid @enderror" required>
+                                            <option value="">Seleccione un género</option>
+                                            @foreach ($generos as $genero)
+                                                <option value="{{ $genero->id }}" {{ $genero->id == old('genero_id', $producto->genero_id) ? 'selected' : '' }}>
+                                                    {{ $genero->descripcion }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('genero_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="modelo_id" class="form-label">Modelo</label>
+                                        <select name="modelo_id" id="modelo_id" class="form-control @error('modelo_id') is-invalid @enderror" required>
+                                            <option value="">Seleccione un modelo</option>
+                                            @foreach ($modelos as $modelo)
+                                                <option value="{{ $modelo->id }}" {{ $modelo->id == old('modelo_id', $producto->modelo_id) ? 'selected' : '' }}>
+                                                    {{ $modelo->descripcion }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('modelo_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="color_id" class="form-label">Color</label>
+                                        <select name="color_id" id="color_id" class="form-control @error('color_id') is-invalid @enderror" required>
+                                            <option value="">Seleccione un color</option>
+                                            @foreach ($colors as $color)
+                                                <option value="{{ $color->id }}" {{ $color->id == old('color_id', $producto->color_id) ? 'selected' : '' }}>
+                                                    {{ $color->descripcion }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('color_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="composicion_id" class="form-label">Composición</label>
+                                        <select name="composicion_id" id="composicion_id" class="form-control @error('composicion_id') is-invalid @enderror" required>
+                                            <option value="">Seleccione una composición</option>
+                                            @foreach ($composiciones as $composicion)
+                                                <option value="{{ $composicion->id }}" {{ $composicion->id == old('composicion_id', $producto->composicion_id) ? 'selected' : '' }}>
+                                                    {{ $composicion->composicion }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('composicion_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="estilo_id" class="form-label">Estilo</label>
+                                        <select name="estilo_id" id="estilo_id" class="form-control @error('estilo_id') is-invalid @enderror" required>
+                                            <option value="">Seleccione un estilo</option>
+                                            @foreach ($estilos as $estilo)
+                                                <option value="{{ $estilo->id }}" {{ $estilo->id == old('estilo_id', $producto->estilo_id) ? 'selected' : '' }}>
+                                                    {{ $estilo->estilo }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('estilo_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="precio_compra" class="form-label">Precio de Compra</label>
+                                        <input type="number" name="precio_compra" id="precio_compra" class="form-control @error('precio_compra') is-invalid @enderror" value="{{ old('precio_compra', $producto->precio_compra) }}" required>
+                                        @error('precio_compra')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="proveedor_id" class="form-label">Proveedor</label>
+                                        <select name="proveedor_id" id="proveedor_id" class="form-control @error('proveedor_id') is-invalid @enderror" required>
+                                            <option value="">Seleccione un proveedor</option>
+                                            @foreach ($proveedores as $proveedor)
+                                                <option value="{{ $proveedor->id }}" {{ $proveedor->id == old('proveedor_id', $producto->proveedor_id) ? 'selected' : '' }}>
+                                                    {{ $proveedor->persona->nombre }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('proveedor_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="imagen" class="form-label">Imagen</label>
+                                        <input type="file" name="imagen" id="imagen" class="form-control @error('imagen') is-invalid @enderror">
+                                        @error('imagen')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Modal Crear Producto -->
+    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createProductModalLabel">Crear Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('productos.store') }}" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="mb-3">
                             <label for="tipo_id" class="form-label">Tipo</label>
                             <select name="tipo_id" id="tipo_id" class="form-control @error('tipo_id') is-invalid @enderror" required>
                                 <option value="">Seleccione un tipo</option>
                                 @foreach ($tipos as $tipo)
-                                    <option value="{{ $tipo->id }}" {{ $tipo->id == old('tipo_id', $producto->tipo_id) ? 'selected' : '' }}>
+                                    <option value="{{ $tipo->id }}" {{ $tipo->id == old('tipo_id') ? 'selected' : '' }}>
                                         {{ $tipo->descripcion }}
                                     </option>
                                 @endforeach
@@ -108,7 +282,7 @@
                             <select name="marca_id" id="marca_id" class="form-control @error('marca_id') is-invalid @enderror" required>
                                 <option value="">Seleccione una marca</option>
                                 @foreach ($marcas as $marca)
-                                    <option value="{{ $marca->id }}" {{ $marca->id == old('marca_id', $producto->marca_id) ? 'selected' : '' }}>
+                                    <option value="{{ $marca->id }}" {{ $marca->id == old('marca_id') ? 'selected' : '' }}>
                                         {{ $marca->marca }}
                                     </option>
                                 @endforeach
@@ -121,9 +295,9 @@
                         <div class="mb-3">
                             <label for="talla_id" class="form-label">Talla</label>
                             <select name="talla_id" id="talla_id" class="form-control @error('talla_id') is-invalid @enderror" required>
-                                <option value="">Seleccione una Talla</option>
+                                <option value="">Seleccione una talla</option>
                                 @foreach ($tallas as $talla)
-                                    <option value="{{ $talla->id }}" {{ $talla->id == old('talla_id', $producto->talla_id) ? 'selected' : '' }}>
+                                    <option value="{{ $talla->id }}" {{ $talla->id == old('talla_id') ? 'selected' : '' }}>
                                         {{ $talla->descripcion }}
                                     </option>
                                 @endforeach
@@ -136,9 +310,9 @@
                         <div class="mb-3">
                             <label for="genero_id" class="form-label">Genero</label>
                             <select name="genero_id" id="genero_id" class="form-control @error('genero_id') is-invalid @enderror" required>
-                                <option value="">Seleccione una Talla</option>
+                                <option value="">Seleccione un género</option>
                                 @foreach ($generos as $genero)
-                                    <option value="{{ $genero->id }}" {{ $genero->id == old('genero_id', $producto->genero_id) ? 'selected' : '' }}>
+                                    <option value="{{ $genero->id }}" {{ $genero->id == old('genero_id') ? 'selected' : '' }}>
                                         {{ $genero->descripcion }}
                                     </option>
                                 @endforeach
@@ -151,9 +325,9 @@
                         <div class="mb-3">
                             <label for="modelo_id" class="form-label">Modelo</label>
                             <select name="modelo_id" id="modelo_id" class="form-control @error('modelo_id') is-invalid @enderror" required>
-                                <option value="">Seleccione una Talla</option>
+                                <option value="">Seleccione un modelo</option>
                                 @foreach ($modelos as $modelo)
-                                    <option value="{{ $modelo->id }}" {{ $modelo->id == old('modelo_id', $producto->modelo_id) ? 'selected' : '' }}>
+                                    <option value="{{ $modelo->id }}" {{ $modelo->id == old('modelo_id') ? 'selected' : '' }}>
                                         {{ $modelo->descripcion }}
                                     </option>
                                 @endforeach
@@ -166,9 +340,9 @@
                         <div class="mb-3">
                             <label for="color_id" class="form-label">Color</label>
                             <select name="color_id" id="color_id" class="form-control @error('color_id') is-invalid @enderror" required>
-                                <option value="">Seleccione una Talla</option>
+                                <option value="">Seleccione un color</option>
                                 @foreach ($colors as $color)
-                                    <option value="{{ $color->id }}" {{ $color->id == old('color_id', $producto->color_id) ? 'selected' : '' }}>
+                                    <option value="{{ $color->id }}" {{ $color->id == old('color_id') ? 'selected' : '' }}>
                                         {{ $color->descripcion }}
                                     </option>
                                 @endforeach
@@ -179,11 +353,11 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="composicion_id" class="form-label">Composicion</label>
+                            <label for="composicion_id" class="form-label">Composición</label>
                             <select name="composicion_id" id="composicion_id" class="form-control @error('composicion_id') is-invalid @enderror" required>
-                                <option value="">Seleccione una composicion</option>
+                                <option value="">Seleccione una composición</option>
                                 @foreach ($composiciones as $composicion)
-                                    <option value="{{ $composicion->id }}" {{ $composicion->id == old('composicion_id', $producto->composicion_id) ? 'selected' : '' }}>
+                                    <option value="{{ $composicion->id }}" {{ $composicion->id == old('composicion_id') ? 'selected' : '' }}>
                                         {{ $composicion->composicion }}
                                     </option>
                                 @endforeach
@@ -196,9 +370,9 @@
                         <div class="mb-3">
                             <label for="estilo_id" class="form-label">Estilo</label>
                             <select name="estilo_id" id="estilo_id" class="form-control @error('estilo_id') is-invalid @enderror" required>
-                                <option value="">Seleccione una Talla</option>
+                                <option value="">Seleccione un estilo</option>
                                 @foreach ($estilos as $estilo)
-                                    <option value="{{ $estilo->id }}" {{ $estilo->id == old('estilo_id', $producto->estilo_id) ? 'selected' : '' }}>
+                                    <option value="{{ $estilo->id }}" {{ $estilo->id == old('estilo_id') ? 'selected' : '' }}>
                                         {{ $estilo->estilo }}
                                     </option>
                                 @endforeach
@@ -209,27 +383,19 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="precio_compra" class="form-label">Precio Compra</label>
-                            <input type="number" name="precio_compra" id="precio_compra" value="{{ old('precio_compra', $producto->precio_compra) }}" step="0.01" class="form-control @error('precio_compra') is-invalid @enderror" required>
+                            <label for="precio_compra" class="form-label">Precio de Compra</label>
+                            <input type="number" name="precio_compra" id="precio_compra" class="form-control @error('precio_compra') is-invalid @enderror" value="{{ old('precio_compra') }}" required>
                             @error('precio_compra')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-<!--
-                        <div class="mb-3">
-                            <label for="precio_venta" class="form-label">Precio Venta</label>
-                            <input type="number" name="precio_venta" id="precio_venta" value="{{ old('precio_venta', $producto->precio_venta) }}" step="0.01" class="form-control @error('precio_venta') is-invalid @enderror" required>
-                            @error('precio_venta')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div> -->
 
                         <div class="mb-3">
                             <label for="proveedor_id" class="form-label">Proveedor</label>
                             <select name="proveedor_id" id="proveedor_id" class="form-control @error('proveedor_id') is-invalid @enderror" required>
-                                <option value="">Seleccione una Talla</option>
+                                <option value="">Seleccione un proveedor</option>
                                 @foreach ($proveedores as $proveedor)
-                                    <option value="{{ $proveedor->id }}" {{ $proveedor->id == old('proveedor_id', $producto->proveedor_id) ? 'selected' : '' }}>
+                                    <option value="{{ $proveedor->id }}" {{ $proveedor->id == old('proveedor_id') ? 'selected' : '' }}>
                                         {{ $proveedor->persona->nombre }}
                                     </option>
                                 @endforeach
@@ -238,204 +404,26 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                                       
-                                        <div class="d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-3">Guardar Cambios</button>
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
 
-    <!-- Modal Crear Producto -->
-    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="createProductModalLabel">Crear Nuevo Producto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('productos.store') }}">
-                        @csrf
-
-                       <!-- Categoría -->
-                       <div class="mb-3">
-                            <label for="tipo_id" class="form-label">Categoría</label>
-                            <select name="tipo_id" id="tipo_id" class="form-select" required>
-                                <option value="">Seleccione una categoría</option>
-                                @foreach ($tipos as $tipo)
-                                    <option value="{{ $tipo->id }}">{{ $tipo->descripcion }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Marca -->
                         <div class="mb-3">
-                            <label for="marca_id" class="form-label">Marca</label>
-                            <select name="marca_id" id="marca_id" class="form-select" required>
-                                <option value="">Seleccione una marca</option>
-                                @foreach ($marcas as $marca)
-                                    <option value="{{ $marca->id }}">{{ $marca->marca }}</option>
-                                @endforeach
-                            </select>
+                            <label for="imagen" class="form-label">Imagen</label>
+                            <input type="file" name="imagen" id="imagen" class="form-control @error('imagen') is-invalid @enderror">
+                            @error('imagen')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <!-- Talla -->
-                        <div class="mb-3">
-                            <label for="talla_id" class="form-label">Talla</label>
-                            <select name="talla_id" id="talla_id" class="form-select" required>
-                                <option value="">Seleccione una talla</option>
-                                @foreach ($tallas as $talla)
-                                    <option value="{{ $talla->id }}">{{ $talla->descripcion }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Género -->
-                        <div class="mb-3">
-                            <label for="genero_id" class="form-label">Género</label>
-                            <select name="genero_id" id="genero_id" class="form-select" required>
-                                <option value="">Seleccione un género</option>
-                                @foreach ($generos as $genero)
-                                    <option value="{{ $genero->id }}">{{ $genero->descripcion }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Modelo -->
-                        <div class="mb-3">
-                            <label for="modelo_id" class="form-label">Modelo</label>
-                            <select name="modelo_id" id="modelo_id" class="form-select" required>
-                                <option value="">Seleccione un modelo</option>
-                                @foreach ($modelos as $modelo)
-                                    <option value="{{ $modelo->id }}">{{ $modelo->descripcion }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Color -->
-                        <div class="mb-3">
-                            <label for="color_id" class="form-label">Color</label>
-                            <select name="color_id" id="color_id" class="form-select" required>
-                                <option value="">Seleccione un color</option>
-                                @foreach ($colors as $color)
-                                    <option value="{{ $color->id }}">{{ $color->descripcion }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Composición -->
-                        <div class="mb-3">
-                            <label for="composicion_id" class="form-label">Composición</label>
-                            <select name="composicion_id" id="composicion_id" class="form-select" required>
-                                <option value="">Seleccione una composición</option>
-                                @foreach ($composiciones as $composicion)
-                                    <option value="{{ $composicion->id }}">{{ $composicion->composicion }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Estilo -->
-                        <div class="mb-3">
-                            <label for="estilo_id" class="form-label">Estilo</label>
-                            <select name="estilo_id" id="estilo_id" class="form-select" required>
-                                <option value="">Seleccione un estilo</option>
-                                @foreach ($estilos as $estilo)
-                                    <option value="{{ $estilo->id }}">{{ $estilo->estilo }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Precio de compra -->
-                        <div class="mb-3">
-                            <label for="precio_compra" class="form-label">Precio de compra</label>
-                            <input type="number" name="precio_compra" id="precio_compra" step="0.01" class="form-control" required>
-                        </div>
-
-                        <!-- Precio de venta 
-                        <div class="mb-3">
-                            <label for="precio_venta" class="form-label">Precio de venta</label>
-                            <input type="number" name="precio_venta" id="precio_venta" step="0.01" class="form-control" required>
-                        </div>-->
-
-                        <!-- Proveedor -->
-                        <div class="mb-3">
-                            <label for="proveedor_id" class="form-label">Proveedor</label>
-                            <select name="proveedor_id" id="proveedor_id" class="form-select" required>
-                                <option value="">Seleccione un proveedor</option>
-                                @foreach ($proveedores as $proveedor)
-                                    <option value="{{ $proveedor->id }}">{{ $proveedor->persona->nombre }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary me-3">Guardar</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Crear Producto</button>
                     </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KF6o/kJF/b7ICQ1Zfs0cQ45oM0v4lL+SzR0t4i0p54K/xY8q3jOAV5tQ9l" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
-<link href="{{ asset('/css/alertify.min.css') }}" rel="stylesheet" />
-<script src="{{ asset('/js/alertify.min.js') }}"></script>
-
-<script>
-    function confirmDelete(id) {
-        alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar esta producto?', function(){
-            let form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/productos/' + id;
-            form.innerHTML = '@csrf @method("DELETE")';
-            document.body.appendChild(form);
-            form.submit();
-        }, function(){
-            alertify.error('Cancelado');
-        });
-    }
-</script>
-
-<script>
-     alertify.set('notifier', 'position', 'top-center');
-    alertify.set('notifier', 'classes', {
-        'success': 'bg-success text-white',
-        'error': 'bg-danger text-white',
-        'warning': 'bg-warning text-dark'
-    });
-    alertify.set('notifier', 'delay', 3);
-    function confirmDelete(id) {
-        alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar este d_venta?', function(){
-            let form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/productos/' + id;
-            form.innerHTML = '@csrf @method("DELETE")';
-            document.body.appendChild(form);
-            form.submit();
-        }, function(){
-            alertify.error('Cancelado');
-        });
-    }
-</script>
-@if(session('register'))
-        <script>
-            alertify.success('Registro exitoso');
-        </script>
-@endif
-@if(session('destroy'))
-        <script>
-            alertify.success('Eliminado');
-        </script>
-@endif
 @endsection
+
+</body>
+</html>

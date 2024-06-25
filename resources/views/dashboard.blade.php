@@ -491,22 +491,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-        <form class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                <input id="searchInput" type="text" class="form-control" placeholder="Type here...">
-                <button id="searchButton" class="btn btn-outline-secondary" type="button">Search</button>
-            </div>
-        </form>
-    </div>
-</nav>
-</nav>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="{{ route('home') }}">Home</a>
