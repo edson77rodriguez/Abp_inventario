@@ -55,6 +55,7 @@ class ProductoController extends Controller
         $data['producto'] = Producto::findOrFail($id);
         return view('productos.index', $data);
     }
+    
 
     public function update(Request $request, $id)
     {

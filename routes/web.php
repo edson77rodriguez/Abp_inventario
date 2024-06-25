@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     // Rutas de recursos
     Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::resource('cargos', CargoController::class);
+    Route::resource('homes', HomeController::class);
     Route::resource('generos', GeneroController::class);
     Route::resource('tipos', TipoController::class);
     Route::resource('tallas', TallaController::class);

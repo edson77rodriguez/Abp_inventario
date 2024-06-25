@@ -1,5 +1,4 @@
-blade
-Copiar código
+
 @extends('dashboard')
 
 @section('crud_content')
