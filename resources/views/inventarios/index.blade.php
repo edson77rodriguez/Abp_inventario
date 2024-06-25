@@ -12,36 +12,32 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead id="tablab">
-                <tr>
-                     <th>ID</th>
-                                    <th>Producto</th>
-                                    <th>Cantidad en Stock</th>
-                                    <th>Precio de Venta</th>
-                                    <th>Fecha de Ingreso</th>
-                                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                 @foreach ($inventarios as $inventario)
-                                <tr id='demo'>
-                                    <td>{{ $inventario->id }}</td>
-                                    <td>{{ $inventario->producto->tipo->descripcion }} {{ $inventario->producto->marca->marca }} </td>
-                                    <td>{{ $inventario->cantidad_stock }}</td>
-                                    <td>{{ $inventario->precio_venta }}</td>
-                                    <td>{{ $inventario->fecha_ingreso }}</td>
-                                    <td>
-                            <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewInventarioModal{{ $inventario->id }}">Ver</button>
+
+
+    <div class="container mt-4">
+    <div class="row">
+        @foreach ($inventarios as $inventario)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $inventario->producto->tipo->descripcion }}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $inventario->id }}</p>
+                        <p class="card-text"><strong>Cantidad:</strong> {{ $inventario->cantidad_stock }}</p>
+                        <p class="card-text"><strong>Precio venta:</strong> {{ $inventario->precio_venta }}</p>
+                        <p class="card-text"><strong>Fecha de ingreso:</strong> {{ $inventario->fecha_ingreso }}</p>
+                        
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewInventarioModal{{ $inventario->id }}">Ver</button>
                             <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editInventarioModal{{ $inventario->id }}">Editar</button>
                             <form action="{{ route('inventarios.destroy', $inventario->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $inventario->id }}')">Eliminar</button>
                             </form>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <!-- Modal Ver Producto -->
                     <div class="modal fade" id="viewInventarioModal{{ $inventario->id }}" tabindex="-1" aria-labelledby="viewInventarioMarcaLabel{{ $inventario->id }}" aria-hidden="true">
                         <div class="modal-dialog">

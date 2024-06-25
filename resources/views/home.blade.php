@@ -32,10 +32,14 @@
         <div class="card">
             <img src="{{ asset('storage/' . $inventario->producto->imagen) }}" class="card-img-top" alt="{{ $inventario->producto->tipo->descripcion }}">
             <div class="card-body">
-                <h5 class="card-title">{{ $inventario->producto->tipo->descripcion }}</h5>
+                <h5 class="card-title text-center">{{ $inventario->producto->tipo->descripcion }}</h5>
                 <p class="card-text"><strong>Marca:</strong> {{ $inventario->producto->marca->marca }}</p>
                 <p class="card-text"><strong>Talla:</strong> {{ $inventario->producto->talla->descripcion }}</p>
                 <p class="card-text"><strong>Género:</strong> {{ $inventario->producto->genero->descripcion }}</p>
+                <p class="card-text"><strong>Color:</strong> {{ $inventario->producto->color->descripcion }}</p>
+                <p class="card-text"><strong>Composición:</strong> {{ $inventario->producto->composicion->composicion }}</p>
+                <p class="card-text"><strong>Estilo:</strong> {{ $inventario->producto->estilo->estilo }}</p>
+                <p class="card-text"><strong>Precio:</strong> {{ $inventario->precio_venta }}</p>
                 
             </div>
         </div>
