@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('venta_id');
             $table->unsignedBigInteger('producto_id');
             $table->String('cantidad');
-            $table->float('precio_unitario');
             $table->unsignedBigInteger('tipopago_id');
+            $table->unsignedBigInteger('inventario_id');
             $table->timestamps();
         });
     }

@@ -7,6 +7,8 @@ use App\Models\Detalleventa;
 use App\Models\Tipopago; // O App\Models\TipoPago si usas CamelCase en tu aplicación
 use App\Models\Producto;
 use App\Models\Venta;
+use App\Models\Inventario;
+
 
 class DetalleVentaController extends Controller
 {
@@ -16,7 +18,8 @@ class DetalleVentaController extends Controller
         $ventas = Venta::all();
         $tipopagos = Tipopago::all();
         $detalleventas = Detalleventa::all();
-        return view('detalleventas.index', compact('detalleventas','productos', 'ventas', 'tipopagos'));
+        $inventarios = Inventario::all();
+        return view('detalleventas.index', compact('detalleventas','productos', 'ventas', 'tipopagos','inventarios'));
     }
 
     public function create()
@@ -31,7 +34,7 @@ class DetalleVentaController extends Controller
             'venta_id' => 'required|exists:ventas,id',
             'producto_id' => 'required|exists:productos,id',
             'cantidad' => 'required|integer|min:0',
-            'precio_unitario' => 'required|numeric|min:0',
+            'inventario_id' => 'required|exists:inventarios,id',
             'tipopago_id' => 'required|exists:tipo_pagos,id', /// el cambio aqui fue la variable de tipopagos ->tipo_pagos
         ]);
 
@@ -55,7 +58,7 @@ class DetalleVentaController extends Controller
             'venta_id' => 'required|exists:ventas,id',
             'producto_id' => 'required|exists:productos,id',
             'cantidad' => 'required|integer|min:0',
-            'precio_unitario' => 'required|numeric|min:0',
+            'inventario_id' => 'required|exists:inventarios,id',
             'tipopago_id' => 'required',
         ]);
 

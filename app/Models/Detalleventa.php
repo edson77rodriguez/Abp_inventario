@@ -9,7 +9,7 @@ class Detalleventa extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['venta_id', 'producto_id', 'cantidad', 'precio_unitario', 'tipopago_id'];
+    protected $fillable = ['venta_id', 'producto_id', 'cantidad', 'inventario_id', 'tipopago_id'];
 
     protected $table = 'detalle_ventas'; // Especifica el nombre de la tabla
 
@@ -17,7 +17,10 @@ class Detalleventa extends Model
     {
         return $this->belongsTo(Producto::class);
     }
-
+    public function inventario()
+    {
+        return $this->belongsTo(Inventario::class);
+    }
     public function venta()
     {
         return $this->belongsTo(Venta::class);

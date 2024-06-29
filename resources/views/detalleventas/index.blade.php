@@ -23,7 +23,7 @@
                         <p class="card-text"><strong>Fecha venta:</strong> {{ $detalleventa->venta->fecha_venta }}</p>
                         <p class="card-text"><strong>Producto:</strong> {{ $detalleventa->producto->tipo->descripcion }} {{ $detalleventa->producto->marca->marca }}</p>
                         <p class="card-text"><strong>Cantidad vendida:</strong> {{ $detalleventa->cantidad }}</p>
-                        <p class="card-text"><strong>Precio:</strong> {{ $detalleventa->precio_unitario }}</p>
+                        <p class="card-text"><strong>Precio:</strong> {{ $detalleventa->inventario->precio_venta }}</p>
                         <p class="card-text"><strong>Tipo de pago:</strong> {{ $detalleventa->tipopago->tipo }}</p>
 
                         
@@ -56,7 +56,7 @@
                                             {{ $detalleventa->producto->marca->marca ?? 'N/A' }}
                                         </li>
                                         <li class="list-group-item"><strong>Cantidad:</strong> {{ $detalleventa->cantidad ?? 'N/A' }}</li>
-                                        <li class="list-group-item"><strong>Precio Unitario:</strong> {{ $detalleventa->precio_unitario ?? 'N/A' }}</li>
+                                        <li class="list-group-item"><strong>Precio Unitario:</strong> {{ $detalleventa->inventario->precio_venta ?? 'N/A' }}</li>
                                         <li class="list-group-item"><strong>Tipo de Pago:</strong> {{ $detalleventa->tipopago->tipo ?? 'N/A' }}</li>
                                     </ul>
                                 <div class="modal-footer">
@@ -83,7 +83,7 @@
                                             <select name="venta_id" id="venta_id" class="form-control @error('venta_id') is-invalid @enderror" required>
                                                 <option value="">Seleccione una venta</option>
                                                 @foreach ($ventas as $venta)
-                                                    <option value="{{ $venta->id }}" {{ $detalleventa->id == old('venta_id', $venta->fecha_venta) ? 'selected' : '' }}>
+                                                <option value="{{ $venta->id }}" {{ $detalleventa->venta_id == $venta->id ? 'selected' : '' }}>
                                                         {{ $venta->fecha_venta }}
                                                     </option>
                                                 @endforeach
@@ -115,10 +115,18 @@
                                             @enderror
                                         </div>
 
+                                       
                                         <div class="mb-3">
-                                            <label for="precio_unitario" class="form-label">Precio Unitario</label>
-                                            <input type="number" name="precio_unitario" id="precio_unitario" value="{{ old('precio_unitario', $detalleventa->precio_unitario) }}" step="0.01" class="form-control @error('precio_unitario') is-invalid @enderror" required>
-                                            @error('precio_unitario')
+                                            <label for="inventario_id" class="form-label">Pago de venta</label>
+                                            <select name="inventario_id" id="inventario_id" class="form-control @error('inventario_id') is-invalid @enderror" required>
+                                                <option value="">Seleccione una pago de venta</option>
+                                                @foreach ($inventarios as $inventario)
+                                                    <option value="{{ $inventario->id }}" {{ $detalleventa->id == old('inventario_id', $inventario->id) ? 'selected' : '' }}>
+                                                        {{ $inventario->precio_venta}}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('inventario_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -190,9 +198,14 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="precio_unitario" class="form-label">Precio de Unitario</label>
-                            <input type="number" name="precio_unitario" id="precio_unitario" step="0.01" class="form-control" required>
-                        </div>
+                        <label for="inventario_id" class="form-label">Precio de venta</label>
+                        <select name="inventario_id" id="inventario_id" class="form-select" required>
+                            <option value="">Seleccione el precio de venta</option>
+                            @foreach ($inventarios as $inventario)
+                                <option value="{{ $inventario->id }}">{{ $inventario->precio_venta }} </option>
+                            @endforeach
+                        </select>
+                    </div>
 
                        
                         <div class="mb-3">

@@ -12,37 +12,33 @@
             </div>
         </div>
     </div>
-    <table class="table table-bordered table-hover w-100">
-        <thead>
-            <tr id="tablab">
-                <th>ID</th>
-                <th>Producto</th>
-                <th>Fecha de Venta</th>
-                <th>Empleado</th>
-                <th>Cantidad</th>
-                <th>Ganancia</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($ventas as $venta)
-                <tr id="demo">
-                    <td>{{ $venta->id }}</td>
-                    <td>{{ $venta->producto->tipo->descripcion ?? 'hN/A' }}</td>
-                    <td>{{ $venta->fecha_venta }}</td>
-                    <td>{{ $venta->empleado->persona->nombre ?? 'N/A' }} {{ $venta->empleado->persona->ap ?? '' }} {{ $venta->empleado->persona->am ?? '' }}</td>
-                    <td>{{ $venta->cantidad }}</td>
-                    <td>{{ $venta->ganancia }}</td>
-                    <td>
+                <div class="container mt-4">
+    <div class="row">
+    @foreach ($ventas as $venta)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $venta->fecha_venta}}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $venta->id }}</p>
+                        <p class="card-text"><strong>Fecha venta:</strong> {{ $venta->producto->tipo->descripcion ?? 'hN/A' }}</p>
+                        <p class="card-text"><strong>Producto:</strong> {{ $venta->fecha_venta }}</p>
+                        <p class="card-text"><strong>Cantidad vendida:</strong> {{ $venta->empleado->persona->nombre ?? 'N/A' }} {{ $venta->empleado->persona->ap ?? '' }} {{ $venta->empleado->persona->am ?? '' }}</p>
+                        <p class="card-text"><strong>Precio:</strong> {{ $venta->cantidad }}</p>
+                        <p class="card-text"><strong>Tipo de pago:</strong> {{ $venta->ganancia }}</p>
+
+                        
+                        <div class="d-flex justify-content-between">
                         <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewVentaModal{{ $venta->id }}">Ver</button>
-                        <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editVentaModal{{ $venta->id }}">Editar</button>
-                        <form action="{{ route('ventas.destroy', $venta->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $venta->id }}')">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
+                            <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editVentaModal{{ $venta->id }}">Editar</button>
+                            <form action="{{ route('ventas.destroy', $venta->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $venta->id }}')">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 <!-- Modal Ver Venta -->
                 <div class="modal fade" id="viewVentaModal{{ $venta->id }}" tabindex="-1" aria-labelledby="viewVentaMarcaLabel{{ $venta->id }}" aria-hidden="true">
                     <div class="modal-dialog">
@@ -123,7 +119,7 @@
                         <select name="producto_id" id="producto_id" class="form-select" required>
                             <option value="">Seleccione un producto</option>
                             @foreach ($productos as $producto)
-                                <option value="{{ $producto->id }}">{{ $producto->tipo }}</option>
+                                <option value="{{ $producto->id }}">{{ $producto->tipo->descripcion }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -140,6 +136,7 @@
                             @endforeach
                         </select>
                     </div>
+                
                     <div class="mb-3">
                         <label for="cantidad" class="form-label">Cantidad</label>
                         <input type="number" name="cantidad" id="cantidad" class="form-control" required>

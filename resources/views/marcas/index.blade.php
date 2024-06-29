@@ -12,32 +12,29 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead id="tablab">
-                <tr>
-                    <th>ID</th>
-                        <th>Marca</th>
-                        <th>Pais</th>
-                        <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                 @foreach($marcas as $marca)
-                        <tr id='demo'>
-                            <td>{{ $marca->id }}</td>
-                            <td>{{ $marca->marca }}</td>
-                            <td>{{ $marca->origen->pais }}</td>
-                            <td>
-                            <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewMarcaModal{{ $marca->id }}">Ver</button>
+ 
+<div class="container mt-4">
+    <div class="row">
+    @foreach($marcas as $marca)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $marca->marca}}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $marca->id }}</p>
+                        <p class="card-text"><strong>Fecha venta:</strong> {{ $marca->marca }}</p>
+                        <p class="card-text"><strong>Producto:</strong> {{ $marca->origen->pais }}</p>    
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewMarcaModal{{ $marca->id }}">Ver</button>
                             <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editMarcaModal{{ $marca->id }}">Editar</button>
                             <form action="{{ route('marcas.destroy', $marca->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $marca->id }}')">Eliminar</button>
                             </form>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <!-- Modal Ver Producto -->
                     <div class="modal fade" id="viewMarcaModal{{ $marca->id }}" tabindex="-1" aria-labelledby="viewProductMarcaLabel{{ $marca->id }}" aria-hidden="true">
                         <div class="modal-dialog">
