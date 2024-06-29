@@ -98,38 +98,7 @@
 <script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
 
-<!--
-<script>
-     alertify.set('notifier', 'position', 'top-center');
-    alertify.set('notifier', 'classes', {
-        'success': 'bg-success text-white',
-        'error': 'bg-danger text-white',
-        'warning': 'bg-warning text-dark'
-    });
-    alertify.set('notifier', 'delay', 3);
-    function confirmDelete(id) {
-        alertify.confirm('Eliminar', '¿Estás seguro de que deseas eliminar este d_venta?', function(){
-            let form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/tipos/' + id;
-            form.innerHTML = '@csrf @method("DELETE")';
-            document.body.appendChild(form);
-            form.submit();
-        }, function(){
-            alertify.error('Cancelado');
-        });
-    }
-</script>
-@if(session('register'))
-        <script>
-            alertify.success('Registro exitoso');
-        </script>
-@endif
-@if(session('destroy'))
-        <script>
-            alertify.success('Eliminado');
-        </script>
-@endif-->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
@@ -137,7 +106,7 @@
     function confirmDelete(id) {
         Swal.fire({
             title: 'Eliminar',
-            text: '¿Estás seguro de que deseas eliminar este d_venta?',
+            text: '¿Estás seguro de que deseas eliminar este tipo?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
