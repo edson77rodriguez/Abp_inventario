@@ -16,7 +16,8 @@
       <nav>
         <ul class="list-unstyled d-flex mb-0">
           <li class="me-4"><a href="{{ url('/') }}" class="text-dark">Inicio</a></li>
-          <li class="me-4"><a href="{{ url('/login') }}" class="text-dark">Iniciar Sesión</a></li>
+          <li class="me-4"><a href="{{ url('/home') }}" class="text-dark">Regresar</a></li>
+
     
 <li class="dropdown">
     

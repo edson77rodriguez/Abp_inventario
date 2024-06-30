@@ -25,21 +25,14 @@
                     <tr>
                         <td>{{ $detalle['producto']->tipo->descripcion }}</td>
                         <td>
-                            <!-- Botones para incrementar y decrementar cantidad -->
                             <form action="{{ route('carrito.actualizar', $id) }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="action" value="increment">
-                                <button type="submit" class="btn btn-sm btn-primary">+</button>
-                            </form>
-                            {{ $detalle['cantidad'] }}
-                            <form action="{{ route('carrito.actualizar', $id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="action" value="decrement">
-                                <button type="submit" class="btn btn-sm btn-primary">-</button>
+                                <input type="number" name="cantidad" value="{{ $detalle['cantidad'] }}" min="1" class="form-control" style="width: 80px;">
+                                <button type="submit" class="btn btn-sm btn-primary mt-2">Actualizar</button>
                             </form>
                         </td>
-                        <td>{{ $detalle['producto']->precio_compra }}</td>
-                        <td>{{ $detalle['producto']->precio_compra * $detalle['cantidad'] }}</td>
+                        <td>{{ $detalle['precio_venta'] }}</td>
+                        <td>{{ $detalle['precio_venta'] * $detalle['cantidad'] }}</td>
                         <td>
                             <form action="{{ route('carrito.eliminar', $id) }}" method="POST">
                                 @csrf
@@ -52,15 +45,30 @@
         </table>
         <div class="text-end">
             <h4>Total: ${{ array_sum(array_map(function($detalle) {
-                return $detalle['producto']->precio_compra * $detalle['cantidad'];
+                return $detalle['precio_venta'] * $detalle['cantidad'];
             }, $carrito)) }}</h4>
         </div>
         <div class="text-end">
-            <!-- Botón para proceder al pago -->
-            @if($haySuficienteStock)
-            @else
-                <button class="btn btn-success" disabled>No hay suficiente stock</button>
-            @endif
+            <form action="{{ route('carrito.procesarPago') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="empleado_id" class="form-label">Empleado</label>
+                    <select name="empleado_id" id="empleado_id" class="form-select" required>
+                        @foreach($empleados as $empleado)
+                            <option value="{{ $empleado->id }}">{{ $empleado->persona->nombre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="tipopago_id" class="form-label">Tipo de Pago</label>
+                    <select name="tipopago_id" id="tipopago_id" class="form-select" required>
+                        @foreach($tipopagos as $tipopago)
+                            <option value="{{ $tipopago->id }}">{{ $tipopago->tipo }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Proceder al Pago</button>
+            </form>
         </div>
     @else
         <p>No hay productos en el carrito.</p>

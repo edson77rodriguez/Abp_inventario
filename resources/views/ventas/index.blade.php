@@ -20,11 +20,11 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ $venta->fecha_venta}}</h5>
                         <p class="card-text"><strong>Id:</strong> {{ $venta->id }}</p>
-                        <p class="card-text"><strong>Fecha venta:</strong> {{ $venta->producto->tipo->descripcion ?? 'hN/A' }}</p>
-                        <p class="card-text"><strong>Producto:</strong> {{ $venta->fecha_venta }}</p>
-                        <p class="card-text"><strong>Cantidad vendida:</strong> {{ $venta->empleado->persona->nombre ?? 'N/A' }} {{ $venta->empleado->persona->ap ?? '' }} {{ $venta->empleado->persona->am ?? '' }}</p>
-                        <p class="card-text"><strong>Precio:</strong> {{ $venta->cantidad }}</p>
-                        <p class="card-text"><strong>Tipo de pago:</strong> {{ $venta->ganancia }}</p>
+                        <p class="card-text"><strong>Fecha venta:</strong> {{ $venta->fecha_venta }}</p>
+                        <p class="card-text"><strong>Producto:</strong> {{ $venta->producto->tipo->descripcion ?? 'hN/A' }}</p>
+                        <p class="card-text"><strong>Empleado:</strong> {{ $venta->empleado->persona->nombre ?? 'N/A' }} {{ $venta->empleado->persona->ap ?? '' }} {{ $venta->empleado->persona->am ?? '' }}</p>
+                        <p class="card-text"><strong>Catidad:</strong> {{ $venta->cantidad }}</p>
+                        <p class="card-text"><strong>Ganancia:</strong> {{ $venta->ganancia }}</p>
 
                         
                         <div class="d-flex justify-content-between">

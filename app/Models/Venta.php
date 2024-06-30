@@ -9,7 +9,7 @@ class Venta extends Model
 {
     use HasFactory;
     use HasFactory;
-    protected $fillable = ['inventario_id','fecha_venta', 'empleado_id','producto_id','ganancia'];
+    protected $fillable = ['inventario_id','fecha_venta', 'empleado_id','cantidad','producto_id','ganancia'];
 
     public function empleado()
     {

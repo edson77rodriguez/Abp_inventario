@@ -10,8 +10,7 @@
                 <img src="{{ asset('storage/' . $producto->imagen) }}" class="card-img-top" alt="{{ $producto->tipo->descripcion }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $producto->descripcion }}</h5>
-                    <a href="{{ route('producto.detalle', $producto->id) }}" class="btn btn-info">Ver Detalle</a>
-                </div>
+                    <a href="{{ route('productos.detalle', $producto->id) }}" class="btn btn-info mt-auto">Ver Detalle</a>                </div>
             </div>
         </div>
         @endforeach

@@ -22,6 +22,9 @@ use App\Http\Controllers\TipoPagosController;
 use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\SomeController;
+use App\Http\Controllers\GestionController;
+
 
 
 
@@ -63,12 +66,25 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('ventas', VentaController::class);
     Route::resource('tipopagos', TipoPagosController::class);
     Route::resource('detalleventas', DetalleVentaController::class);
-    Route::get('/catalogo/{tipo}', [HomeController::class, 'catalogo'])->name('catalogo');
+Route::get('/catalogo/{tipo}', [HomeController::class, 'catalogo'])->name('catalogo');
 Route::get('/producto/{producto}', [HomeController::class, 'detalle'])->name('productos.detalle');
 Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
 Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 Route::post('/carrito/actualizar/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
 Route::post('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+Route::get('/checkout', [CarritoController::class, 'checkout'])->name('checkout');
+
+Route::post('/pago/procesar', [CarritoController::class, 'procesarPago'])->name('pago.procesar');
+Route::get('/checkout', [SomeController::class, 'showCheckout'])->name('checkout');
+Route::post('/carrito/procesarPago', [CarritoController::class, 'procesarPago'])->name('carrito.procesarPago');
+
+Route::get('/gestion/inventario', [GestionController::class, 'inventario'])->name('gestion.inventario');
+Route::get('/gestion/ventas', [GestionController::class, 'ventas'])->name('gestion.ventas');
+Route::get('/gestion/proveedores', [GestionController::class, 'proveedores'])->name('gestion.proveedores');
+Route::get('/gestion/informes', [GestionController::class, 'informes'])->name('gestion.informes');
+Route::get('/gestion/configuracion', [GestionController::class, 'configuracion'])->name('gestion.configuracion');
+
+
 
 
 });

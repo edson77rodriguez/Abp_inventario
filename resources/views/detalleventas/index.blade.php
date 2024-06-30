@@ -209,7 +209,7 @@
 
                        
                         <div class="mb-3">
-                            <label for="tipopago_id" class="form-label">Detalles de venta</label>
+                            <label for="tipopago_id" class="form-label">Tipo de pago</label>
                             <select name="tipopago_id" id="tipopago_id" class="form-select" required>
                                 <option value="">Seleccione tipo de pago</option>
                                 @foreach ($tipopagos as $tipopago)

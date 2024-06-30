@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $productos = Producto::inRandomOrder()->take(8)->get();
         $tipos = Tipo::all();
-        
+
         return view('home', compact('tipos', 'productos'));
     }
 
