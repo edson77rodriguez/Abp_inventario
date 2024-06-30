@@ -16,27 +16,29 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead>
-                <tr id="tablab">
-                    <th>ID</th>
-                    <th>Origen de marca</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($origenes as $origen)
-                    <tr id="demo">
-                        <td>{{ $origen->id }}</td>
-                        <td>{{ $origen->pais }}</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-sm btn-info me-4" data-bs-toggle="modal" data-bs-target="#editOrigenModal{{ $origen->id }}">Editar</button>
+    
+                    <div class="container mt-4">
+    <div class="row">
+        @foreach ($origenes as $origen)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $origen->pais}}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $origen->id }}</p>
+                        <p class="card-text"><strong>Origen:</strong> {{ $origen->pais}}</p>
+                        
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewOrigenModal{{ $origen->id }}">Ver</button>
+                            <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editOrigenModal{{ $origen->id }}">Editar</button>
+                            <form action="{{ route('origenes.destroy', $origen->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $origen->id }}')">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
                     <!-- Modal Editar Composición -->
                     <div class="modal fade" id="editOrigenModal{{ $origen->id }}" tabindex="-1" aria-labelledby="editModeloModalLabel{{ $origen->id }}" aria-hidden="true">

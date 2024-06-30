@@ -12,36 +12,31 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead id="tablab">
-                <tr>
-                     <th>ID</th>
-                        <th>Empleado</th>
-                        <th>Cargo</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Fecha de Fin</th>
-                        <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                 @foreach($empleados as $empleado)
-                        <tr id='demo'>
-                            <td>{{ $empleado->id }}</td>
-                            <td>{{ $empleado->persona->nombre }} {{ $empleado->persona->ap }} {{ $empleado->persona->am }}</td>
-                            <td>{{ $empleado->cargo->descripcion }}</td>
-                            <td>{{ $empleado->fecha_inicio }}</td>
-                            <td>{{ $empleado->fecha_fin }}</td>
-                            <td>
-                            <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewEmpleadoModal{{ $empleado->id }}">Ver</button>
+ 
+                    <div class="container mt-4">
+    <div class="row">
+        @foreach ($empleados as $empleado)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $empleado->persona->nombre }}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $empleado->id }}</p>
+                        <p class="card-text"><strong>Nombre:</strong> {{ $empleado->persona->nombre }} {{ $empleado->persona->ap }} {{ $empleado->persona->am }}</p>
+                        <p class="card-text"><strong>Fecha I:</strong> {{ $empleado->fecha_inicio }}</p>
+                        <p class="card-text"><strong>Fecha F:</strong> {{ $empleado->fecha_fin }}</p>
+
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewEmpleadoModal{{ $empleado->id }}">Ver</button>
                             <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editEmpleadoModal{{ $empleado->id }}">Editar</button>
                             <form action="{{ route('empleados.destroy', $empleado->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $empleado->id }}')">Eliminar</button>
                             </form>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <!-- Modal Ver Producto -->
                     <div class="modal fade" id="viewEmpleadoModal{{ $empleado->id }}" tabindex="-1" aria-labelledby="viewEmpleadoMarcaLabel{{ $empleado->id }}" aria-hidden="true">
                         <div class="modal-dialog">

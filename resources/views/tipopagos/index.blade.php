@@ -16,28 +16,30 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead>
-                <tr id="tablab">
-                    <th>ID</th>
-                    <th>Tipo de pago</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($tipopagos as $tipopago)
-                    <tr id="demo">
-                        <td>{{ $tipopago->id }}</td>
-                        <td>{{ $tipopago->tipo }}</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-sm btn-info me-4" data-bs-toggle="modal" data-bs-target="#editTipopagoModal{{ $tipopago->id }}">Editar</button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $tipopago->id }}')">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
 
+
+                    <div class="container mt-4">
+    <div class="row">
+        @foreach ($tipopagos as $tipopago)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $tipopago->tipo}}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $tipopago->id }}</p>
+                        <p class="card-text"><strong>tipopago:</strong> {{ $tipopago->tipo}}</p>
+                        
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewTipopagoModal{{ $tipopago->id }}">Ver</button>
+                            <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editTipopagoModal{{ $tipopago->id }}">Editar</button>
+                            <form action="{{ route('tipopagos.destroy', $tipopago->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $tipopago->id }}')">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <!-- Modal Editar Composición -->
                     <div class="modal fade" id="editTipopagoModal{{ $tipopago->id }}" tabindex="-1" aria-labelledby="editTipopagoModalLabel{{ $tipopago->id }}" aria-hidden="true">
                         <div class="modal-dialog">

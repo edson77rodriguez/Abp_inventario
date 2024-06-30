@@ -16,28 +16,29 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead>
-                <tr id="tablab">
-                    <th>ID</th>
-                    <th>Descripcion</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($cargos as $cargo)
-                    <tr id="demo">
-                        <td>{{ $cargo->id }}</td>
-                        <td>{{ $cargo->descripcion }}</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-sm btn-info me-4" data-bs-toggle="modal" data-bs-target="#editCargoModal{{ $cargo->id }}">Editar</button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $cargo->id }}')">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
 
+<div class="container mt-4">
+    <div class="row">
+        @foreach ($cargos as $cargo)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $cargo->descripcion}}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $cargo->id }}</p>
+                        <p class="card-text"><strong>Cargo:</strong> {{ $cargo->descripcion}}</p>
+                        
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewCargoModal{{ $cargo->id }}">Ver</button>
+                            <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editCargoModal{{ $cargo->id }}">Editar</button>
+                            <form action="{{ route('cargos.destroy', $cargo->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $cargo->id }}')">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <!-- Modal Editar Cargo -->
                     <div class="modal fade" id="editCargoModal{{ $cargo->id }}" tabindex="-1" aria-labelledby="editCargoModalLabel{{ $cargo->id }}" aria-hidden="true">
                         <div class="modal-dialog">

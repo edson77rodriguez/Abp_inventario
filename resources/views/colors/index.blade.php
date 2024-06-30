@@ -16,28 +16,30 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead>
-                <tr id="tablab">
-                    <th>ID</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($colors as $color)
-                    <tr id="demo">
-                        <td>{{ $color->id }}</td>
-                        <td>{{ $color->descripcion }}</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-sm btn-info me-4" data-bs-toggle="modal" data-bs-target="#editColorModal{{ $color->id }}">Editar</button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $color->id }}')">Eliminar</button>
-                            </div>
-                        </td>
-                    </tr>
+  
 
+                    <div class="container mt-4">
+    <div class="row">
+        @foreach ($colors as $color)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $color->descripcion}}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $color->id }}</p>
+                        <p class="card-text"><strong>Color:</strong> {{ $color->descripcion}}</p>
+                        
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewColorModal{{ $color->id }}">Ver</button>
+                            <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editColorModal{{ $color->id }}">Editar</button>
+                            <form action="{{ route('colors.destroy', $color->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $color->id }}')">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <!-- Modal Editar Color -->
                     <div class="modal fade" id="editColorModal{{ $color->id }}" tabindex="-1" aria-labelledby="editColorModalLabel{{ $color->id }}" aria-hidden="true">
                         <div class="modal-dialog">

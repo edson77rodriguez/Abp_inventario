@@ -12,30 +12,30 @@
             </div>
         </div>
     </div>
-    <div class="table-container">
-        <table class="table table-bordered table-hover w-100">
-            <thead id="tablab">
-                <tr>
-                     <th>ID</th>
-                        <th>Proveedor</th>
-                        <th>Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                 @foreach($proveedores as $proveedor)
-                        <tr id='demo'>
-                            <td>{{ $proveedor->id }}</td>
-                            <td>{{ $proveedor->persona->nombre }} {{ $proveedor->persona->ap }} {{ $proveedor->persona->am }}</td>
-                            <td>
-                            <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewProveedorModal{{ $proveedor->id }}">Ver</button>
+
+
+                    <div class="container mt-4">
+    <div class="row">
+        @foreach ($proveedores as $proveedor)
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $proveedor->persona->nombre}}</h5>
+                        <p class="card-text"><strong>Id:</strong> {{ $proveedor->id }}</p>
+                        <p class="card-text"><strong>Proveedor:</strong> {{ $proveedor->persona->nombre }} {{ $proveedor->persona->ap }} {{ $proveedor->persona->am }}</p>
+                        
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-info me-2 p-1" data-bs-toggle="modal" data-bs-target="#viewProveedorModal{{ $proveedor->id }}">Ver</button>
                             <button class="btn btn-primary me-2 p-1" data-bs-toggle="modal" data-bs-target="#editProveedorModal{{ $proveedor->id }}">Editar</button>
                             <form action="{{ route('proveedores.destroy', $proveedor->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $proveedor->id }}')">Eliminar</button>
                             </form>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <!-- Modal Ver Producto -->
                     <div class="modal fade" id="viewProveedorModal{{ $proveedor->id }}" tabindex="-1" aria-labelledby="viewProveedorMarcaLabel{{ $proveedor->id }}" aria-hidden="true">
                         <div class="modal-dialog">
