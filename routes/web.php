@@ -21,6 +21,8 @@ use App\Http\Controllers\VentaController;
 use App\Http\Controllers\TipoPagosController;
 use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CarritoController;
+
 
 
 
@@ -61,8 +63,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('ventas', VentaController::class);
     Route::resource('tipopagos', TipoPagosController::class);
     Route::resource('detalleventas', DetalleVentaController::class);
-
-
+    Route::get('/catalogo/{tipo}', [HomeController::class, 'catalogo'])->name('catalogo');
+Route::get('/producto/{producto}', [HomeController::class, 'detalle'])->name('productos.detalle');
+Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
+Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::post('/carrito/actualizar/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
+Route::post('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
 
 
 });

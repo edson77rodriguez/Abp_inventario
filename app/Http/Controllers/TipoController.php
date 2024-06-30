@@ -57,4 +57,6 @@ class TipoController extends Controller
 
         return redirect()->route('tipos.index')->with('destroy',' ');
     }
+
+    
 }
