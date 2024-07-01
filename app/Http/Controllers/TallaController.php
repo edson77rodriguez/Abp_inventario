@@ -46,7 +46,7 @@ class TallaController extends Controller
         $talla = Talla::find($id);
         $talla->update($request->all());
 
-        return redirect()->route('tallas.index')->with('register',' ');
+        return redirect()->route('tallas.index')->with('modify',' ');
     }
 
     public function destroy(string $id)

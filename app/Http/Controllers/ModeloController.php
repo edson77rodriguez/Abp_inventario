@@ -47,7 +47,7 @@ class ModeloController extends Controller
         $modelo = Modelo::find($id);
         $modelo->update($request->all());
 
-        return redirect()->route('modelos.index')->with('register',' ');
+        return redirect()->route('modelos.index')->with('modify',' ');
     }
 
     public function destroy(string $id)

@@ -64,7 +64,7 @@ class ProveedorController extends Controller
         $proveedor=Proveedor::findOrFail($id);
         $proveedor->update($validatedData);
 
-        return redirect()->route('proveedores.index')->with('register','Quedo pa');
+        return redirect()->route('proveedores.index')->with('modify','Quedo pa');
         
     }
 

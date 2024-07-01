@@ -43,7 +43,7 @@ class ComposicionController extends Controller
         $composicion = Composicion::find($id);
         $composicion->update($request->all());
 
-        return redirect()->route('composiciones.index')->with('register',' ');
+        return redirect()->route('composiciones.index')->with('modify',' ');
     }
     public function destroy(string $id)
     {

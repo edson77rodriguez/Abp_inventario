@@ -55,7 +55,7 @@ class InventarioController extends Controller
         $inventario = Inventario::findOrFail($id);
         $inventario->update($validatedData);
 
-        return redirect()->route('inventarios.index')->with('register', ' ');
+        return redirect()->route('inventarios.index')->with('modify', ' ');
     }
 
     public function destroy(string $id)

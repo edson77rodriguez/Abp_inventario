@@ -43,7 +43,7 @@ class EstiloController extends Controller
         $estilo = Estilo::find($id);
         $estilo->update($request->all());
 
-        return redirect()->route('estilos.index')->with('register',' ');
+        return redirect()->route('estilos.index')->with('modify',' ');
     }
     public function destroy(string $id)
     {

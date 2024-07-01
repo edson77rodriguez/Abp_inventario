@@ -46,7 +46,7 @@ class TipoController extends Controller
         $tipo = Tipo::find($id);
         $tipo->update($request->all());
 
-        return redirect()->route('tipos.index')->with('register',' ');
+        return redirect()->route('tipos.index')->with('modify',' ');
     }
 
     public function destroy(string $id)

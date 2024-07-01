@@ -86,7 +86,7 @@ class VentaController extends Controller
         $inventario->cantidad_stock -= $request->cantidad;
         $inventario->save();
 
-        return redirect()->route('ventas.index')->with('register', 'Venta actualizada correctamente');
+        return redirect()->route('ventas.index')->with('modify', 'Venta actualizada correctamente');
     }
 
 

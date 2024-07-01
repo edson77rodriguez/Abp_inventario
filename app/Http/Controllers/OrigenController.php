@@ -47,7 +47,7 @@ class OrigenController extends Controller
         $origen = Origen::find($id);
         $origen->update($request->all());
 
-        return redirect()->route('origenes.index')->with('register',' ');
+        return redirect()->route('origenes.index')->with('modify',' ');
     }
 
     public function destroy(string $id)

@@ -85,7 +85,7 @@ class ProductoController extends Controller
 
         $producto->update($validatedData);
 
-        return redirect()->route('productos.index')->with('register', 'Producto actualizado exitosamente.');
+        return redirect()->route('productos.index')->with('modify', 'Producto actualizado exitosamente.');
     }
 
     public function destroy($id)

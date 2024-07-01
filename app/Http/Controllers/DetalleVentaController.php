@@ -65,7 +65,7 @@ class DetalleVentaController extends Controller
         $detalleventa = Detalleventa::findOrFail($id);
         $detalleventa->update($validatedData);
 
-        return redirect()->route('detalleventas.index')->with('register', 'Inventario actualizado correctamente');
+        return redirect()->route('detalleventas.index')->with('modify', 'Inventario actualizado correctamente');
     }
 
     public function destroy(string $id)

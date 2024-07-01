@@ -56,7 +56,7 @@ class EmpleadoController extends Controller
         $empleado = Empleado::findOrFail($id);
         $empleado->update($validatedData);
 
-        return redirect()->route('empleados.index')->with('destroy', 'Empleado actualizado exitosamente.');
+        return redirect()->route('empleados.index')->with('modify', 'Empleado actualizado exitosamente.');
     }
     public function destroy(string $id)
     {

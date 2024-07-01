@@ -47,7 +47,7 @@ class TipoPagosController extends Controller
         $tipopago = Tipopago::find($id);
         $tipopago->update($request->all());
 
-        return redirect()->route('tipopagos.index')->with('y',' ');
+        return redirect()->route('tipopagos.index')->with('modify',' ');
     }
 
     public function destroy(string $id)

@@ -48,7 +48,7 @@ class PersonaController extends Controller
         $persona = Persona::find($id);
         $persona->update($request->all());
 
-        return redirect()->route('personas.index')->with('register',' ');
+        return redirect()->route('personas.index')->with('modify',' ');
     }
     public function destroy(string $id)
     {

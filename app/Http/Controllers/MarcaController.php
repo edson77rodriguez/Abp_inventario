@@ -56,7 +56,7 @@ class MarcaController extends Controller
         $marca->update($request->all());
 
         // Redirigir con un mensaje de éxito
-        return redirect()->route('marcas.index')->with('register', 'Marca actualizada exitosamente.');
+        return redirect()->route('marcas.index')->with('modify', 'Marca actualizada exitosamente.');
     }
     public function destroy(string $id)
     {

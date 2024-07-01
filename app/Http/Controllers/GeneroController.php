@@ -46,7 +46,7 @@ class GeneroController extends Controller
         $genero = Genero::find($id);
         $genero->update($request->all());
 
-        return redirect()->route('generos.index')->with('register',' ');
+        return redirect()->route('generos.index')->with('modify',' ');
     }
 
     public function destroy(string $id)

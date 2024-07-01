@@ -43,7 +43,7 @@ class CargoController extends Controller
         $cargo = Cargo::find($id);
         $cargo->update($request->all());
 
-        return redirect()->route('cargos.index')->with('register', ' ');
+        return redirect()->route('cargos.index')->with('modify', ' ');
     }
     public function destroy(string $id)
     {

@@ -45,7 +45,7 @@ class ColorController extends Controller
         $color = Color::find($id);
         $color->update($request->all());
 
-        return redirect()->route('colors.index')->with('register', ' ');
+        return redirect()->route('colors.index')->with('modify', ' ');
     }
 
     public function destroy(string $id)
